@@ -1,0 +1,37 @@
+(*use_dsp48 ="yes"*)
+module adder_dsp(
+	input clk,
+  input wire [15:0] W, // FP16 데이터 1
+  input wire [15:0] X, // FP16 데이터 2
+  output reg [15:0] Y // FP16 결과 데이터
+);
+
+  always @* begin
+    // 가수 부분 추출
+    reg [9:0] mantissa1 = W[9:0];
+    reg [9:0] mantissa2 = X[9:0];
+
+    // 지수 부분 추출
+    reg [4:0] exponent1 = W[14:10];
+    reg [4:0] exponent2 = X[14:10];
+
+    // 두 가수의 지수를 맞춤
+    if (exponent1 < exponent2) begin
+      mantissa1 = mantissa1 >> (exponent2 - exponent1);
+      exponent1 = exponent2;
+    end else if (exponent1 > exponent2) begin
+      mantissa2 = mantissa2 >> (exponent1 - exponent2);
+    end
+
+    // 가수 부분 덧셈
+    reg [10:0] mantissa_result = mantissa1 + mantissa2;
+
+    // 가수 부분 올림 처리
+    if (mantissa_result[10]) // 가수 부분의 최상위 비트가 1인 경우 (올림)
+      mantissa_result = mantissa_result >> 1;
+
+    // 결과 데이터 조합
+    Y = {data1[15], exponent1, mantissa_result[9:0]};
+  end
+
+endmodule
