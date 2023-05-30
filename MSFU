@@ -1,0 +1,34 @@
+module MSFU(
+input clk,
+input [15:0] data_in [15:0],
+output [15:0] ReduceMax_out,
+output [15:0] vectorizer_out [63:0]
+);
+reg state = 0;
+reg nextstate = 0;
+reg [15:0] psum =0;
+
+wire [15:0] z01 [15:0];
+
+always@(state) begin
+case (state)
+0:Gelu
+Gelu G(.clk(clk), X(data_in), Y(z01));
+nextstate=4;
+1:Mask
+Mask M(.clk(clk), X(data_in), Y(z01));
+nextstate=4;
+2:Bypass
+Bypass B(.clk(clk), X(data_in), Y(z01));
+nextstate=4;
+3:Reduce_Max
+Reduce_Max R(.clk(clk), X(data_in), Y(ReduceMax_out));
+4:Vectorizer
+Vectorizer V(.clk(clk), X(z01), Y(vectorizer_out));
+end
+
+always @(podsge clock) begin
+	state <= nextstate;
+end
+
+endmodule
