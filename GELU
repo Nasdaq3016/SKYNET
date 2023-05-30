@@ -1,0 +1,81 @@
+module GELU (
+  input wire [15:0] x,
+  output wire [15:0] result
+);
+
+  // FP16 Multiply
+  reg [9:0] mantissa1;
+  reg [9:0] mantissa2;
+  reg [4:0] exponent1;
+  reg [4:0] exponent2;
+  reg [19:0] mantissa_mult;
+  reg [4:0] exponent_mult;
+
+  // FP16 Tanh
+  wire [15:0] tanh_input;
+  wire [15:0] tanh_output;
+
+  // FP16 Addition
+  wire [15:0] addition_input;
+  wire [15:0] addition_output;
+
+  // FP16 Multiply Constants
+  localparam [9:0] mantissa_const = 10'b1000000000;  // 0.5 in FP16
+  localparam [4:0] exponent_const = 5'b01111;        // 0.5 in FP16
+
+  // FP16 Addition Constants
+  localparam [15:0] addition_const = 16'b0111111110000000;  // 1.0 in FP16
+
+  // FP16 Tanh Constants
+  localparam [15:0] tanh_const = 16'b0111110001001010;      // sqrt(2 / pi) in FP16
+
+  // Extracting mantissa and exponent of input x
+  assign mantissa1 = x[9:0];
+  assign exponent1 = x[14:10];
+
+  // Multiply operation
+  assign mantissa2 = mantissa_const;
+  assign exponent2 = exponent_const;
+  assign mantissa_mult = mantissa1 * mantissa2;
+  always @* begin
+    if (mantissa_mult[19])
+      mantissa_mult = mantissa_mult + 1;
+    else if (mantissa_mult[18:10] != 10'b0000000000)
+      mantissa_mult = mantissa_mult + 1;
+    exponent_mult = exponent1 + exponent2 - 15;
+  end
+
+  // Tanh operation
+  assign tanh_input = mantissa_mult + exponent_mult;
+  tanh tanh_inst(
+    .x(tanh_input),
+    .y(tanh_output)
+  );
+
+  // Addition operation
+  assign addition_input = tanh_output + tanh_const;
+  assign addition_output = addition_input + mantissa_mult;
+
+  // Assigning the final result
+  assign result = addition_output;
+
+endmodule
+
+module tanh (
+  input wire [15:0] x,
+  output wire [15:0] y
+);
+  // Implementation of tanh function
+
+  // Tanh LUT
+  reg [9:0] lut[1023:0];
+
+  // Initialize LUT with precomputed values
+  initial begin
+    // LUT values are precomputed using a script or table generation
+    // LUT initialization code here
+    // ...
+  end
+
+  // Output assignment using LUT
+  assign y = lut[x[9:0]];
