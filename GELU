@@ -1,0 +1,30 @@
+`timescale 1s / 1s
+module gelu_0 (
+	input clk,
+  input wire [15:0] input_0, // FP16 데이터 
+	output reg [15:0] output_gelu // FP16 결과 데이터
+);
+	localparam [15:0] data_1 = 16'b0011110000000000;  // 1을 FP16로 표현
+	localparam [15:0] data_0_5 = 16'b0011100000000000;  // 0.5를 FP16로 표현
+	localparam [15:0] data_sqrt = 16'b0100111001010000;  // sqrt(2 / pi)를 FP16로 표현
+	localparam [15:0] data_44715 = 16'b0000000010101110;  // 0.044715를 FP16로 표현
+	reg input_x2;
+	reg input_x3;
+	reg input_Ax3;
+	reg input_xAx3;
+	reg input_pixAx3;
+	reg input_tanh;
+	reg input_1tanh;
+	reg input_x1tanh;
+
+	always @* begin
+
+		mul_dsp G_00(.clk(clk), W(input_0), X(input_0), Y(input_x2);
+		#1;
+		mul_dsp G_01(.clk(clk), W(input_x2), X(input_0), Y(input_x3);
+		#2;
+		mul_dsp G_02(.clk(clk), W(input_x3), X(data_44715), Y(input_Ax3);
+		#3;
+		adder_dsp G_00(.clk(clk), W(input_Ax3), X(data_44715), Y(input_xAx3);
+		#4;
+		mul_dsp G_03(.clk(clk), W(input_xAx3), X(data_sqrt), Y(input_pixAx3);
