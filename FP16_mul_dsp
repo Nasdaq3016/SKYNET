@@ -1,34 +1,26 @@
-module dsp_mult(
+module dsp_mul(
 input clk,
-input wire tvalid_x,
-output wire tready_x,
-input wire tdata_x,
-input wire valid_w,
-output wire tready_w,
-input wire tdata_w,
-output wire tvalid_y,
-input wire tready_y,
-output [15:0] y_out
+input s_axis_a_tvalid,
+output s_axis_a_tready,
+input [15:0] data_a,
+input s_axis_b_tvalid,
+output s_axis_b_tready,
+input [15:0] data_b,
+output m_axis_result_tvalid,
+input m_axis_result_tready,
+output [15:0] data_out
     );
-reg [15:0] x_in;
-reg [15:0] w_in;
- always @(posedge clk) begin
-    if ((tvalid_x && tready_x) && (tvalid_w && tready_w) && (tvalid_y && tready_y))
-        begin
-            x_in <= tdata_x;
-            w_in <= tdata_w;
-        end    
-    end
- Multiplier_IP mul (
+    
+ Multiplier_IP mult (
   .aclk(clk),                            // input wire aclk
-  .s_axis_a_tvalid(tvalid_x),            // input wire s_axis_a_tvalid
-  .s_axis_a_tready(tready_x),            // output wire s_axis_a_tready
-  .s_axis_a_tdata(x_in),                 // input wire [15 : 0] s_axis_a_tdata
-  .s_axis_b_tvalid(tvalid_w),            // input wire s_axis_b_tvalid
-  .s_axis_b_tready(tready_w),            // output wire s_axis_b_tready
-  .s_axis_b_tdata(w_in),                 // input wire [15 : 0] s_axis_b_tdata
-  .m_axis_result_tvalid(tvalid_y),       // output wire m_axis_result_tvalid
-  .m_axis_result_tready(tready_y),       // input wire m_axis_result_tready
-  .m_axis_result_tdata(y_out)            // output wire [15 : 0] m_axis_result_tdata
+  .s_axis_a_tvalid(s_axis_a_tvalid),            // input wire s_axis_a_tvalid
+  .s_axis_a_tready(s_axis_a_tready),            // output wire s_axis_a_tready
+  .s_axis_a_tdata(data_a),                 // input wire [15 : 0] s_axis_a_tdata
+  .s_axis_b_tvalid(s_axis_b_tvalid),            // input wire s_axis_b_tvalid
+  .s_axis_b_tready(s_axis_b_tready),            // output wire s_axis_b_tready
+  .s_axis_b_tdata(data_b),                 // input wire [15 : 0] s_axis_b_tdata
+  .m_axis_result_tvalid(m_axis_result_tvalid),       // output wire m_axis_result_tvalid
+  .m_axis_result_tready(m_axis_result_tready),       // input wire m_axis_result_tready
+  .m_axis_result_tdata(data_out)            // output wire [15 : 0] m_axis_result_tdata
 );
 endmodule
