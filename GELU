@@ -1,30 +1,100 @@
-`timescale 1s / 1s
-module gelu_0 (
-	input clk,
-  input wire [15:0] input_0, // FP16 데이터 
-	output reg [15:0] output_gelu // FP16 결과 데이터
+module GELU(
+    input clk,
+    input s_axis_a_tvalid, output s_axis_a_tready, input s_axis_b_tvalid,
+    output s_axis_b_tready,output m_axis_result_tvalid, input m_axis_result_tready,
+    
+    input [15:0] datain_0, input [15:0] datain_1, input [15:0] datain_2, input [15:0] datain_3,
+    input [15:0] datain_4, input [15:0] datain_5, input [15:0] datain_6, input [15:0] datain_7,
+    input [15:0] datain_8, input [15:0] datain_9, input [15:0] datain_10, input [15:0] datain_11,
+    input [15:0] datain_12, input [15:0] datain_13, input [15:0] datain_14, input [15:0] datain_15,
+    
+    output [15:0] dataout_0, output [15:0] dataout_1, output [15:0] dataout_2, output [15:0] dataout_3,
+    output [15:0] dataout_4, output [15:0] dataout_5, output [15:0] dataout_6, output [15:0] dataout_7,
+    output [15:0] dataout_8, output [15:0] dataout_9, output [15:0] dataout_10, output [15:0] dataout_11,
+    output [15:0] dataout_12, output [15:0] dataout_13, output [15:0] dataout_14, output [15:0] dataout_15
 );
-	localparam [15:0] data_1 = 16'b0011110000000000;  // 1을 FP16로 표현
-	localparam [15:0] data_0_5 = 16'b0011100000000000;  // 0.5를 FP16로 표현
-	localparam [15:0] data_sqrt = 16'b0100111001010000;  // sqrt(2 / pi)를 FP16로 표현
-	localparam [15:0] data_44715 = 16'b0000000010101110;  // 0.044715를 FP16로 표현
-	reg input_x2;
-	reg input_x3;
-	reg input_Ax3;
-	reg input_xAx3;
-	reg input_pixAx3;
-	reg input_tanh;
-	reg input_1tanh;
-	reg input_x1tanh;
+    wire [15:0] array_in [15:0];
+    wire [15:0] array_out [15:0];
+    wire [15:0] data_out_exp;
+    wire [15:0] data_out_invexp;
+    wire [15:0] data_out_numer;
+    wire [15:0] data_out_denom;
+    wire [15:0] first_mult; //0.5 * x
+    wire [15:0] second_mult;  // x ^ 2
+    wire [15:0] third_mult;  // x ^ 3
+    wire [15:0] fouth_mult;  //0.044715 * x^3
+    wire [15:0] first_add;  //x + 0.044715 * x^3
+    wire [15:0] fifth_mult;  //sqrt(2/pi) * (x + 0.044715 * x^3)
+    wire [15:0] first_exp;  //e ^ x
+    wire [15:0] first_invexp;   //1/e^x
+    wire [15:0] num_sub;    //e^x - 1/e^x
+    wire [15:0] denom_add;  //e^x + 1/e^x
+    wire [15:0] first_tanh; //tanh [sqrt(2/pi) * (x + 0.044715 * x^3)]
+    wire [15:0] data_1 = 16'b0011110000000000;    //1
+	wire [15:0] data_0_5 = 16'b0011100000000000; //0.5  
+	wire [15:0] data_sqrt_pi = 16'b0011101001100010; //sqrt(2 / pi)
+	wire [15:0] data_44715 = 16'b0010100110111001;  // 0.044715
+    assign array_in [0] = datain_0; assign array_in [1] = datain_1; assign array_in [2] = datain_2; assign array_in [3] = datain_3;
+    assign array_in [4] = datain_4; assign array_in [5] = datain_5; assign array_in [6] = datain_6; assign array_in [7] = datain_7;
+    assign array_in [8] = datain_8; assign array_in [9] = datain_9; assign array_in [10] = datain_10; assign array_in [11] = datain_11;
+    assign array_in [12] = datain_12; assign array_in [13] = datain_13; assign array_in [14] = datain_14; assign array_in [15] = datain_15;
+    
+    generate
+    genvar itr;
+    for (itr = 0; itr < 16; itr = itr + 1)
+    begin : gen_loop
+    FP_multiplier mult_gelu1 (.aclk(clk), .s_axis_a_tvalid(s_axis_a_tvalid), .s_axis_a_tready(s_axis_a_tready), .s_axis_a_tdata(data_0_5),
+                              .s_axis_b_tvalid(s_axis_b_tvalid), .s_axis_b_tready(s_axis_b_tready), .s_axis_b_tdata(array_in [itr]),
+                              .m_axis_result_tvalid(m_axis_result_tvalid), .m_axis_result_tready(m_axis_result_tready), .m_axis_result_tdata(first_mult));
+    
+		FP_multiplier mult_gelu2 (.aclk(clk), .s_axis_a_tvalid(s_axis_a_tvalid), .s_axis_a_tready(s_axis_a_tready), .s_axis_a_tdata(array_in [itr]),
+                              .s_axis_b_tvalid(s_axis_b_tvalid), .s_axis_b_tready(s_axis_b_tready), .s_axis_b_tdata(array_in [itr]), 
+                              .m_axis_result_tvalid(m_axis_result_tvalid), .m_axis_result_tready(m_axis_result_tready), .m_axis_result_tdata(second_mult));
+    
+		FP_multiplier mult_gelu3 (.aclk(clk), .s_axis_a_tvalid(s_axis_a_tvalid), .s_axis_a_tready(s_axis_a_tready), .s_axis_a_tdata(array_in [itr]),
+                              .s_axis_b_tvalid(s_axis_b_tvalid), .s_axis_b_tready(s_axis_b_tready), .s_axis_b_tdata(second_mult),
+                              .m_axis_result_tvalid(m_axis_result_tvalid), .m_axis_result_tready(m_axis_result_tready), .m_axis_result_tdata(third_mult));
+    
+		FP_multiplier mult_gelu4 (.aclk(clk), .s_axis_a_tvalid(s_axis_a_tvalid), .s_axis_a_tready(s_axis_a_tready), .s_axis_a_tdata(data_44715),
+                              .s_axis_b_tvalid(s_axis_b_tvalid), .s_axis_b_tready(s_axis_b_tready), .s_axis_b_tdata(third_mullt),
+                              .m_axis_result_tvalid(m_axis_result_tvalid), .m_axis_result_tready(m_axis_result_tready), .m_axis_result_tdata(fourth_mult));
+    
+		FP_adder add_gelu (.aclk(clk), .s_axis_a_tvalid(s_axis_a_tvalid), .s_axis_a_tready(s_axis_a_tready), .s_axis_a_tdata(array_in [itr]),
+                       .s_axis_b_tvalid(s_axis_b_tvalid), .s_axis_b_tready(s_axis_b_tready), .s_axis_b_tdata(fourth_mult),
+                       .m_axis_result_tvalid(m_axis_result_tvalid), .m_axis_result_tready(m_axis_result_tready), .m_axis_result_tdata(first_add));
+    
+		FP_multiplier mult_gelu5 (.aclk(clk), .s_axis_a_tvalid(s_axis_a_tvalid), .s_axis_a_tready(s_axis_a_tready), .s_axis_a_tdata(data_sqrt_pi),
+                              .s_axis_b_tvalid(s_axis_b_tvalid), .s_axis_b_tready(s_axis_b_tready), .s_axis_b_tdata(first_add),
+                              .m_axis_result_tvalid(m_axis_result_tvalid), .m_axis_result_tready(m_axis_result_tready), .m_axis_result_tdata(fifth_mult));
+    
+		FP_exponential exp_tanh (.aclk(clk), .s_axis_a_tvalid(s_axis_a_tvalid), .s_axis_a_tready(s_axis_a_tready), .s_axis_a_tdata(array_in [itr]),            
+                             .m_axis_result_tvalid(m_axis_result_tvalid), .m_axis_result_tready(m_axis_result_tready), .m_axis_result_tdata(first_exp));
+    
+		FP_reciporcal recip_tanh (.aclk(clk), .s_axis_a_tvalid(s_axis_a_tvalid), .s_axis_a_tready(s_axis_a_tready), .s_axis_a_tdata(first_exp),             
+                              .m_axis_result_tvalid(m_axis_result_tvalid), .m_axis_result_tready(m_axis_result_tready), .m_axis_result_tdata(first_invexp));
+    
+		FP_subtractor sub_tanh (.aclk(clk), .s_axis_a_tvalid(s_axis_a_tvalid), .s_axis_a_tready(s_axis_a_tready), .s_axis_a_tdata(first_exp),       
+                            .s_axis_b_tvalid(s_axis_b_tvalid), .s_axis_b_tready(s_axis_b_tready), .s_axis_b_tdata(first_invexp),  
+                            .m_axis_result_tvalid(m_axis_result_tvalid), .m_axis_result_tready(m_axis_result_tready), .m_axis_result_tdata(num_sub));
+    
+		FP_adder add_tanh (.aclk(clk), .s_axis_a_tvalid(s_axis_a_tvalid), .s_axis_a_tready(s_axis_a_tready), .s_axis_a_tdata(first_exp),              
+                       .s_axis_b_tvalid(s_axis_b_tvalid), .s_axis_b_tready(s_axis_b_tready), .s_axis_b_tdata(first_invexp),            
+                       .m_axis_result_tvalid(m_axis_result_tvalid), .m_axis_result_tready(m_axis_result_tready), .m_axis_result_tdata(denom_add));
+    
+		FP_divider div_tanh (.aclk(clk), .s_axis_a_tvalid(s_axis_a_tvalid), .s_axis_a_tready(s_axis_a_tready), .s_axis_a_tdata(num_sub),              
+                         .s_axis_b_tvalid(s_axis_b_tvalid), .s_axis_b_tready(s_axis_b_tready), .s_axis_b_tdata(denom_add),            
+                         .m_axis_result_tvalid(m_axis_result_tvalid), .m_axis_result_tready(m_axis_result_tready), .m_axis_result_tdata(first_tanh));
+    
+		FP_multiplier mult_gelu6 (.aclk(clk), .s_axis_a_tvalid(s_axis_a_tvalid), .s_axis_a_tready(s_axis_a_tready), .s_axis_a_tdata(first_mult),
+                              .s_axis_b_tvalid(s_axis_b_tvalid), .s_axis_b_tready(s_axis_b_tready), .s_axis_b_tdata(first_tanh),
+                              .m_axis_result_tvalid(m_axis_result_tvalid), .m_axis_result_tready(m_axis_result_tready), .m_axis_result_tdata(array_out [itr]));
+    
+    assign array_out [0] = dataout_0; assign array_out [1] = dataout_1; assign array_out [2] = dataout_2; assign array_out [3] = dataout_3;
+    assign array_out [4] = dataout_4; assign array_out [5] = dataout_5; assign array_out [6] = dataout_6; assign array_out [7] = dataout_7;
+    assign array_out [8] = dataout_8; assign array_out [9] = dataout_9; assign array_out [10] = dataout_10; assign array_out [11] = dataout_11;
+    assign array_out [12] = dataout_12; assign array_out [13] = dataout_13; assign array_out [14] = dataout_14; assign array_out [15] = dataout_15; 
+    
+    end
+    endgenerate 
+endmodule
 
-	always @* begin
-
-		mul_dsp G_00(.clk(clk), W(input_0), X(input_0), Y(input_x2);
-		#1;
-		mul_dsp G_01(.clk(clk), W(input_x2), X(input_0), Y(input_x3);
-		#2;
-		mul_dsp G_02(.clk(clk), W(input_x3), X(data_44715), Y(input_Ax3);
-		#3;
-		adder_dsp G_00(.clk(clk), W(input_Ax3), X(data_44715), Y(input_xAx3);
-		#4;
-		mul_dsp G_03(.clk(clk), W(input_xAx3), X(data_sqrt), Y(input_pixAx3);
