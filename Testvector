@@ -1,0 +1,35 @@
+import numpy as np
+import tensorflow as tf
+
+
+def shape_list(x):
+    """Deal with dynamic shape in tensorflow cleanly."""
+    static = x.shape.as_list()
+    dynamic = tf.shape(x)
+    return [dynamic[i] if s is None else s for i, s in enumerate(static)]
+
+
+def conv1d(x, scope, nf, w, *, w_init_stdev=0.02):
+  with tf.compat.v1.variable_scope(scope):
+     *start, nx = shape_list(x)
+     # w = tf.compat.v1.get_variable('w', [1, nx, nf], 'float16',  initializer=tf.constant_initializer(0.02))
+     # k = tf.compat.v1.get_variable('w', [1, nx, nf], 'float16',  initializer=tf.random_normal_initializer(stddev=0.02))
+     b = tf.compat.v1.get_variable('b', [nf], 'float16', initializer=tf.constant_initializer(0))
+     c = tf.reshape(tf.matmul(tf.reshape(x, [-1, nx]), tf.reshape(w, [-1, nf]))+b, start+[nf])
+     return c
+
+def softmax(x, axis=-1):
+    x = x - tf.reduce_max(x, axis=axis, keepdims=True)
+    ex = tf.exp(x)
+    return ex / tf.reduce_sum(ex, axis=axis, keepdims=True)
+
+def gelu(x):
+    return 0.5*x*(1+tf.tanh(np.sqrt(2/np.pi)*(x+0.044715*tf.pow(x, 3))))
+
+i = 1
+v = tf.constant([[[i, i, i, i], [i+1, i+1, i+1, i+1]], [[i+2, i+2, i+2, i+2], [i+3, i+3, i+3, i+3]]], dtype='float16')
+# v값은 행렬, scope 값은 문자, nf값은 shape 수
+k = tf.compat.v1.get_variable('w', [1, 4, 64], 'float16',  initializer=tf.random_normal_initializer(stddev=0.02))
+a = conv1d(v, "hello", 64, k)
+print(k)
+print(a)
