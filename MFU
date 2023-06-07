@@ -1,10 +1,32 @@
 module MFU(
 	input clk,
-	input [15:0] MA [63:0][15:0],
-	input [15:0] MB [63:0][15:0],
+	input [16383:0] A,
+	input [16383:0] B,
 	input [15:0] MC [15:0],
 	output [15:0] result [15:0]
 );
+
+wire [15:0] MA [63:0][15:0]
+wire [15:0] MA [63:0][15:0]
+
+generate
+    genvar i, j;
+    for (i = 0; i < 16; i = i + 1) begin
+      for (j = 0; j < 64; j = j + 1) begin
+        assign MA[i][j] = A[(i*64+j+1)*16-1:(i*64+j)*16];
+      end
+    end
+  endgenerate
+
+generate
+    genvar i, j;
+    for (i = 0; i < 16; i = i + 1) begin
+      for (j = 0; j < 64; j = j + 1) begin
+        assign MB[i][j] = B[(i*64+j+1)*16-1:(i*64+j)*16];
+      end
+    end
+  endgenerate
+
 
 mac lane1(.clk(clk), w_in(MA[63:0][15]), d_in(MB[63:0][15]), bias(MC[15]), acc_out(result[15]));
 mac lane2(.clk(clk), w_in(MA[63:0][14]), d_in(MB[63:0][14]), bias(MC[14]), acc_out(result[14]));
