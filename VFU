@@ -1,7 +1,7 @@
 module VFU(
 input clk,
-input [63:0][15:0] data_in_A,
-input [63:0][15:0] data_in_B,
+input [1023:0] A,
+input [1023:0] B,
 output [63:0][15:0] mul_out,
 output [63:0][15:0] add_out,
 output [63:0][15:0] sub_exp_out,
@@ -9,6 +9,21 @@ output [127:0][15:0] bypass_out
 );
 reg state = 0;
 reg nextstate = 0;
+
+wire [15:0] data_in_A [0:63];
+wire [15:0] data_in_B [0:63];
+
+generate
+    genvar i, j;
+    for (i = 0; i < 64; i = i + 1) begin
+      assign data_in_A[i] = A[(i+1)*16-1:i*16];
+    end
+		for (j = 0; j < 64; j = j + 1) begin
+      assign data_in_B[j] = B[(j+1)*16-1:j*16];
+    end
+ endgenerate
+
+
 
 wire [15:0][15:0] z01;
 wire [15:0][15:0] z02;
