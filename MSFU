@@ -1,8 +1,8 @@
 module MSFU(
 input clk,
-input [15:0] data_in [15:0],
+input [255:0] data_in,
 output [15:0] ReduceMax_out,
-output [15:0] vectorizer_out [63:0]
+output [1023:0] vectorizer_out
 );
 reg state = 0;
 reg nextstate = 0;
@@ -28,6 +28,10 @@ Vectorizer V(.clk(clk), X(z01), Y(vectorizer_out));
 end
 
 always @(podsge clock) begin
+	state <= nextstate;
+end
+
+endmodule) begin
 	state <= nextstate;
 end
 
