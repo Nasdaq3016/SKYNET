@@ -2,26 +2,22 @@ module VFU(
 input clk,
 input [1023:0] A,
 input [1023:0] B,
-output [63:0][15:0] mul_out,
-output [63:0][15:0] add_out,
-output [63:0][15:0] sub_exp_out,
-output [127:0][15:0] bypass_out
+output [1023:0] mul_out,
+output [1023:0] add_out,
+output [1023:0] sub_exp_out,
+output [2047:0] bypass_out
 );
 reg state = 0;
 reg nextstate = 0;
 
 wire [15:0] data_in_A [0:63];
 wire [15:0] data_in_B [0:63];
+wire [15:0] M_S [0:63];
 
-generate
-    genvar i, j;
-    for (i = 0; i < 64; i = i + 1) begin
-      assign data_in_A[i] = A[(i+1)*16-1:i*16];
-    end
-		for (j = 0; j < 64; j = j + 1) begin
-      assign data_in_B[j] = B[(j+1)*16-1:j*16];
-    end
- endgenerate
+for (i = 0; i < 64; i = i + 1) begin
+	assign data_in_A[i] = A[(i+1)*16-1:i*16];
+  assign data_in_B[i] = B[(i+1)*16-1:i*16];
+end
 
 
 
@@ -94,146 +90,209 @@ wire [63:0][15:0] sub_out;
 always@(state) begin
 case (state)
 0:Mul
-mul_dsp M01(.clk(clk), X(data_in_A[0][15:0]), Y(data_in_B[0][15:0]), Z(z01));
-mul_dsp M02(.clk(clk), X(data_in_A[1][15:0]), Y(data_in_B[1][15:0]), Z(z02));
-mul_dsp M03(.clk(clk), X(data_in_A[2][15:0]), Y(data_in_B[2][15:0]), Z(z03));
-mul_dsp M04(.clk(clk), X(data_in_A[3][15:0]), Y(data_in_B[3][15:0]), Z(z04));
-mul_dsp M05(.clk(clk), X(data_in_A[4][15:0]), Y(data_in_B[4][15:0]), Z(z05));
-mul_dsp M06(.clk(clk), X(data_in_A[5][15:0]), Y(data_in_B[5][15:0]), Z(z06));
-mul_dsp M07(.clk(clk), X(data_in_A[6][15:0]), Y(data_in_B[6][15:0]), Z(z07));
-mul_dsp M08(.clk(clk), X(data_in_A[7][15:0]), Y(data_in_B[7][15:0]), Z(z08));
-mul_dsp M09(.clk(clk), X(data_in_A[8][15:0]), Y(data_in_B[8][15:0]), Z(z09));
-mul_dsp M10(.clk(clk), X(data_in_A[9][15:0]), Y(data_in_B[9][15:0]), Z(z10));
-mul_dsp M11(.clk(clk), X(data_in_A[10][15:0]), Y(data_in_B[10][15:0]), Z(z11));
-mul_dsp M12(.clk(clk), X(data_in_A[11][15:0]), Y(data_in_B[11][15:0]), Z(z12));
-mul_dsp M13(.clk(clk), X(data_in_A[12][15:0]), Y(data_in_B[12][15:0]), Z(z13));
-mul_dsp M14(.clk(clk), X(data_in_A[13][15:0]), Y(data_in_B[13][15:0]), Z(z14));
-mul_dsp M15(.clk(clk), X(data_in_A[14][15:0]), Y(data_in_B[14][15:0]), Z(z15));
-mul_dsp M16(.clk(clk), X(data_in_A[15][15:0]), Y(data_in_B[15][15:0]), Z(z16));
-mul_dsp M17(.clk(clk), X(data_in_A[16][15:0]), Y(data_in_B[16][15:0]), Z(z17));
-mul_dsp M18(.clk(clk), X(data_in_A[17][15:0]), Y(data_in_B[17][15:0]), Z(z18));
-mul_dsp M19(.clk(clk), X(data_in_A[18][15:0]), Y(data_in_B[18][15:0]), Z(z19));
-mul_dsp M20(.clk(clk), X(data_in_A[19][15:0]), Y(data_in_B[19][15:0]), Z(z20));
-mul_dsp M21(.clk(clk), X(data_in_A[20][15:0]), Y(data_in_B[20][15:0]), Z(z21));
-mul_dsp M21(.clk(clk), X(data_in_A[20][15:0]), Y(data_in_B[20][15:0]), Z(z21));
-mul_dsp M22(.clk(clk), X(data_in_A[21][15:0]), Y(data_in_B[21][15:0]), Z(z22));
-mul_dsp M23(.clk(clk), X(data_in_A[22][15:0]), Y(data_in_B[22][15:0]), Z(z23));
-mul_dsp M24(.clk(clk), X(data_in_A[23][15:0]), Y(data_in_B[23][15:0]), Z(z24));
-mul_dsp M25(.clk(clk), X(data_in_A[24][15:0]), Y(data_in_B[24][15:0]), Z(z25));
-mul_dsp M26(.clk(clk), X(data_in_A[25][15:0]), Y(data_in_B[25][15:0]), Z(z26));
-mul_dsp M27(.clk(clk), X(data_in_A[26][15:0]), Y(data_in_B[26][15:0]), Z(z27));
-mul_dsp M28(.clk(clk), X(data_in_A[27][15:0]), Y(data_in_B[27][15:0]), Z(z28));
-mul_dsp M29(.clk(clk), X(data_in_A[28][15:0]), Y(data_in_B[28][15:0]), Z(z29));
-mul_dsp M30(.clk(clk), X(data_in_A[29][15:0]), Y(data_in_B[29][15:0]), Z(z30));
-mul_dsp M31(.clk(clk), X(data_in_A[30][15:0]), Y(data_in_B[30][15:0]), Z(z31));
-mul_dsp M32(.clk(clk), X(data_in_A[31][15:0]), Y(data_in_B[31][15:0]), Z(z32));
-mul_dsp M33(.clk(clk), X(data_in_A[32][15:0]), Y(data_in_B[32][15:0]), Z(z33));
-mul_dsp M34(.clk(clk), X(data_in_A[33][15:0]), Y(data_in_B[33][15:0]), Z(z34));
-mul_dsp M35(.clk(clk), X(data_in_A[34][15:0]), Y(data_in_B[34][15:0]), Z(z35));
-mul_dsp M36(.clk(clk), X(data_in_A[35][15:0]), Y(data_in_B[35][15:0]), Z(z36));
-mul_dsp M37(.clk(clk), X(data_in_A[36][15:0]), Y(data_in_B[36][15:0]), Z(z37));
-mul_dsp M38(.clk(clk), X(data_in_A[37][15:0]), Y(data_in_B[37][15:0]), Z(z38));
-mul_dsp M39(.clk(clk), X(data_in_A[38][15:0]), Y(data_in_B[38][15:0]), Z(z39));
-mul_dsp M40(.clk(clk), X(data_in_A[39][15:0]), Y(data_in_B[39][15:0]), Z(z40));
-mul_dsp M41(.clk(clk), X(data_in_A[40][15:0]), Y(data_in_B[40][15:0]), Z(z41));
-mul_dsp M42(.clk(clk), X(data_in_A[41][15:0]), Y(data_in_B[41][15:0]), Z(z42));
-mul_dsp M43(.clk(clk), X(data_in_A[42][15:0]), Y(data_in_B[42][15:0]), Z(z43));
-mul_dsp M44(.clk(clk), X(data_in_A[43][15:0]), Y(data_in_B[43][15:0]), Z(z44));
-mul_dsp M45(.clk(clk), X(data_in_A[44][15:0]), Y(data_in_B[44][15:0]), Z(z45));
-mul_dsp M46(.clk(clk), X(data_in_A[45][15:0]), Y(data_in_B[45][15:0]), Z(z46));
-mul_dsp M47(.clk(clk), X(data_in_A[46][15:0]), Y(data_in_B[46][15:0]), Z(z47));
-mul_dsp M48(.clk(clk), X(data_in_A[47][15:0]), Y(data_in_B[47][15:0]), Z(z48));
-mul_dsp M49(.clk(clk), X(data_in_A[48][15:0]), Y(data_in_B[48][15:0]), Z(z49));
-mul_dsp M50(.clk(clk), X(data_in_A[49][15:0]), Y(data_in_B[49][15:0]), Z(z50));
-mul_dsp M51(.clk(clk), X(data_in_A[50][15:0]), Y(data_in_B[50][15:0]), Z(z51));
-mul_dsp M52(.clk(clk), X(data_in_A[51][15:0]), Y(data_in_B[51][15:0]), Z(z52));
-mul_dsp M53(.clk(clk), X(data_in_A[52][15:0]), Y(data_in_B[52][15:0]), Z(z53));
-mul_dsp M54(.clk(clk), X(data_in_A[53][15:0]), Y(data_in_B[53][15:0]), Z(z54));
-mul_dsp M55(.clk(clk), X(data_in_A[54][15:0]), Y(data_in_B[54][15:0]), Z(z55));
-mul_dsp M56(.clk(clk), X(data_in_A[55][15:0]), Y(data_in_B[55][15:0]), Z(z56));
-mul_dsp M57(.clk(clk), X(data_in_A[56][15:0]), Y(data_in_B[56][15:0]), Z(z57));
-mul_dsp M58(.clk(clk), X(data_in_A[57][15:0]), Y(data_in_B[57][15:0]), Z(z58));
-mul_dsp M59(.clk(clk), X(data_in_A[58][15:0]), Y(data_in_B[58][15:0]), Z(z59));
-mul_dsp M60(.clk(clk), X(data_in_A[59][15:0]), Y(data_in_B[59][15:0]), Z(z60));
-mul_dsp M61(.clk(clk), X(data_in_A[60][15:0]), Y(data_in_B[60][15:0]), Z(z61));
-mul_dsp M62(.clk(clk), X(data_in_A[61][15:0]), Y(data_in_B[61][15:0]), Z(z62));
-mul_dsp M63(.clk(clk), X(data_in_A[62][15:0]), Y(data_in_B[62][15:0]), Z(z63));
-mul_dsp M64(.clk(clk), X(data_in_A[63][15:0]), Y(data_in_B[63][15:0]), Z(z64));
-mul_out = {z01, z02, z03, z04};
+mul_dsp M01(.clk(clk), X(data_in_A[0]), Y(data_in_B[0]), Z(z01));
+mul_dsp M02(.clk(clk), X(data_in_A[1]), Y(data_in_B[1], Z(z02));
+mul_dsp M03(.clk(clk), X(data_in_A[2]), Y(data_in_B[2]), Z(z03));
+mul_dsp M04(.clk(clk), X(data_in_A[3]), Y(data_in_B[3]), Z(z04));
+mul_dsp M05(.clk(clk), X(data_in_A[4]), Y(data_in_B[4]), Z(z05));
+mul_dsp M06(.clk(clk), X(data_in_A[5]), Y(data_in_B[5]), Z(z06));
+mul_dsp M07(.clk(clk), X(data_in_A[6]), Y(data_in_B[6]), Z(z07));
+mul_dsp M08(.clk(clk), X(data_in_A[7]), Y(data_in_B[7]), Z(z08));
+mul_dsp M09(.clk(clk), X(data_in_A[8]), Y(data_in_B[8]), Z(z09));
+mul_dsp M10(.clk(clk), X(data_in_A[9]), Y(data_in_B[9]), Z(z10));
+mul_dsp M11(.clk(clk), X(data_in_A[10]), Y(data_in_B[10]), Z(z11));
+mul_dsp M12(.clk(clk), X(data_in_A[11]), Y(data_in_B[11]), Z(z12));
+mul_dsp M13(.clk(clk), X(data_in_A[12]), Y(data_in_B[12]), Z(z13));
+mul_dsp M14(.clk(clk), X(data_in_A[13]), Y(data_in_B[13]), Z(z14));
+mul_dsp M15(.clk(clk), X(data_in_A[14]), Y(data_in_B[14]), Z(z15));
+mul_dsp M16(.clk(clk), X(data_in_A[15]), Y(data_in_B[15]), Z(z16));
+mul_dsp M17(.clk(clk), X(data_in_A[16]), Y(data_in_B[16]), Z(z17));
+mul_dsp M18(.clk(clk), X(data_in_A[17]), Y(data_in_B[17]), Z(z18));
+mul_dsp M19(.clk(clk), X(data_in_A[18]), Y(data_in_B[18]), Z(z19));
+mul_dsp M20(.clk(clk), X(data_in_A[19]), Y(data_in_B[19]), Z(z20));
+mul_dsp M21(.clk(clk), X(data_in_A[20]), Y(data_in_B[20]), Z(z21));
+mul_dsp M21(.clk(clk), X(data_in_A[20]), Y(data_in_B[20]), Z(z21));
+mul_dsp M22(.clk(clk), X(data_in_A[21]), Y(data_in_B[21]), Z(z22));
+mul_dsp M23(.clk(clk), X(data_in_A[22]), Y(data_in_B[22]), Z(z23));
+mul_dsp M24(.clk(clk), X(data_in_A[23]), Y(data_in_B[23]), Z(z24));
+mul_dsp M25(.clk(clk), X(data_in_A[24]), Y(data_in_B[24]), Z(z25));
+mul_dsp M26(.clk(clk), X(data_in_A[25]), Y(data_in_B[25]), Z(z26));
+mul_dsp M27(.clk(clk), X(data_in_A[26]), Y(data_in_B[26]), Z(z27));
+mul_dsp M28(.clk(clk), X(data_in_A[27]), Y(data_in_B[27]), Z(z28));
+mul_dsp M29(.clk(clk), X(data_in_A[28]), Y(data_in_B[28]), Z(z29));
+mul_dsp M30(.clk(clk), X(data_in_A[29]), Y(data_in_B[29]), Z(z30));
+mul_dsp M31(.clk(clk), X(data_in_A[30]), Y(data_in_B[30]), Z(z31));
+mul_dsp M32(.clk(clk), X(data_in_A[31]), Y(data_in_B[31]), Z(z32));
+mul_dsp M33(.clk(clk), X(data_in_A[32]), Y(data_in_B[32]), Z(z33));
+mul_dsp M34(.clk(clk), X(data_in_A[33]), Y(data_in_B[33]), Z(z34));
+mul_dsp M35(.clk(clk), X(data_in_A[34]), Y(data_in_B[34]), Z(z35));
+mul_dsp M36(.clk(clk), X(data_in_A[35]), Y(data_in_B[35]), Z(z36));
+mul_dsp M37(.clk(clk), X(data_in_A[36]), Y(data_in_B[36]), Z(z37));
+mul_dsp M38(.clk(clk), X(data_in_A[37]), Y(data_in_B[37]), Z(z38));
+mul_dsp M39(.clk(clk), X(data_in_A[38]), Y(data_in_B[38]), Z(z39));
+mul_dsp M40(.clk(clk), X(data_in_A[39]), Y(data_in_B[39]), Z(z40));
+mul_dsp M41(.clk(clk), X(data_in_A[40]), Y(data_in_B[40]), Z(z41));
+mul_dsp M42(.clk(clk), X(data_in_A[41]), Y(data_in_B[41]), Z(z42));
+mul_dsp M43(.clk(clk), X(data_in_A[42]), Y(data_in_B[42]), Z(z43));
+mul_dsp M44(.clk(clk), X(data_in_A[43]), Y(data_in_B[43]), Z(z44));
+mul_dsp M45(.clk(clk), X(data_in_A[44]), Y(data_in_B[44]), Z(z45));
+mul_dsp M46(.clk(clk), X(data_in_A[45]), Y(data_in_B[45]), Z(z46));
+mul_dsp M47(.clk(clk), X(data_in_A[46]), Y(data_in_B[46]), Z(z47));
+mul_dsp M48(.clk(clk), X(data_in_A[47]), Y(data_in_B[47]), Z(z48));
+mul_dsp M49(.clk(clk), X(data_in_A[48]), Y(data_in_B[48]), Z(z49));
+mul_dsp M50(.clk(clk), X(data_in_A[49]), Y(data_in_B[49]), Z(z50));
+mul_dsp M51(.clk(clk), X(data_in_A[50]), Y(data_in_B[50]), Z(z51));
+mul_dsp M52(.clk(clk), X(data_in_A[51]), Y(data_in_B[51]), Z(z52));
+mul_dsp M53(.clk(clk), X(data_in_A[52]), Y(data_in_B[52]), Z(z53));
+mul_dsp M54(.clk(clk), X(data_in_A[53]), Y(data_in_B[53]), Z(z54));
+mul_dsp M55(.clk(clk), X(data_in_A[54]), Y(data_in_B[54]), Z(z55));
+mul_dsp M56(.clk(clk), X(data_in_A[55]), Y(data_in_B[55]), Z(z56));
+mul_dsp M57(.clk(clk), X(data_in_A[56]), Y(data_in_B[56]), Z(z57));
+mul_dsp M58(.clk(clk), X(data_in_A[57]), Y(data_in_B[57]), Z(z58));
+mul_dsp M59(.clk(clk), X(data_in_A[58]), Y(data_in_B[58]), Z(z59));
+mul_dsp M60(.clk(clk), X(data_in_A[59]), Y(data_in_B[59]), Z(z60));
+mul_dsp M61(.clk(clk), X(data_in_A[60]), Y(data_in_B[60]), Z(z61));
+mul_dsp M62(.clk(clk), X(data_in_A[61]), Y(data_in_B[61]), Z(z62));
+mul_dsp M63(.clk(clk), X(data_in_A[62]), Y(data_in_B[62]), Z(z63));
+mul_dsp M64(.clk(clk), X(data_in_A[63]), Y(data_in_B[63]), Z(z64));
+mul_out = {z01, z02, z03, z04, z05, z06, z07, z08, z09, z10, z11, z12, z13, z14, z15, z16, z17, z18, z19, z20, z21, z22, z23, z24, z25, z26, z27, z28, z29, z30, z31, z32, z33, z34, z35, z36, z37, z38, z39, z40, z41, z42, z43, z44, z45, z46, z47, z48, z49, z50, z51, z52, z53, z54, z55, z56, z57, z58, z59, z60, z61, z62, z63, z64};
 
 1:Sub
-sub_dsp S01(.clk(clk), X(data_in_A[0][15:0]), Y(data_in_B[0][15:0]), Z(z01));
-sub_dsp S02(.clk(clk), X(data_in_A[1][15:0]), Y(data_in_B[1][15:0]), Z(z02));
-sub_dsp S03(.clk(clk), X(data_in_A[2][15:0]), Y(data_in_B[2][15:0]), Z(z03));
-sub_dsp S04(.clk(clk), X(data_in_A[3][15:0]), Y(data_in_B[3][15:0]), Z(z04));
-sub_dsp S05(.clk(clk), X(data_in_A[4][15:0]), Y(data_in_B[4][15:0]), Z(z05));
-sub_dsp S06(.clk(clk), X(data_in_A[5][15:0]), Y(data_in_B[5][15:0]), Z(z06));
-sub_dsp S07(.clk(clk), X(data_in_A[6][15:0]), Y(data_in_B[6][15:0]), Z(z07));
-sub_dsp S08(.clk(clk), X(data_in_A[7][15:0]), Y(data_in_B[7][15:0]), Z(z08));
-sub_dsp S09(.clk(clk), X(data_in_A[8][15:0]), Y(data_in_B[8][15:0]), Z(z09));
-sub_dsp S10(.clk(clk), X(data_in_A[9][15:0]), Y(data_in_B[9][15:0]), Z(z10));
-sub_dsp S11(.clk(clk), X(data_in_A[10][15:0]), Y(data_in_B[10][15:0]), Z(z11));
-sub_dsp S12(.clk(clk), X(data_in_A[11][15:0]), Y(data_in_B[11][15:0]), Z(z12));
-sub_dsp S13(.clk(clk), X(data_in_A[12][15:0]), Y(data_in_B[12][15:0]), Z(z13));
-sub_dsp S14(.clk(clk), X(data_in_A[13][15:0]), Y(data_in_B[13][15:0]), Z(z14));
-sub_dsp S15(.clk(clk), X(data_in_A[14][15:0]), Y(data_in_B[14][15:0]), Z(z15));
-sub_dsp S16(.clk(clk), X(data_in_A[15][15:0]), Y(data_in_B[15][15:0]), Z(z16));
-sub_dsp S17(.clk(clk), X(data_in_A[16][15:0]), Y(data_in_B[16][15:0]), Z(z17));
-sub_dsp S18(.clk(clk), X(data_in_A[17][15:0]), Y(data_in_B[17][15:0]), Z(z18));
-sub_dsp S19(.clk(clk), X(data_in_A[18][15:0]), Y(data_in_B[18][15:0]), Z(z19));
-sub_dsp S20(.clk(clk), X(data_in_A[19][15:0]), Y(data_in_B[19][15:0]), Z(z20));
-sub_dsp S21(.clk(clk), X(data_in_A[20][15:0]), Y(data_in_B[20][15:0]), Z(z21));
-sub_dsp S22(.clk(clk), X(data_in_A[21][15:0]), Y(data_in_B[21][15:0]), Z(z22));
-sub_dsp S23(.clk(clk), X(data_in_A[22][15:0]), Y(data_in_B[22][15:0]), Z(z23));
-sub_dsp S24(.clk(clk), X(data_in_A[23][15:0]), Y(data_in_B[23][15:0]), Z(z24));
-sub_dsp S25(.clk(clk), X(data_in_A[24][15:0]), Y(data_in_B[24][15:0]), Z(z25));
-sub_dsp S26(.clk(clk), X(data_in_A[25][15:0]), Y(data_in_B[25][15:0]), Z(z26));
-sub_dsp S27(.clk(clk), X(data_in_A[26][15:0]), Y(data_in_B[26][15:0]), Z(z27));
-sub_dsp S28(.clk(clk), X(data_in_A[27][15:0]), Y(data_in_B[27][15:0]), Z(z28));
-sub_dsp S29(.clk(clk), X(data_in_A[28][15:0]), Y(data_in_B[28][15:0]), Z(z29));
-sub_dsp S30(.clk(clk), X(data_in_A[29][15:0]), Y(data_in_B[29][15:0]), Z(z30));
-sub_dsp S31(.clk(clk), X(data_in_A[30][15:0]), Y(data_in_B[30][15:0]), Z(z31));
-sub_dsp S32(.clk(clk), X(data_in_A[31][15:0]), Y(data_in_B[31][15:0]), Z(z32));
-sub_dsp S33(.clk(clk), X(data_in_A[32][15:0]), Y(data_in_B[32][15:0]), Z(z33));
-sub_dsp S34(.clk(clk), X(data_in_A[33][15:0]), Y(data_in_B[33][15:0]), Z(z34));
-sub_dsp S35(.clk(clk), X(data_in_A[34][15:0]), Y(data_in_B[34][15:0]), Z(z35));
-sub_dsp S36(.clk(clk), X(data_in_A[35][15:0]), Y(data_in_B[35][15:0]), Z(z36));
-sub_dsp S37(.clk(clk), X(data_in_A[36][15:0]), Y(data_in_B[36][15:0]), Z(z37));
-sub_dsp S38(.clk(clk), X(data_in_A[37][15:0]), Y(data_in_B[37][15:0]), Z(z38));
-sub_dsp S39(.clk(clk), X(data_in_A[38][15:0]), Y(data_in_B[38][15:0]), Z(z39));
-sub_dsp S40(.clk(clk), X(data_in_A[39][15:0]), Y(data_in_B[39][15:0]), Z(z40));
-sub_dsp S41(.clk(clk), X(data_in_A[40][15:0]), Y(data_in_B[40][15:0]), Z(z41));
-sub_dsp S42(.clk(clk), X(data_in_A[41][15:0]), Y(data_in_B[41][15:0]), Z(z42));
-sub_dsp S43(.clk(clk), X(data_in_A[42][15:0]), Y(data_in_B[42][15:0]), Z(z43));
-sub_dsp S44(.clk(clk), X(data_in_A[43][15:0]), Y(data_in_B[43][15:0]), Z(z44));
-sub_dsp S45(.clk(clk), X(data_in_A[44][15:0]), Y(data_in_B[44][15:0]), Z(z45));
-sub_dsp S46(.clk(clk), X(data_in_A[45][15:0]), Y(data_in_B[45][15:0]), Z(z46));
-sub_dsp S47(.clk(clk), X(data_in_A[46][15:0]), Y(data_in_B[46][15:0]), Z(z47));
-sub_dsp S48(.clk(clk), X(data_in_A[47][15:0]), Y(data_in_B[47][15:0]), Z(z48));
-sub_dsp S49(.clk(clk), X(data_in_A[48][15:0]), Y(data_in_B[48][15:0]), Z(z49));
-sub_dsp S50(.clk(clk), X(data_in_A[49][15:0]), Y(data_in_B[49][15:0]), Z(z50));
-sub_dsp S51(.clk(clk), X(data_in_A[50][15:0]), Y(data_in_B[50][15:0]), Z(z51));
-sub_dsp S52(.clk(clk), X(data_in_A[51][15:0]), Y(data_in_B[51][15:0]), Z(z52));
-sub_dsp S53(.clk(clk), X(data_in_A[52][15:0]), Y(data_in_B[52][15:0]), Z(z53));
-sub_dsp S54(.clk(clk), X(data_in_A[53][15:0]), Y(data_in_B[53][15:0]), Z(z54));
-sub_dsp S55(.clk(clk), X(data_in_A[54][15:0]), Y(data_in_B[54][15:0]), Z(z55));
-sub_dsp S56(.clk(clk), X(data_in_A[55][15:0]), Y(data_in_B[55][15:0]), Z(z56));
-sub_dsp S57(.clk(clk), X(data_in_A[56][15:0]), Y(data_in_B[56][15:0]), Z(z57));
-sub_dsp S58(.clk(clk), X(data_in_A[57][15:0]), Y(data_in_B[57][15:0]), Z(z58));
-sub_dsp S59(.clk(clk), X(data_in_A[58][15:0]), Y(data_in_B[58][15:0]), Z(z59));
-sub_dsp S60(.clk(clk), X(data_in_A[59][15:0]), Y(data_in_B[59][15:0]), Z(z60));
-sub_dsp S61(.clk(clk), X(data_in_A[60][15:0]), Y(data_in_B[60][15:0]), Z(z61));
-sub_dsp S62(.clk(clk), X(data_in_A[61][15:0]), Y(data_in_B[61][15:0]), Z(z62));
-sub_dsp S63(.clk(clk), X(data_in_A[62][15:0]), Y(data_in_B[62][15:0]), Z(z63));
-sub_dsp S64(.clk(clk), X(data_in_A[63][15:0]), Y(data_in_B[63][15:0]), Z(z64));
-sub_out = {z01, z02, z03, z04};
+sub_dsp S01(.clk(clk), X(data_in_A[0]), Y(data_in_B[0]), Z(z01));
+sub_dsp S02(.clk(clk), X(data_in_A[1]), Y(data_in_B[1]), Z(z02));
+sub_dsp S03(.clk(clk), X(data_in_A[2]), Y(data_in_B[2]), Z(z03));
+sub_dsp S04(.clk(clk), X(data_in_A[3]), Y(data_in_B[3]), Z(z04));
+sub_dsp S05(.clk(clk), X(data_in_A[4]), Y(data_in_B[4]), Z(z05));
+sub_dsp S06(.clk(clk), X(data_in_A[5]), Y(data_in_B[5]), Z(z06));
+sub_dsp S07(.clk(clk), X(data_in_A[6]), Y(data_in_B[6]), Z(z07));
+sub_dsp S08(.clk(clk), X(data_in_A[7]), Y(data_in_B[7]), Z(z08));
+sub_dsp S09(.clk(clk), X(data_in_A[8]), Y(data_in_B[8]), Z(z09));
+sub_dsp S10(.clk(clk), X(data_in_A[9]), Y(data_in_B[9]), Z(z10));
+sub_dsp S11(.clk(clk), X(data_in_A[10]), Y(data_in_B[10]), Z(z11));
+sub_dsp S12(.clk(clk), X(data_in_A[11]), Y(data_in_B[11]), Z(z12));
+sub_dsp S13(.clk(clk), X(data_in_A[12]), Y(data_in_B[12]), Z(z13));
+sub_dsp S14(.clk(clk), X(data_in_A[13]), Y(data_in_B[13]), Z(z14));
+sub_dsp S15(.clk(clk), X(data_in_A[14]), Y(data_in_B[14]), Z(z15));
+sub_dsp S16(.clk(clk), X(data_in_A[15]), Y(data_in_B[15]), Z(z16));
+sub_dsp S17(.clk(clk), X(data_in_A[16]), Y(data_in_B[16]), Z(z17));
+sub_dsp S18(.clk(clk), X(data_in_A[17]), Y(data_in_B[17]), Z(z18));
+sub_dsp S19(.clk(clk), X(data_in_A[18]), Y(data_in_B[18]), Z(z19));
+sub_dsp S20(.clk(clk), X(data_in_A[19]), Y(data_in_B[19]), Z(z20));
+sub_dsp S21(.clk(clk), X(data_in_A[20]), Y(data_in_B[20]), Z(z21));
+sub_dsp S22(.clk(clk), X(data_in_A[21]), Y(data_in_B[21]), Z(z22));
+sub_dsp S23(.clk(clk), X(data_in_A[22]), Y(data_in_B[22]), Z(z23));
+sub_dsp S24(.clk(clk), X(data_in_A[23]), Y(data_in_B[23]), Z(z24));
+sub_dsp S25(.clk(clk), X(data_in_A[24]), Y(data_in_B[24]), Z(z25));
+sub_dsp S26(.clk(clk), X(data_in_A[25]), Y(data_in_B[25]), Z(z26));
+sub_dsp S27(.clk(clk), X(data_in_A[26]), Y(data_in_B[26]), Z(z27));
+sub_dsp S28(.clk(clk), X(data_in_A[27]), Y(data_in_B[27]), Z(z28));
+sub_dsp S29(.clk(clk), X(data_in_A[28]), Y(data_in_B[28]), Z(z29));
+sub_dsp S30(.clk(clk), X(data_in_A[29]), Y(data_in_B[29]), Z(z30));
+sub_dsp S31(.clk(clk), X(data_in_A[30]), Y(data_in_B[30]), Z(z31));
+sub_dsp S32(.clk(clk), X(data_in_A[31]), Y(data_in_B[31]), Z(z32));
+sub_dsp S33(.clk(clk), X(data_in_A[32]), Y(data_in_B[32]), Z(z33));
+sub_dsp S34(.clk(clk), X(data_in_A[33]), Y(data_in_B[33]), Z(z34));
+sub_dsp S35(.clk(clk), X(data_in_A[34]), Y(data_in_B[34]), Z(z35));
+sub_dsp S36(.clk(clk), X(data_in_A[35]), Y(data_in_B[35]), Z(z36));
+sub_dsp S37(.clk(clk), X(data_in_A[36]), Y(data_in_B[36]), Z(z37));
+sub_dsp S38(.clk(clk), X(data_in_A[37]), Y(data_in_B[37]), Z(z38));
+sub_dsp S39(.clk(clk), X(data_in_A[38]), Y(data_in_B[38]), Z(z39));
+sub_dsp S40(.clk(clk), X(data_in_A[39]), Y(data_in_B[39]), Z(z40));
+sub_dsp S41(.clk(clk), X(data_in_A[40]), Y(data_in_B[40]), Z(z41));
+sub_dsp S42(.clk(clk), X(data_in_A[41]), Y(data_in_B[41]), Z(z42));
+sub_dsp S43(.clk(clk), X(data_in_A[42]), Y(data_in_B[42]), Z(z43));
+sub_dsp S44(.clk(clk), X(data_in_A[43]), Y(data_in_B[43]), Z(z44));
+sub_dsp S45(.clk(clk), X(data_in_A[44]), Y(data_in_B[44]), Z(z45));
+sub_dsp S46(.clk(clk), X(data_in_A[45]), Y(data_in_B[45]), Z(z46));
+sub_dsp S47(.clk(clk), X(data_in_A[46]), Y(data_in_B[46]), Z(z47));
+sub_dsp S48(.clk(clk), X(data_in_A[47]), Y(data_in_B[47]), Z(z48));
+sub_dsp S49(.clk(clk), X(data_in_A[48]), Y(data_in_B[48]), Z(z49));
+sub_dsp S50(.clk(clk), X(data_in_A[49]), Y(data_in_B[49]), Z(z50));
+sub_dsp S51(.clk(clk), X(data_in_A[50]), Y(data_in_B[50]), Z(z51));
+sub_dsp S52(.clk(clk), X(data_in_A[51]), Y(data_in_B[51]), Z(z52));
+sub_dsp S53(.clk(clk), X(data_in_A[52]), Y(data_in_B[52]), Z(z53));
+sub_dsp S54(.clk(clk), X(data_in_A[53]), Y(data_in_B[53]), Z(z54));
+sub_dsp S55(.clk(clk), X(data_in_A[54]), Y(data_in_B[54]), Z(z55));
+sub_dsp S56(.clk(clk), X(data_in_A[55]), Y(data_in_B[55]), Z(z56));
+sub_dsp S57(.clk(clk), X(data_in_A[56]), Y(data_in_B[56]), Z(z57));
+sub_dsp S58(.clk(clk), X(data_in_A[57]), Y(data_in_B[57]), Z(z58));
+sub_dsp S59(.clk(clk), X(data_in_A[58]), Y(data_in_B[58]), Z(z59));
+sub_dsp S60(.clk(clk), X(data_in_A[59]), Y(data_in_B[59]), Z(z60));
+sub_dsp S61(.clk(clk), X(data_in_A[60]), Y(data_in_B[60]), Z(z61));
+sub_dsp S62(.clk(clk), X(data_in_A[61]), Y(data_in_B[61]), Z(z62));
+sub_dsp S63(.clk(clk), X(data_in_A[62]), Y(data_in_B[62]), Z(z63));
+sub_dsp S64(.clk(clk), X(data_in_A[63]), Y(data_in_B[63]), Z(z64));
+
 nextstate = 2;
 
 2:Exp
-exp_dsp E(.clk(clk), X(sub_out), Y(sub_exp_out));
-
+exp_dsp E01(.clk(clk), X(z01), Y(M_S[0]));
+exp_dsp E02(.clk(clk), X(z02), Y(M_S[1]));
+exp_dsp E03(.clk(clk), X(z03), Y(M_S[2]));
+exp_dsp E04(.clk(clk), X(z04), Y(M_S[3]));
+exp_dsp E05(.clk(clk), X(z05), Y(M_S[4]));
+exp_dsp E06(.clk(clk), X(z06), Y(M_S[5]));
+exp_dsp E07(.clk(clk), X(z07), Y(M_S[6]));
+exp_dsp E08(.clk(clk), X(z08), Y(M_S[7]));
+exp_dsp E09(.clk(clk), X(z09), Y(M_S[8]));
+exp_dsp E10(.clk(clk), X(z10), Y(M_S[9]));
+exp_dsp E11(.clk(clk), X(z11), Y(M_S[10]));
+exp_dsp E12(.clk(clk), X(z12), Y(M_S[11]));
+exp_dsp E13(.clk(clk), X(z13), Y(M_S[12]));
+exp_dsp E14(.clk(clk), X(z14), Y(M_S[13]));
+exp_dsp E15(.clk(clk), X(z15), Y(M_S[14]));
+exp_dsp E16(.clk(clk), X(z16), Y(M_S[15]));
+exp_dsp E17(.clk(clk), X(z17), Y(M_S[16]));
+exp_dsp E18(.clk(clk), X(z18), Y(M_S[17]));
+exp_dsp E19(.clk(clk), X(z19), Y(M_S[18]));
+exp_dsp E20(.clk(clk), X(z20), Y(M_S[19]));
+exp_dsp E21(.clk(clk), X(z21), Y(M_S[20]));
+exp_dsp E22(.clk(clk), X(z22), Y(M_S[21]));
+exp_dsp E23(.clk(clk), X(z23), Y(M_S[22]));
+exp_dsp E24(.clk(clk), X(z24), Y(M_S[23]));
+exp_dsp E25(.clk(clk), X(z25), Y(M_S[24]));
+exp_dsp E26(.clk(clk), X(z26), Y(M_S[25]));
+exp_dsp E27(.clk(clk), X(z27), Y(M_S[26]));
+exp_dsp E28(.clk(clk), X(z28), Y(M_S[27]));
+exp_dsp E29(.clk(clk), X(z29), Y(M_S[28]));
+exp_dsp E30(.clk(clk), X(z30), Y(M_S[29]));
+exp_dsp E31(.clk(clk), X(z31), Y(M_S[30]));
+exp_dsp E32(.clk(clk), X(z32), Y(M_S[31]));
+exp_dsp E33(.clk(clk), X(z33), Y(M_S[32]));
+exp_dsp E34(.clk(clk), X(z34), Y(M_S[33]));
+exp_dsp E35(.clk(clk), X(z35), Y(M_S[34]));
+exp_dsp E36(.clk(clk), X(z36), Y(M_S[35]));
+exp_dsp E37(.clk(clk), X(z37), Y(M_S[36]));
+exp_dsp E38(.clk(clk), X(z38), Y(M_S[37]));
+exp_dsp E39(.clk(clk), X(z39), Y(M_S[38]));
+exp_dsp E40(.clk(clk), X(z40), Y(M_S[39]));
+exp_dsp E41(.clk(clk), X(z41), Y(M_S[40]));
+exp_dsp E42(.clk(clk), X(z42), Y(M_S[41]));
+exp_dsp E43(.clk(clk), X(z43), Y(M_S[42]));
+exp_dsp E44(.clk(clk), X(z44), Y(M_S[43]));
+exp_dsp E45(.clk(clk), X(z45), Y(M_S[44]));
+exp_dsp E46(.clk(clk), X(z46), Y(M_S[45]));
+exp_dsp E47(.clk(clk), X(z47), Y(M_S[46]));
+exp_dsp E48(.clk(clk), X(z48), Y(M_S[47]));
+exp_dsp E49(.clk(clk), X(z49), Y(M_S[48]));
+exp_dsp E50(.clk(clk), X(z50), Y(M_S[49]));
+exp_dsp E51(.clk(clk), X(z51), Y(M_S[50]));
+exp_dsp E52(.clk(clk), X(z52), Y(M_S[51]));
+exp_dsp E53(.clk(clk), X(z53), Y(M_S[52]));
+exp_dsp E54(.clk(clk), X(z54), Y(M_S[53]));
+exp_dsp E55(.clk(clk), X(z55), Y(M_S[54]));
+exp_dsp E56(.clk(clk), X(z56), Y(M_S[55]));
+exp_dsp E57(.clk(clk), X(z57), Y(M_S[56]));
+exp_dsp E58(.clk(clk), X(z58), Y(M_S[57]));
+exp_dsp E59(.clk(clk), X(z59), Y(M_S[58]));
+exp_dsp E60(.clk(clk), X(z60), Y(M_S[59]));
+exp_dsp E61(.clk(clk), X(z61), Y(M_S[60]));
+exp_dsp E62(.clk(clk), X(z62), Y(M_S[61]));
+exp_dsp E63(.clk(clk), X(z63), Y(M_S[62]));
+exp_dsp E64(.clk(clk), X(z64), Y(M_S[63]));
+sub_exp_out = {M_S[0], M_S[1], M_S[2], M_S[3], M_S[4], M_S[5], M_S[6], M_S[7], M_S[8], M_S[9], M_S[10], M_S[11], M_S[12], M_S[13], M_S[14], M_S[15], M_S[16], M_S[17], M_S[18], M_S[19], M_S[20], M_S[21], M_S[22], M_S[23], M_S[24], M_S[25], M_S[26], M_S[27], M_S[28], M_S[29], M_S[30], M_S[31], M_S[32], M_S[33], M_S[34], M_S[35], M_S[36], M_S[37], M_S[38], M_S[39], M_S[40], M_S[41], M_S[42], M_S[43], M_S[44], M_S[45], M_S[46], M_S[47], M_S[48], M_S[49], M_S[50], M_S[51], M_S[52], M_S[53], M_S[54], M_S[55], M_S[56], M_S[57], M_S[58], M_S[59], M_S[60], M_S[61], M_S[62], M_S[63]};
 3:Bypass
-bypass_out={data_in_A, data_in_B};
+bypass_out={A, B};
 end
 
 always @(podsge clock) begin
