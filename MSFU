@@ -1,37 +1,44 @@
 module MSFU(
 input clk,
-input [255:0] data_in,
+input [255:0] data_in, // FP16 데이터 16개
 output [15:0] ReduceMax_out,
-output [1023:0] vectorizer_out
+output [1023:0] vectorizer_out // FP16 데이터 64개
 );
 reg state = 0;
 reg nextstate = 0;
 reg [15:0] psum =0;
 
 wire [15:0] z01 [15:0];
+wire [255] z02;
+
+wire [15:0] MA [15:0];
+
+// 256 bit 형태로 들어오는 데이터 분리
+for (i = 0; i < 16; i = i + 1) begin
+	assign MA[i] = data_in[(i+1)*16-1:i*16];
+end
+		
+reg reset;
+
 
 always@(state) begin
 case (state)
 0:Gelu
 Gelu G(.clk(clk), X(data_in), Y(z01));
 nextstate=4;
-1:Mask
-Mask M(.clk(clk), X(data_in), Y(z01));
-nextstate=4;
+1:Mask // 코드에 맞춰서 수정
+Mask M(.clk(clk), input_0(MA[0]), input_1(MA[1]), input_2(MA[2]), input_3(MA[3]), input_4(MA[4]), input_5(MA[5]), input_6(MA[6]), input_7(MA[7]), input_8(MA[8]), input_9(MA[9]), input_10(MA[10]), input_11(MA[11]), input_12(MA[12]), input_13(MA[13]), input_14(MA[14]), input_15(MA[15]), mask_matrix(z01));
 2:Bypass
 Bypass B(.clk(clk), X(data_in), Y(z01));
 nextstate=4;
-3:Reduce_Max
-Reduce_Max R(.clk(clk), X(data_in), Y(ReduceMax_out));
+3:Reduce_Max // 코드에 맞춰서 수정
+redumax R(.clk(clk), data_0(MA[0]), data_1(MA[1]), data_2(MA[2]), data_3(MA[3]), data_4(MA[4]), data_5(MA[5]), data_6(MA[6]), data_7(MA[7]), data_8(MA[8]), data_9(MA[9]), data_10(MA[10]), data_11(MA[11]), data_12(MA[12]), data_13(MA[13]), data_14(MA[14]), data_15(MA[15]), max_val(ReduceMax_out));
 4:Vectorizer
-Vectorizer V(.clk(clk), X(z01), Y(vectorizer_out));
+z02 = {z01[15], z01[14], z01[13], z01[12], z01[11], z01[10], z01[9], z01[8], z01[7], z01[6], z01[5], z01[4], z01[3], z01[2], z01[1], z01[0]};
+Vectorizer V(.clk(clk), data_in(z02), data_out(vectorizer_out), rst(reset));
 end
 
 always @(podsge clock) begin
-	state <= nextstate;
-end
-
-endmodule) begin
 	state <= nextstate;
 end
 
