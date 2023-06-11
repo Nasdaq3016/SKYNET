@@ -1,6 +1,6 @@
 module mac(
 input clk,
-input [1023:0] A_in,
+input [1023:0] A_in, // FP16 데이터 64개 연결
 input [1023:0] B_in,
 input [15:0] bias,
 output [15:0] acc_out
@@ -8,15 +8,10 @@ output [15:0] acc_out
 wire [15:0] w_in [0:63];
 wire [15:0] d_in [0:63];
 
-generate
-    genvar i, j;
-    for (i = 0; i < 64; i = i + 1) begin
-      assign w_in[i] = A_in[(i+1)*16-1:i*16];
-    end
-		for (j = 0; j < 64; j = j + 1) begin
-      assign d_in[j] = B_in[(j+1)*16-1:j*16];
-    end
- endgenerate
+for (i = 0; i < 64; i = i + 1) begin
+	assign w_in[i] = A_in[(i+1)*16-1:i*16];
+	assign d_in[i] = B_in[(i+1)*16-1:i*16];
+end
 
 
 reg state = 0;
@@ -309,5 +304,7 @@ always @(state) begin
 always @(podsge clock) begin
 	state <= nextstate;
 end
+
+endmodule
 
 endmodule
