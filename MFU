@@ -2,47 +2,40 @@ module MFU(
 	input clk,
 	input [16383:0] A,
 	input [16383:0] B,
-	input [15:0] MC [15:0],
-	output [15:0] result [15:0]
+	input [255:0] C,
+	output [255:0] result
 );
 
-wire [15:0] MA [63:0][15:0]
-wire [15:0] MA [63:0][15:0]
+wire [15:0] MA [63:0][15:0];
+wire [15:0] MB [63:0][15:0];
+wire [15:0] MC [15:0];
+wire [15:0] Mresult [15:0];
 
-generate
-    genvar i, j;
-    for (i = 0; i < 16; i = i + 1) begin
-      for (j = 0; j < 64; j = j + 1) begin
-        assign MA[i][j] = A[(i*64+j+1)*16-1:(i*64+j)*16];
-      end
-    end
-  endgenerate
-
-generate
-    genvar i, j;
-    for (i = 0; i < 16; i = i + 1) begin
-      for (j = 0; j < 64; j = j + 1) begin
-        assign MB[i][j] = B[(i*64+j+1)*16-1:(i*64+j)*16];
-      end
-    end
-  endgenerate
+for (i = 0; i < 16; i = i + 1) begin
+	assign MC[i] = C[(i+1)*16-1:i*16];
+	for (j = 0; j < 64; j = j + 1) begin
+		assign MA[i][j] = A[(i*64+j+1)*16-1:(i*64+j)*16];
+		assign MB[i][j] = B[(i*64+j+1)*16-1:(i*64+j)*16];
+	end
+end
 
 
-mac lane1(.clk(clk), w_in(MA[63:0][15]), d_in(MB[63:0][15]), bias(MC[15]), acc_out(result[15]));
-mac lane2(.clk(clk), w_in(MA[63:0][14]), d_in(MB[63:0][14]), bias(MC[14]), acc_out(result[14]));
-mac lane3(.clk(clk), w_in(MA[63:0][13]), d_in(MB[63:0][13]), bias(MC[13]), acc_out(result[13]));
-mac lane4(.clk(clk), w_in(MA[63:0][12]), d_in(MB[63:0][12]), bias(MC[12]), acc_out(result[12]));
-mac lane5(.clk(clk), w_in(MA[63:0][11]), d_in(MB[63:0][11]), bias(MC[11]), acc_out(result[11]));
-mac lane6(.clk(clk), w_in(MA[63:0][10]), d_in(MB[63:0][10]), bias(MC[10]), acc_out(result[10]));
-mac lane7(.clk(clk), w_in(MA[63:0][9]), d_in(MB[63:0][9]), bias(MC[9]), acc_out(result[9]));
-mac lane8(.clk(clk), w_in(MA[63:0][8]), d_in(MB[63:0][8]), bias(MC[8]), acc_out(result[8]));
-mac lane9(.clk(clk), w_in(MA[63:0][7]), d_in(MB[63:0][7]), bias(MC[7]), acc_out(result[7]));
-mac lane10(.clk(clk), w_in(MA[63:0][6]), d_in(MB[63:0][6]), bias(MC[6]), acc_out(result[6]));
-mac lane11(.clk(clk), w_in(MA[63:0][5]), d_in(MB[63:0][5]), bias(MC[5]), acc_out(result[5]));
-mac lane12(.clk(clk), w_in(MA[63:0][4]), d_in(MB[63:0][4]), bias(MC[4]), acc_out(result[4]));
-mac lane13(.clk(clk), w_in(MA[63:0][3]), d_in(MB[63:0][3]), bias(MC[3]), acc_out(result[3]));
-mac lane14(.clk(clk), w_in(MA[63:0][2]), d_in(MB[63:0][2]), bias(MC[2]), acc_out(result[2]));
-mac lane15(.clk(clk), w_in(MA[63:0][1]), d_in(MB[63:0][1]), bias(MC[1]), acc_out(result[1]));
-mac lane16(.clk(clk), w_in(MA[63:0][0]), din(MB[63:0][0]), bias(MC[0]), acc_out(result[0]));
+mac lane1(.clk(clk), w_in(MA[63:0][15]), d_in(MB[63:0][15]), bias(MC[15]), acc_out(Mresult[15]));
+mac lane2(.clk(clk), w_in(MA[63:0][14]), d_in(MB[63:0][14]), bias(MC[14]), acc_out(Mresult[14]));
+mac lane3(.clk(clk), w_in(MA[63:0][13]), d_in(MB[63:0][13]), bias(MC[13]), acc_out(Mresult[13]));
+mac lane4(.clk(clk), w_in(MA[63:0][12]), d_in(MB[63:0][12]), bias(MC[12]), acc_out(Mresult[12]));
+mac lane5(.clk(clk), w_in(MA[63:0][11]), d_in(MB[63:0][11]), bias(MC[11]), acc_out(Mresult[11]));
+mac lane6(.clk(clk), w_in(MA[63:0][10]), d_in(MB[63:0][10]), bias(MC[10]), acc_out(Mresult[10]));
+mac lane7(.clk(clk), w_in(MA[63:0][9]), d_in(MB[63:0][9]), bias(MC[9]), acc_out(Mresult[9]));
+mac lane8(.clk(clk), w_in(MA[63:0][8]), d_in(MB[63:0][8]), bias(MC[8]), acc_out(Mresult[8]));
+mac lane9(.clk(clk), w_in(MA[63:0][7]), d_in(MB[63:0][7]), bias(MC[7]), acc_out(Mresult[7]));
+mac lane10(.clk(clk), w_in(MA[63:0][6]), d_in(MB[63:0][6]), bias(MC[6]), acc_out(Mresult[6]));
+mac lane11(.clk(clk), w_in(MA[63:0][5]), d_in(MB[63:0][5]), bias(MC[5]), acc_out(Mresult[5]));
+mac lane12(.clk(clk), w_in(MA[63:0][4]), d_in(MB[63:0][4]), bias(MC[4]), acc_out(Mresult[4]));
+mac lane13(.clk(clk), w_in(MA[63:0][3]), d_in(MB[63:0][3]), bias(MC[3]), acc_out(Mresult[3]));
+mac lane14(.clk(clk), w_in(MA[63:0][2]), d_in(MB[63:0][2]), bias(MC[2]), acc_out(Mresult[2]));
+mac lane15(.clk(clk), w_in(MA[63:0][1]), d_in(MB[63:0][1]), bias(MC[1]), acc_out(Mresult[1]));
+mac lane16(.clk(clk), w_in(MA[63:0][0]), din(MB[63:0][0]), bias(MC[0]), acc_out(Mresult[0]));
+#20 result = {Mresult[15], Mresult[14],Mresult[13], Mresult[12],Mresult[11], Mresult[10],Mresult[9], Mresult[8],Mresult[7], Mresult[6],Mresult[5], Mresult[4], Mresult[3], Mresult[2],Mresult[1], Mresult[0]};
 
 endmodule
