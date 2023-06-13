@@ -8,7 +8,7 @@ input m_axis_result_tready,
 output [15:0] data_out
     );
   Reciporcal_Sqrt_IP recip_sqrt (
-  .aclk(clk),                                  // input wire aclk
+  .aclk(clk),                                   // input wire aclk
   .s_axis_a_tvalid(s_axis_a_tvalid),            // input wire s_axis_a_tvalid
   .s_axis_a_tready(s_axis_a_tready),            // output wire s_axis_a_tready
   .s_axis_a_tdata(data_a),                      // input wire [15 : 0] s_axis_a_tdata
