@@ -1,4 +1,4 @@
-module FP16_exp_dsp(
+module dsp_exp(
 input clk,
 input s_axis_a_tvalid,
 output s_axis_a_tready,
