@@ -1,0 +1,42 @@
+module mac_test;
+
+  reg clk;
+  reg [1023:0] A_in;
+  reg [1023:0] B_in;
+  reg [15:0] bias;
+  reg [15:0] acc_out;
+  reg [15:0] xor_result;
+	reg [15:0] test
+
+initial 
+begin
+	clk = 0;
+	A_in = ; // 테스트 데이터 언제 줌?
+	B_in = ; // 테스트 데이터 언제 줌?
+	bias = ;
+end
+
+always 
+begin
+		#10 clk = ~clk; // 20ns의 클럭 주기
+end
+
+always@(podsege clk)
+begin
+	xor_result = test ^ acc_out;
+	if (xor_result = 0)
+	begin
+	$display("Correct");
+	end
+
+  mac M1 (
+    .clk(clk),
+    .A_in(A_in),
+    .B_in(B_in),
+    .bias(bias),
+		.acc_out(acc_out)
+  );
+  
+end
+  
+endmodule
