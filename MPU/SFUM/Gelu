@@ -1,0 +1,6 @@
+module GELU_LUT (
+  input wire [15:0] input_GELU,
+  output reg [15:0] output_GELU);
+
+always @(input_GELU) begin
+	case (input_GELU)
