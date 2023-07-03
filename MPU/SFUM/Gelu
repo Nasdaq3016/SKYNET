@@ -1,0 +1,42 @@
+module Gelu (
+	input clk,
+	input [15:0] data_0, input [15:0] data_1, input [15:0] data_2, input [15:0] data_3,
+	input [15:0] data_4, input [15:0] data_5, input [15:0] data_6, input [15:0] data_7,
+	input [15:0] data_8, input [15:0] data_9, input [15:0] data_10, input [15:0] data_11,
+	input [15:0] data_12, input [15:0] data_13, input [15:0] data_14, input [15:0] data_15,
+	output [15:0] Gelu_out_0, output [15:0] Gelu_out_1, output [15:0] Gelu_out_2, output [15:0] Gelu_out_3,
+	output [15:0] Gelu_out_4, output [15:0] Gelu_out_5, output [15:0] Gelu_out_6, output [15:0] Gelu_out_7,
+	output [15:0] Gelu_out_8, output [15:0] Gelu_out_9, output [15:0] Gelu_out_10, output [15:0] Gelu_out_11,
+	output [15:0] Gelu_out_12, output [15:0] Gelu_out_13, output [15:0] Gelu_out_14, output [15:0] Gelu_out_15
+	);
+	reg [15:0] array [15:0];
+	reg [15:0] LUT_output [15:0];
+	integer i;  
+	always @(*)  begin
+		array [0] = data_0; array[1] = data_1; array[2] = data_2; array [3] = data_3;
+		array [4] = data_4; array[5] = data_5; array[6] = data_6; array [7] = data_7;
+		array [8] = data_8; array[9] = data_9; array[10] = data_10; array [11] = data_11;
+		array [12] = data_12; array[13] = data_13; array[14] = data_14; array [15] = data_15;
+		for (i = 0; i < 16; i = i + 1) begin : lut_inst
+     			 gelu_LUT lut_inst (
+        		.GELU_input(array[i]),
+        		.GELU_out(LUT_output[i]));
+   		 end
+	end
+	assign Gelu_out_0 = LUT_output[0];
+	assign Gelu_out_1 = LUT_output[1];
+	assign Gelu_out_2 = LUT_output[2];
+	assign Gelu_out_3 = LUT_output[3];
+	assign Gelu_out_4 = LUT_output[4];
+	assign Gelu_out_5 = LUT_output[5];
+	assign Gelu_out_6 = LUT_output[6];
+	assign Gelu_out_7 = LUT_output[7];
+	assign Gelu_out_8 = LUT_output[8];
+	assign Gelu_out_9 = LUT_output[9];
+	assign Gelu_out_10 = LUT_output[10];
+	assign Gelu_out_11 = LUT_output[11];
+	assign Gelu_out_12 = LUT_output[12];
+	assign Gelu_out_13 = LUT_output[13];
+	assign Gelu_out_14 = LUT_output[14];
+	assign Gelu_out_15 = LUT_output[15];
+endmodule
