@@ -18,7 +18,7 @@ module Gelu (
 		array [8] = data_8; array[9] = data_9; array[10] = data_10; array [11] = data_11;
 		array [12] = data_12; array[13] = data_13; array[14] = data_14; array [15] = data_15;
 		for (i = 0; i < 16; i = i + 1) begin : lut_inst
-     			 gelu_LUT lut_inst (
+     			 Gelu_LUT lut_inst (
         		.GELU_input(array[i]),
         		.GELU_out(LUT_output[i]));
    		 end
