@@ -1,63 +1,26 @@
-// 내가 만들어야 되는 최종 OUTPUT 
-[input_0,  -infini,  -infini,  -infini,  -infini,  -infini,  -infini,  -infini,  -infini,  -infini,  --infini, --infini, --infini, --infini, --infini, --infini],
-[input_0,  input_1,  -infini,  -infini,  -infini,  -infini,  -infini,  -infini,  -infini,  -infini,  --infini, --infini, --infini, --infini, --infini, --infini],
-[input_0,  input_1,  input_2,  -infini,  -infini,  -infini,  -infini,  -infini,  -infini,  -infini,  --infini, --infini, --infini, --infini, --infini, --infini],
-[input_0,  input_1,  input_2,  input_3,  -infini,  -infini,  -infini,  -infini,  -infini,  -infini,  --infini, --infini, --infini, --infini, --infini, --infini],
-[input_0,  input_1,  input_2,  input_3,  input_4,  -infini,  -infini,  -infini,  -infini,  -infini,  --infini, --infini, --infini, --infini, --infini, --infini],
-[input_0,  input_1,  input_2,  input_3,  input_4,  input_5,  -infini,  -infini,  -infini,  -infini,  --infini, --infini, --infini, --infini, --infini, --infini],
-[input_0,  input_1,  input_2,  input_3,  input_4,  input_5,  input_6,  -infini,  -infini,  -infini,  --infini, --infini, --infini, --infini, --infini, --infini],
-[input_0,  input_1,  input_2,  input_3,  input_4,  input_5,  input_6,  input_7,  -infini,  -infini,  --infini, --infini, --infini, --infini, --infini, --infini],
-[input_0,  input_1,  input_2,  input_3,  input_4,  input_5,  input_6,  input_7,  input_8,  -infini,  --infini, --infini, --infini, --infini, --infini, --infini],
-[input_0,  input_1,  input_2,  input_3,  input_4,  input_5,  input_6,  input_7,  input_8,  input_9,  --infini, --infini, --infini, --infini, --infini, --infini],
-[input_0,  input_1,  input_2,  input_3,  input_4,  input_5,  input_6,  input_7,  input_8,  input_9,  input_10, --infini, --infini, --infini, --infini, --infini],
-[input_0,  input_1,  input_2,  input_3,  input_4,  input_5,  input_6,  input_7,  input_8,  input_9,  input_10, input_11, --infini, --infini, --infini, --infini],
-[input_0,  input_1,  input_2,  input_3,  input_4,  input_5,  input_6,  input_7,  input_8,  input_9,  input_10, input_11, input_12, --infini, --infini, --infini],
-[input_0,  input_1,  input_2,  input_3,  input_4,  input_5,  input_6,  input_7,  input_8,  input_9,  input_10, input_11, input_12, input_13, --infini, --infini]
-[input_0,  input_1,  input_2,  input_3,  input_4,  input_5,  input_6,  input_7,  input_8,  input_9,  input_10, input_11, input_12, input_13, input_14, --infini]
-[input_0,  input_1,  input_2,  input_3,  input_4,  input_5,  input_6,  input_7,  input_8,  input_9,  input_10, input_11, input_12, input_13, input_14, input_15]
+module mask (
+  input [255:0] data_in,
+  output [255:0] data_out
+   );
+  reg [15:0] data_0; reg [15:0] data_1; reg [15:0] data_2;
+  reg [15:0] data_3; reg [15:0] data_4; reg [15:0] data_5;
+  reg [15:0] data_6; reg [15:0] data_7; reg [15:0] data_8;
+  reg [15:0] data_9;
+  always @ (data_in) begin
+    data_0 <= data_in[255:240];
+    data_1 <= data_in[239:224];
+    data_2 <= data_in[223:208];
+    data_3 <= data_in[207:192];
+    data_4 <= data_in[175:160];
+    data_5 <= data_in[159:144];
+    data_6 <= data_in[143:128];
+    data_7 <= data_in[95:80];
+    data_8 <= data_in[79:64];
+    data_9 <= data_in[15:0];
+  end
 
-// 코드
-module Mask (
-  input wire [15:0] input_0,
-  input wire [15:0] input_1,
-  input wire [15:0] input_2,
-  input wire [15:0] input_3,
-  input wire [15:0] input_4,
-  input wire [15:0] input_5,
-  input wire [15:0] input_6,
-  input wire [15:0] input_7,
-  input wire [15:0] input_8,
-  input wire [15:0] input_9,
-  input wire [15:0] input_10,
-  input wire [15:0] input_11,
-  input wire [15:0] input_12,
-  input wire [15:0] input_13,
-  input wire [15:0] input_14,
-  input wire [15:0] input_15,
-  output reg [15:0] mask_matrix [0:15]
-);
-  reg [15:0] input_matrix [0:15];
-
-  genvar i, j;
-  // 전부 0이 아니면 맞나?
-  generate
-    if (input_0 && input_1 && input_2 && input_3 && input_4 && input_5 && input_6 && input_7 && input_8 && input_9 && input_10 && input_11 && input_12 && input_13 && input_14 && input_15) begin
-      for (i = 0; i < 16; i = i + 1) begin					 
-        assign input_matrix[i] = {input_0, input_1, input_2, input_3, input_4, input_5, input_6, input_7, input_8, input_9, input_10, input_11, input_12, input_13, input_14, input_15};
-      end
-    end
-  endgenerate
-	
-	genvar i, j;
-	generate
-	  for (i = 0; i < 16; i = i + 1) begin
-	    for (j = 0; j < 16; j = j + 1) begin
-	      if (j > i)
-	        assign mask_matrix[i][j] = 16’b1111100000000000;
-	      else
-	        assign mask_matrix[i][j] = input_matrix[i][j];
-	    end
-	  end
-	endgenerate
-
+  assign data_out = {data_0, data_1, data_2, data_3, 16'b1111100000000000, data_4, data_5, data_6, 16'b1111100000000000,
+                     16'b1111100000000000, data_7, data_8, 16'b1111100000000000, 16'b1111100000000000, 16'b1111100000000000, data_9}; //16'b1111100000000000 : the smallest number expressed by FP16 
 endmodule
+
+
