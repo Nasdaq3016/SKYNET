@@ -1,0 +1,43 @@
+module Gelu_tb;
+
+  reg clk;
+  reg [15:0] data_0; reg [15:0] data_1; reg [15:0] data_2; reg [15:0] data_3;
+  reg [15:0] data_4; reg [15:0] data_5; reg [15:0] data_6; reg [15:0] data_7;
+  reg [15:0] data_8; reg [15:0] data_9; reg [15:0] data_10; reg [15:0] data_11;
+  reg [15:0] data_12; reg [15:0] data_13; reg [15:0] data_14; reg [15:0] data_15;
+  wire [15:0] max_val;
+
+  Gelu dut (
+    .clk(clk),
+    .data_0(data_0), .data_1(data_1), .data_2(data_2), .data_3(data_3),
+    .data_4(data_4), .data_5(data_5), .data_6(data_6), .data_7(data_7),
+    .data_8(data_8), .data_9(data_9), .data_10(data_10), .data_11(data_11),
+    .data_12(data_12), .data_13(data_13), .data_14(data_14), .data_15(data_15),
+    .max_val(max_val)
+  );
+    always #5 clk = ~clk; // 10ns의 클럭 주기    
+  initial begin    
+    clk = 0;
+    // 데이터 설정
+    data_0 = 16'b1011111000000000;  //-1.5
+    data_1 = 16'b0100000010011001;  //2.29
+    data_2 = 16'b0100001000000000;  //3
+    data_3 = 16'b0101010000010001;  //65.1 (MAX VALUE)
+    data_4 = 16'b1100101110000000;  //-15
+    data_5 = 16'b0100111001100000;  //25.5
+    data_6 = 16'b1100010101000000;  //-5.25
+    data_7 = 16'b0100100010100110;  //9.3
+    data_8 = 16'b1100110100000000;  //-20
+    data_9 = 16'b0100011101001100;  //7.3
+    data_10 = 16'b1100100000100000; //-8.25
+    data_11 = 16'b1100100011011001; //-9.7
+    data_12 = 16'b0011110100110011; //1.3
+    data_13 = 16'b1100100100001100; //-10.1
+    data_14 = 16'b0100101010011001; //13.2
+    data_15 = 16'b1010111001100110; //-0.1
+    #20;
+		// 최대값 출력
+    $display("Output: %b", Gelu);
+  end
+
+endmodule
