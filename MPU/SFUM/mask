@@ -6,6 +6,7 @@ module mask (
   reg [15:0] data_3; reg [15:0] data_4; reg [15:0] data_5;
   reg [15:0] data_6; reg [15:0] data_7; reg [15:0] data_8;
   reg [15:0] data_9;
+
   always @ (data_in) begin
     data_0 <= data_in[255:240];
     data_1 <= data_in[239:224];
