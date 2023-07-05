@@ -44,7 +44,22 @@ module Gelu_tb;
     data_15 = 16'b1010111001100110; //-0.1
     #20;
 		// 최대값 출력
-    $display("Output: %b", Gelu);
+    $display("data_out_0: %b", data_out_0);
+			   $display("data_out_1: %b", data_out_1);
+    $display("data_out_2: %b", data_out_2);
+    $display("data_out_3: %b", data_out_3);
+    $display("data_out_4: %b", data_out_4);
+    $display("data_out_5: %b", data_out_5);
+    $display("data_out_6: %b", data_out_6);
+    $display("data_out_7: %b", data_out_7);
+    $display("data_out_8: %b", data_out_8);
+    $display("data_out_9: %b", data_out_9);
+    $display("data_out_10: %b", data_out_10);
+    $display("data_out_11: %b", data_out_11);
+    $display("data_out_12: %b", data_out_12);
+    $display("data_out_13: %b", data_out_13);
+    $display("data_out_14: %b", data_out_14);
+    $display("data_out_15: %b", data_out_15);
   end
 
 endmodule
