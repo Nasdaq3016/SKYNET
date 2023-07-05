@@ -13,16 +13,29 @@ module Gelu (
 	reg [15:0] LUT_output [15:0];
 	integer i;  
 	always @(*)  begin
-		array [0] = data_0; array[1] = data_1; array[2] = data_2; array [3] = data_3;
-		array [4] = data_4; array[5] = data_5; array[6] = data_6; array [7] = data_7;
-		array [8] = data_8; array[9] = data_9; array[10] = data_10; array [11] = data_11;
-		array [12] = data_12; array[13] = data_13; array[14] = data_14; array [15] = data_15;
-		for (i = 0; i < 16; i = i + 1) begin : lut_inst
-     			 Gelu_LUT lut_inst (
-        		.input_GELU(array[i]),
-        		.output_GELU(LUT_output[i]));
-   		 end
+		array[0] = data_0; array[1] = data_1; array[2] = data_2; array [3] = data_3;
+		array[4] = data_4; array[5] = data_5; array[6] = data_6; array [7] = data_7;
+		array[8] = data_8; array[9] = data_9; array[10] = data_10; array [11] = data_11;
+		array[12] = data_12; array[13] = data_13; array[14] = data_14; array [15] = data_15;
+
+	Gelu_LUT lut_inst (.input_GElU(array[0]), .output_GELU(LUT_output[0]));
+	Gelu_LUT lut_inst (.input_GElU(array[1]), .output_GELU(LUT_output[1]));
+	Gelu_LUT lut_inst (.input_GElU(array[2]), .output_GELU(LUT_output[2]));
+	Gelu_LUT lut_inst (.input_GElU(array[3]), .output_GELU(LUT_output[3]));
+	Gelu_LUT lut_inst (.input_GElU(array[4]), .output_GELU(LUT_output[4]));
+	Gelu_LUT lut_inst (.input_GElU(array[5]), .output_GELU(LUT_output[5]));
+	Gelu_LUT lut_inst (.input_GElU(array[6]), .output_GELU(LUT_output[6]));
+	Gelu_LUT lut_inst (.input_GElU(array[7]), .output_GELU(LUT_output[7]));
+	Gelu_LUT lut_inst (.input_GElU(array[8]), .output_GELU(LUT_output[8]));
+	Gelu_LUT lut_inst (.input_GElU(array[9]), .output_GELU(LUT_output[9]));
+	Gelu_LUT lut_inst (.input_GElU(array[10]), .output_GELU(LUT_output[10]));
+	Gelu_LUT lut_inst (.input_GElU(array[11]), .output_GELU(LUT_output[11]));
+	Gelu_LUT lut_inst (.input_GElU(array[12]), .output_GELU(LUT_output[12]));
+	Gelu_LUT lut_inst (.input_GElU(array[13]), .output_GELU(LUT_output[13]));
+	Gelu_LUT lut_inst (.input_GElU(array[14]), .output_GELU(LUT_output[14]));
+	Gelu_LUT lut_inst (.input_GElU(array[15]), .output_GELU(LUT_output[15]));
 	end
+
 	assign Gelu_out_0 = LUT_output[0];
 	assign Gelu_out_1 = LUT_output[1];
 	assign Gelu_out_2 = LUT_output[2];
