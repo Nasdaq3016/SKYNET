@@ -5,7 +5,10 @@ module Gelu_tb;
   reg [15:0] data_4; reg [15:0] data_5; reg [15:0] data_6; reg [15:0] data_7;
   reg [15:0] data_8; reg [15:0] data_9; reg [15:0] data_10; reg [15:0] data_11;
   reg [15:0] data_12; reg [15:0] data_13; reg [15:0] data_14; reg [15:0] data_15;
-  wire [15:0] max_val;
+  wire [15:0] data_out_0; wire [15:0] data_out_1; wire [15:0] data_out_2; wire [15:0] data_out_3;
+					wire [15:0] data_out_4; wire [15:0] data_out_5; wire [15:0] data_out_6; wire [15:0] data_out_7;
+	 wire [15:0] data_out_8; wire [15:0] data_out_9; wire [15:0] data_out_10; wire [15:0] data_out_11;
+ wire [15:0] data_out_12; wire [15:0] data_out_13; wire [15:0] data_out_14; wire [15:0] data_out_15;
 
   Gelu dut (
     .clk(clk),
@@ -13,7 +16,7 @@ module Gelu_tb;
     .data_4(data_4), .data_5(data_5), .data_6(data_6), .data_7(data_7),
     .data_8(data_8), .data_9(data_9), .data_10(data_10), .data_11(data_11),
     .data_12(data_12), .data_13(data_13), .data_14(data_14), .data_15(data_15),
-    .max_val(max_val)
+    .()
   );
     always #5 clk = ~clk; // 10ns의 클럭 주기    
   initial begin    
