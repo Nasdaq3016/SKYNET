@@ -16,8 +16,12 @@ module Gelu_tb;
     .data_4(data_4), .data_5(data_5), .data_6(data_6), .data_7(data_7),
     .data_8(data_8), .data_9(data_9), .data_10(data_10), .data_11(data_11),
     .data_12(data_12), .data_13(data_13), .data_14(data_14), .data_15(data_15),
-    .()
-  );
+    .Gelu_out_0(data_out_0), .Gelu_out_0(data_out_1), .Gelu_out_0(data_out_2), .Gelu_out_0(data_out_3), 
+		   		.Gelu_out_0(data_out_4), .Gelu_out_0(data_out_5), .Gelu_out_0(data_out_6), .Gelu_out_0(data_out_7),
+	   			.Gelu_out_0(data_out_8), .Gelu_out_0(data_out_9), .Gelu_out_0(data_out_10), .Gelu_out_0(data_out_11),
+												.Gelu_out_0(data_out_12), .Gelu_out_0(data_out_13), .Gelu_out_0(data_out_14), .Gelu_out_0(data_out_15)
+												);
+
     always #5 clk = ~clk; // 10ns의 클럭 주기    
   initial begin    
     clk = 0;
