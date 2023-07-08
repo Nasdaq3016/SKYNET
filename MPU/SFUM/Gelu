@@ -11,30 +11,49 @@ module Gelu (
 	);
 	reg [15:0] array [15:0];
 	reg [15:0] LUT_output [15:0];
-	integer i;  
-	always @(*)  begin
-		array[0] = data_0; array[1] = data_1; array[2] = data_2; array [3] = data_3;
-		array[4] = data_4; array[5] = data_5; array[6] = data_6; array [7] = data_7;
-		array[8] = data_8; array[9] = data_9; array[10] = data_10; array [11] = data_11;
-		array[12] = data_12; array[13] = data_13; array[14] = data_14; array [15] = data_15;
-
-	Gelu_LUT lut_inst (.input_GElU(array[0]), .output_GELU(LUT_output[0]));
-	Gelu_LUT lut_inst (.input_GElU(array[1]), .output_GELU(LUT_output[1]));
-	Gelu_LUT lut_inst (.input_GElU(array[2]), .output_GELU(LUT_output[2]));
-	Gelu_LUT lut_inst (.input_GElU(array[3]), .output_GELU(LUT_output[3]));
-	Gelu_LUT lut_inst (.input_GElU(array[4]), .output_GELU(LUT_output[4]));
-	Gelu_LUT lut_inst (.input_GElU(array[5]), .output_GELU(LUT_output[5]));
-	Gelu_LUT lut_inst (.input_GElU(array[6]), .output_GELU(LUT_output[6]));
-	Gelu_LUT lut_inst (.input_GElU(array[7]), .output_GELU(LUT_output[7]));
-	Gelu_LUT lut_inst (.input_GElU(array[8]), .output_GELU(LUT_output[8]));
-	Gelu_LUT lut_inst (.input_GElU(array[9]), .output_GELU(LUT_output[9]));
-	Gelu_LUT lut_inst (.input_GElU(array[10]), .output_GELU(LUT_output[10]));
-	Gelu_LUT lut_inst (.input_GElU(array[11]), .output_GELU(LUT_output[11]));
-	Gelu_LUT lut_inst (.input_GElU(array[12]), .output_GELU(LUT_output[12]));
-	Gelu_LUT lut_inst (.input_GElU(array[13]), .output_GELU(LUT_output[13]));
-	Gelu_LUT lut_inst (.input_GElU(array[14]), .output_GELU(LUT_output[14]));
-	Gelu_LUT lut_inst (.input_GElU(array[15]), .output_GELU(LUT_output[15]));
-	end
+	reg enable_inst;
+always @(posedge clk or posedge reset) begin
+    if (reset) begin
+      enable_inst <= 1'b0;  // 리셋 시 인스턴스 동작 비활성화
+    end else begin
+      // 입력 데이터가 변할 때마다 데이터 할당 및 인스턴스 동작 활성화
+      enable_inst <= 1'b1;
+      array[0] = data[0];
+      array[1] = data[1];
+      array[2] = data[2];
+      array[3] = data[3];
+      array[4] = data[4];
+      array[5] = data[5];
+      array[6] = data[6];
+      array[7] = data[7];
+      array[8] = data[8];
+      array[9] = data[9];
+									  		array[10] = data[10];
+      array[11] = data[11];
+      array[12] = data[12];
+      array[13] = data[13];
+      array[14] = data[14];
+      array[15] = data[15];
+    end
+  end
+		
+	Gelu_LUT lut_inst (.input_GElU(array[0]), .output_GELU(LUT_output[0]), .enable(enable_inst));
+	Gelu_LUT lut_inst (.input_GElU(array[1]), .output_GELU(LUT_output[1]), .enable(enable_inst));
+	Gelu_LUT lut_inst (.input_GElU(array[2]), .output_GELU(LUT_output[2]), .enable(enable_inst));
+	Gelu_LUT lut_inst (.input_GElU(array[3]), .output_GELU(LUT_output[3]), .enable(enable_inst));
+	Gelu_LUT lut_inst (.input_GElU(array[4]), .output_GELU(LUT_output[4]), .enable(enable_inst));
+	Gelu_LUT lut_inst (.input_GElU(array[5]), .output_GELU(LUT_output[5]), .enable(enable_inst));
+	Gelu_LUT lut_inst (.input_GElU(array[6]), .output_GELU(LUT_output[6]), .enable(enable_inst));
+	Gelu_LUT lut_inst (.input_GElU(array[7]), .output_GELU(LUT_output[7]), .enable(enable_inst));
+	Gelu_LUT lut_inst (.input_GElU(array[8]), .output_GELU(LUT_output[8]), .enable(enable_inst));
+	Gelu_LUT lut_inst (.input_GElU(array[9]), .output_GELU(LUT_output[9]), .enable(enable_inst));
+	Gelu_LUT lut_inst (.input_GElU(array[10]), .output_GELU(LUT_output[10]), .enable(enable_inst));
+	Gelu_LUT lut_inst (.input_GElU(array[11]), .output_GELU(LUT_output[11]), .enable(enable_inst));
+	Gelu_LUT lut_inst (.input_GElU(array[12]), .output_GELU(LUT_output[12]), .enable(enable_inst));
+	Gelu_LUT lut_inst (.input_GElU(array[13]), .output_GELU(LUT_output[13]), .enable(enable_inst));
+	Gelu_LUT lut_inst (.input_GElU(array[14]), .output_GELU(LUT_output[14]), .enable(enable_inst));
+	Gelu_LUT lut_inst (.input_GElU(array[15]), .output_GELU(LUT_output[15]), .enable(enable_inst));
+	
 
 	assign Gelu_out_0 = LUT_output[0];
 	assign Gelu_out_1 = LUT_output[1];
