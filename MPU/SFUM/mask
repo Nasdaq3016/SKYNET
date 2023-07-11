@@ -1,4 +1,5 @@
 module Mask (
+  input clk,
   input [15:0] data_0, input [15:0] data_1, input [15:0] data_2, input [15:0] data_3,
   input [15:0] data_4, input [15:0] data_5, input [15:0] data_6, input [15:0] data_7,
   input [15:0] data_8, input [15:0] data_9, input [15:0] data_10, input [15:0] data_11,
