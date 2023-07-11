@@ -14,7 +14,7 @@ module Mask (
   reg [15:0] data_6; reg [15:0] data_7; reg [15:0] data_8;
   reg [15:0] data_9;
 
-  always @ (data_in) begin
+  always @ (*) begin
     data_0 <= data_in[255:240];
     data_1 <= data_in[239:224];
     data_2 <= data_in[223:208];
