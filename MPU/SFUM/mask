@@ -1,5 +1,5 @@
 module Mask (
-  input [255:0] data_in,
+  input [15:0] data_0,
   output [255:0] data_out
    );
   reg [15:0] data_0; reg [15:0] data_1; reg [15:0] data_2;
