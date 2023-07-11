@@ -9,11 +9,23 @@ module Mask (
   output [15:0] Mask_8, output [15:0] Mask_9, output [15:0] Mask_10, output [15:0] Mask_11,
   output [15:0] Mask_12, output [15:0] Mask_13, output [15:0] Mask_14, output [15:0] Mask_15
    );
-  reg [15:0] data_0; reg [15:0] data_1; reg [15:0] data_2;
-  reg [15:0] data_3; reg [15:0] data_4; reg [15:0] data_5;
-  reg [15:0] data_6; reg [15:0] data_7; reg [15:0] data_8;
-  reg [15:0] data_9;
-
+  reg [15:0] array_0 [15:0];
+  reg [15:0] array_1 [15:0];
+  reg [15:0] array_2 [15:0];
+  reg [15:0] array_3 [15:0];
+  reg [15:0] array_4 [15:0];
+  reg [15:0] array_5 [15:0];
+  reg [15:0] array_6 [15:0];
+  reg [15:0] array_7 [15:0];
+  reg [15:0] array_8 [15:0];
+  reg [15:0] array_9 [15:0];
+  reg [15:0] array_10 [15:0];
+  reg [15:0] array_11 [15:0];
+  reg [15:0] array_12 [15:0];
+  reg [15:0] array_13 [15:0];
+  reg [15:0] array_14 [15:0];
+  reg [15:0] array_15 [15:0];
+ 
   always @ (*) begin
     data_0 <= data_in[255:240];
     data_1 <= data_in[239:224];
