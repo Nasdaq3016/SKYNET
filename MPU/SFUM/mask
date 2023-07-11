@@ -25,6 +25,7 @@ module Mask (
   reg [15:0] array_13 [15:0];
   reg [15:0] array_14 [15:0];
   reg [15:0] array_15 [15:0];
+  integer i;
  
   always @ (*) begin
     data_0 <= data_in[255:240];
