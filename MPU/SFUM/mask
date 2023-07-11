@@ -1,6 +1,12 @@
 module Mask (
-  input [15:0] data_0,
-  output [255:0] data_out
+  input [15:0] data_0, input [15:0] data_1, input [15:0] data_2, input [15:0] data_3,
+  input [15:0] data_4, input [15:0] data_5, input [15:0] data_6, input [15:0] data_7,
+  input [15:0] data_8, input [15:0] data_9, input [15:0] data_10, input [15:0] data_11,
+  input [15:0] data_12, input [15:0] data_13, input [15:0] data_14, input [15:0] data_15,
+  output [15:0] Mask_0, output [15:0] Mask_1, output [15:0] Mask_2, output [15:0] Mask_3,
+  output [15:0] Mask_4, output [15:0] Mask_5, output [15:0] Mask_6, output [15:0] Mask_7,
+  output [15:0] Mask_8, output [15:0] Mask_9, output [15:0] Mask_10, output [15:0] Mask_11,
+  output [15:0] Mask_12, output [15:0] Mask_13, output [15:0] Mask_14, output [15:0] Mask_15
    );
   reg [15:0] data_0; reg [15:0] data_1; reg [15:0] data_2;
   reg [15:0] data_3; reg [15:0] data_4; reg [15:0] data_5;
