@@ -1,4 +1,4 @@
-module mask (
+module Mask (
   input [255:0] data_in,
   output [255:0] data_out
    );
