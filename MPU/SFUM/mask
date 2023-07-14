@@ -84,16 +84,8 @@ module Mask (
   integer i;
  
   always @ (*) begin
-    data_0 <= data_in[255:240];
-    data_1 <= data_in[239:224];
-    data_2 <= data_in[223:208];
-    data_3 <= data_in[207:192];
-    data_4 <= data_in[175:160];
-    data_5 <= data_in[159:144];
-    data_6 <= data_in[143:128];
-    data_7 <= data_in[95:80];
-    data_8 <= data_in[79:64];
-    data_9 <= data_in[15:0];
+    array [0] = data_0;
+
   end
 
   assign data_out = {data_0, data_1, data_2, data_3, 16'b1111100000000000, data_4, data_5, data_6, 16'b1111100000000000,
