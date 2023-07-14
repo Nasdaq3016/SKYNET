@@ -84,7 +84,29 @@ module Mask (
   integer i;
  
   always @ (*) begin
-    array [0] = data_0;
+    array_0 [0] = data_0; array_1 [0] = data_0; array_2 [0] = data_0; array_3 [0] = data_0;
+    array_4 [0] = data_0; array_5 [0] = data_0; array_6 [0] = data_0; array_7 [0] = data_0;
+    array_8 [0] = data_0; array_9 [0] = data_0; array_10 [0] = data_0; array_11 [0] = data_0;
+    array_12 [0] = data_0; array_13 [0] = data_0; array_14 [0] = data_0; array_15 [0] = data_0;
+    array_1 [1] = data_1; array_2 [1] = data_1; array_3 [1] = data_1; array_4 [1] = data_1;
+    array_5 [1] = data_1; array_6 [1] = data_1; array_7 [1] = data_1; array_8 [1] = data_1;
+    array_9 [1] = data_1; array_10 [1] = data_1; array_11 [1] = data_1; array_12 [1] = data_1;
+    array_13 [1] = data_1; array_14 [1] = data_1; array_15 [1] = data_1;
+    array_2 [2] = data_2; array_3 [2] = data_2; array_4 [2] = data_2; array_5 [2] = data_2;
+    array_6 [2] = data_2; array_7 [2] = data_2; array_8 [2] = data_2; array_9 [2] = data_2;
+    array_10 [2] = data_2; array_11 [2] = data_2; array_12 [2] = data_2; array_13 [2] = data_2;
+    array_14 [2] = data_2; array_15 [2] = data_2; 
+    array_3 [3] = data_3; array_4 [3] = data_3; array_5 [3] = data_3; array_6 [3] = data_3;
+    array_7 [3] = data_3; array_8 [3] = data_3; array_9 [3] = data_3; array_10 [3] = data_3;
+    array_11 [3] = data_3; array_12 [3] = data_3; array_13 [3] = data_3; array_14 [3] = data_3;
+    array_15 [3] = data_3;  
+    array_4 [4] = data_4; array_5 [4] = data_4; array_6 [4] = data_4; array_7 [4] = data_3;
+    array_7 [4] = data_4; array_8 [4] = data_4; array_4 [4] = data_4; array_10 [4] = data_3;
+    array_11 [4] = data_4; array_12 [4] = data_4; array_4 [4] = data_4; array_14 [4] = data_3;
+    array_15 [4] = data_4;  
+      
+
+
 
   end
 
