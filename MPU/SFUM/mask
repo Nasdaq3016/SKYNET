@@ -139,10 +139,67 @@ module Mask (
     array_14 [14] = data_14; array_15 [14] = data_14; 
 //
     array_15 [15] = data_15; 
-      
 
-
-
+    for (i = 1; i < 16; i = i + 1)
+    begin 
+        array_0[i] = 16'b111110000000000;
+    end
+    for (i = 2; i < 16; i = i + 1)
+    begin 
+        array_1[i] = 16'b111110000000000;
+    end
+    for (i = 3; i < 16; i = i + 1)
+    begin 
+        array_2[i] = 16'b111110000000000;
+    end
+    for (i = 4; i < 16; i = i + 1)
+    begin 
+        array_3[i] = 16'b111110000000000;
+    end
+    for (i = 5; i < 16; i = i + 1)
+    begin 
+        array_4[i] = 16'b111110000000000;
+    end
+    for (i = 6; i < 16; i = i + 1)
+    begin 
+        array_5[i] = 16'b111110000000000;
+    end
+    for (i = 7; i < 16; i = i + 1)
+    begin 
+        array_6[i] = 16'b111110000000000;
+    end
+    for (i = 8; i < 16; i = i + 1)
+    begin 
+        array_7[i] = 16'b111110000000000;
+    end
+    for (i = 9; i < 16; i = i + 1)
+    begin 
+        array_8[i] = 16'b111110000000000;
+    end
+    for (i = 10; i < 16; i = i + 1)
+    begin 
+        array_9[i] = 16'b111110000000000;
+    end
+    for (i = 11; i < 16; i = i + 1)
+    begin 
+        array_10[i] = 16'b111110000000000;
+    end
+    for (i = 12; i < 16; i = i + 1)
+    begin 
+        array_1[i] = 16'b111110000000000;
+    end
+    for (i = 13; i < 16; i = i + 1)
+    begin 
+        array_12[i] = 16'b111110000000000;
+    end
+    for (i = 14; i < 16; i = i + 1)
+    begin 
+        array_13[i] = 16'b111110000000000;
+    end
+    for (i = 15; i < 16; i = i + 1)
+    begin 
+        array_14[i] = 16'b111110000000000;
+    end
   end
 
   assign data_out = {data_0, data_1, data_2, data_3, 16'b1111100000000000, data_4, data_5, data_6, 16'b1111100000000000,
