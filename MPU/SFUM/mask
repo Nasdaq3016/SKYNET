@@ -200,6 +200,7 @@ module Mask (
     begin 
         array_14[i] = 16'b111110000000000;
     end
+
   end
 
   assign data_out = {data_0, data_1, data_2, data_3, 16'b1111100000000000, data_4, data_5, data_6, 16'b1111100000000000,
