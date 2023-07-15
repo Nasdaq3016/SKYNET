@@ -36,9 +36,23 @@ module Mask (
     end
 
   end
+  assign Mask_0_0 = array_0[0];
+  assign Mask_0_1 = array_0[1];
+  assign Mask_0_2 = array_0[2];
+  assign Mask_0_3 = array_0[3];
+  assign Mask_1_0 = array_1[0];
+  assign Mask_1_1 = array_1[1];
+  assign Mask_1_2 = array_1[2];
+  assign Mask_1_3 = array_1[3];
+  assign Mask_2_0 = array_2[0];
+  assign Mask_2_1 = array_2[1];
+  assign Mask_2_2 = array_2[2];
+  assign Mask_2_3 = array_2[3];
+  assign Mask_3_0 = array_3[0];
+  assign Mask_3_1 = array_3[1];
+  assign Mask_3_2 = array_3[2];
+  assign Mask_3_3 = array_3[3];
 
-  assign data_out = {data_0, data_1, data_2, data_3, 16'b1111100000000000, data_4, data_5, data_6, 16'b1111100000000000,
-                     16'b1111100000000000, data_7, data_8, 16'b1111100000000000, 16'b1111100000000000, 16'b1111100000000000, data_9}; //16'b1111100000000000 : the smallest number expressed by FP16 
 endmodule
 
 
