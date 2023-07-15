@@ -5,82 +5,15 @@ module Mask (
   input [15:0] data_8, input [15:0] data_9, input [15:0] data_10, input [15:0] data_11,
   input [15:0] data_12, input [15:0] data_13, input [15:0] data_14, input [15:0] data_15,
   output [15:0] Mask_0_0, output [15:0] Mask_0_1, output [15:0] Mask_0_2, output [15:0] Mask_0_3,
-  output [15:0] Mask_0_4, output [15:0] Mask_0_5, output [15:0] Mask_0_6, output [15:0] Mask_0_7,
-  output [15:0] Mask_0_8, output [15:0] Mask_0_9, output [15:0] Mask_0_10, output [15:0] Mask_0_11,
-  output [15:0] Mask_0_12, output [15:0] Mask_0_13, output [15:0] Mask_0_14, output [15:0] Mask_0_15;
   output [15:0] Mask_1_0, output [15:0] Mask_1_1, output [15:0] Mask_1_2, output [15:0] Mask_1_3,
-  output [15:0] Mask_1_4, output [15:0] Mask_1_5, output [15:0] Mask_1_6, output [15:0] Mask_1_7,
-  output [15:0] Mask_1_8, output [15:0] Mask_1_9, output [15:0] Mask_1_10, output [15:0] Mask_1_11,
-  output [15:0] Mask_1_12, output [15:0] Mask_1_13, output [15:0] Mask_1_14, output [15:0] Mask_1_15;
   output [15:0] Mask_2_0, output [15:0] Mask_2_1, output [15:0] Mask_2_2, output [15:0] Mask_2_3,
-  output [15:0] Mask_2_4, output [15:0] Mask_2_5, output [15:0] Mask_2_6, output [15:0] Mask_2_7,
-  output [15:0] Mask_2_8, output [15:0] Mask_2_9, output [15:0] Mask_2_10, output [15:0] Mask_2_11,
-  output [15:0] Mask_2_12, output [15:0] Mask_2_13, output [15:0] Mask_2_14, output [15:0] Mask_2_15;
   output [15:0] Mask_3_0, output [15:0] Mask_3_1, output [15:0] Mask_3_2, output [15:0] Mask_3_3,
-  output [15:0] Mask_3_4, output [15:0] Mask_3_5, output [15:0] Mask_3_6, output [15:0] Mask_3_7,
-  output [15:0] Mask_3_8, output [15:0] Mask_3_9, output [15:0] Mask_3_10, output [15:0] Mask_3_11,
-  output [15:0] Mask_3_12, output [15:0] Mask_3_13, output [15:0] Mask_3_14, output [15:0] Mask_3_15;
-  output [15:0] Mask_4_0, output [15:0] Mask_4_1, output [15:0] Mask_4_2, output [15:0] Mask_4_3,
-  output [15:0] Mask_4_4, output [15:0] Mask_4_5, output [15:0] Mask_4_6, output [15:0] Mask_4_7,
-  output [15:0] Mask_4_8, output [15:0] Mask_4_9, output [15:0] Mask_4_10, output [15:0] Mask_4_11,
-  output [15:0] Mask_4_12, output [15:0] Mask_4_13, output [15:0] Mask_4_14, output [15:0] Mask_4_15;
-  output [15:0] Mask_5_0, output [15:0] Mask_5_1, output [15:0] Mask_5_2, output [15:0] Mask_5_3,
-  output [15:0] Mask_5_4, output [15:0] Mask_5_5, output [15:0] Mask_5_6, output [15:0] Mask_5_7,
-  output [15:0] Mask_5_8, output [15:0] Mask_5_9, output [15:0] Mask_5_10, output [15:0] Mask_5_11,
-  output [15:0] Mask_5_12, output [15:0] Mask_5_13, output [15:0] Mask_5_14, output [15:0] Mask_5_15;
-  output [15:0] Mask_6_0, output [15:0] Mask_6_1, output [15:0] Mask_6_2, output [15:0] Mask_6_3,
-  output [15:0] Mask_6_4, output [15:0] Mask_6_5, output [15:0] Mask_6_6, output [15:0] Mask_6_7,
-  output [15:0] Mask_6_8, output [15:0] Mask_6_9, output [15:0] Mask_6_10, output [15:0] Mask_6_11,
-  output [15:0] Mask_6_12, output [15:0] Mask_6_13, output [15:0] Mask_6_14, output [15:0] Mask_6_15;
-  output [15:0] Mask_7_0, output [15:0] Mask_7_1, output [15:0] Mask_7_2, output [15:0] Mask_7_3,
-  output [15:0] Mask_7_4, output [15:0] Mask_7_5, output [15:0] Mask_7_6, output [15:0] Mask_7_7,
-  output [15:0] Mask_7_8, output [15:0] Mask_7_9, output [15:0] Mask_7_10, output [15:0] Mask_7_11,
-  output [15:0] Mask_7_12, output [15:0] Mask_7_13, output [15:0] Mask_7_14, output [15:0] Mask_7_15;
-  output [15:0] Mask_8_0, output [15:0] Mask_8_1, output [15:0] Mask_9_2, output [15:0] Mask_9_3,
-  output [15:0] Mask_8_4, output [15:0] Mask_8_5, output [15:0] Mask_9_6, output [15:0] Mask_9_7,
-  output [15:0] Mask_8_8, output [15:0] Mask_8_9, output [15:0] Mask_9_10, output [15:0] Mask_9_11,
-  output [15:0] Mask_8_12, output [15:0] Mask_8_13, output [15:0] Mask_9_14, output [15:0] Mask_9_15;
-  output [15:0] Mask_10_0, output [15:0] Mask_10_1, output [15:0] Mask_10_2, output [15:0] Mask_10_3,
-  output [15:0] Mask_10_4, output [15:0] Mask_10_5, output [15:0] Mask_10_6, output [15:0] Mask_10_7,
-  output [15:0] Mask_10_8, output [15:0] Mask_10_9, output [15:0] Mask_10_10, output [15:0] Mask_10_11,
-  output [15:0] Mask_10_12, output [15:0] Mask_10_13, output [15:0] Mask_10_14, output [15:0] Mask_10_15;
-  output [15:0] Mask_11_0, output [15:0] Mask_11_1, output [15:0] Mask_11_2, output [15:0] Mask_11_3,
-  output [15:0] Mask_11_4, output [15:0] Mask_11_5, output [15:0] Mask_11_6, output [15:0] Mask_11_7,
-  output [15:0] Mask_11_8, output [15:0] Mask_11_9, output [15:0] Mask_11_10, output [15:0] Mask_11_11,
-  output [15:0] Mask_11_12, output [15:0] Mask_11_13, output [15:0] Mask_11_14, output [15:0] Mask_11_15;
-  output [15:0] Mask_12_0, output [15:0] Mask_12_1, output [15:0] Mask_12_2, output [15:0] Mask_12_3,
-  output [15:0] Mask_12_4, output [15:0] Mask_12_5, output [15:0] Mask_12_6, output [15:0] Mask_12_7,
-  output [15:0] Mask_12_8, output [15:0] Mask_12_9, output [15:0] Mask_12_10, output [15:0] Mask_12_11,
-  output [15:0] Mask_12_12, output [15:0] Mask_12_13, output [15:0] Mask_12_14, output [15:0] Mask_12_15;
-  output [15:0] Mask_13_0, output [15:0] Mask_13_1, output [15:0] Mask_13_2, output [15:0] Mask_13_3,
-  output [15:0] Mask_13_4, output [15:0] Mask_13_5, output [15:0] Mask_13_6, output [15:0] Mask_13_7,
-  output [15:0] Mask_13_8, output [15:0] Mask_13_9, output [15:0] Mask_13_10, output [15:0] Mask_13_11,
-  output [15:0] Mask_13_12, output [15:0] Mask_13_13, output [15:0] Mask_13_14, output [15:0] Mask_13_15;
-  output [15:0] Mask_14_0, output [15:0] Mask_14_1, output [15:0] Mask_0_2, output [15:0] Mask_0_3,
-  output [15:0] Mask_14_4, output [15:0] Mask_14_5, output [15:0] Mask_0_6, output [15:0] Mask_0_7,
-  output [15:0] Mask_14_8, output [15:0] Mask_14_9, output [15:0] Mask_0_10, output [15:0] Mask_0_11,
-  output [15:0] Mask_14_12, output [15:0] Mask_14_13, output [15:0] Mask_0_14, output [15:0] Mask_0_15;
-  output [15:0] Mask_15_0, output [15:0] Mask_15_1, output [15:0] Mask_15_2, output [15:0] Mask_15_3,
-  output [15:0] Mask_15_4, output [15:0] Mask_15_5, output [15:0] Mask_15_6, output [15:0] Mask_15_7,
-  output [15:0] Mask_15_8, output [15:0] Mask_15_9, output [15:0] Mask_15_10, output [15:0] Mask_15_11,
-  output [15:0] Mask_15_12, output [15:0] Mask_15_13, output [15:0] Mask_15_14, output [15:0] Mask_15_15;
    );
-  reg [15:0] array_0 [15:0];
-  reg [15:0] array_1 [15:0];
-  reg [15:0] array_2 [15:0];
-  reg [15:0] array_3 [15:0];
-  reg [15:0] array_4 [15:0];
-  reg [15:0] array_5 [15:0];
-  reg [15:0] array_6 [15:0];
-  reg [15:0] array_7 [15:0];
-  reg [15:0] array_8 [15:0];
-  reg [15:0] array_9 [15:0];
-  reg [15:0] array_10 [15:0];
-  reg [15:0] array_11 [15:0];
-  reg [15:0] array_12 [15:0];
-  reg [15:0] array_13 [15:0];
-  reg [15:0] array_14 [15:0];
-  reg [15:0] array_15 [15:0];
+  reg [15:0] array_0 [3:0];
+  reg [15:0] array_1 [3:0];
+  reg [15:0] array_2 [3:0];
+  reg [15:0] array_3 [3:0];
+  
   integer i;
  
   always @ (*) begin
@@ -89,57 +22,7 @@ module Mask (
     array_8 [0] = data_0; array_9 [0] = data_0; array_10 [0] = data_0; array_11 [0] = data_0;
     array_12 [0] = data_0; array_13 [0] = data_0; array_14 [0] = data_0; array_15 [0] = data_0;
 //
-    array_1 [1] = data_1; array_2 [1] = data_1; array_3 [1] = data_1; array_4 [1] = data_1;
-    array_5 [1] = data_1; array_6 [1] = data_1; array_7 [1] = data_1; array_8 [1] = data_1;
-    array_9 [1] = data_1; array_10 [1] = data_1; array_11 [1] = data_1; array_12 [1] = data_1;
-    array_13 [1] = data_1; array_14 [1] = data_1; array_15 [1] = data_1;
-//
-    array_2 [2] = data_2; array_3 [2] = data_2; array_4 [2] = data_2; array_5 [2] = data_2;
-    array_6 [2] = data_2; array_7 [2] = data_2; array_8 [2] = data_2; array_9 [2] = data_2;
-    array_10 [2] = data_2; array_11 [2] = data_2; array_12 [2] = data_2; array_13 [2] = data_2;
-    array_14 [2] = data_2; array_15 [2] = data_2; 
-//
-    array_3 [3] = data_3; array_4 [3] = data_3; array_5 [3] = data_3; array_6 [3] = data_3;
-    array_7 [3] = data_3; array_8 [3] = data_3; array_9 [3] = data_3; array_10 [3] = data_3;
-    array_11 [3] = data_3; array_12 [3] = data_3; array_13 [3] = data_3; array_14 [3] = data_3;
-    array_15 [3] = data_3;
-//
-    array_4 [4] = data_4; array_5 [4] = data_4; array_6 [4] = data_4; array_7 [4] = data_4;
-    array_8 [4] = data_4; array_9 [4] = data_4; array_10 [4] = data_4; array_11 [4] = data_4;
-    array_12 [4] = data_4; array_13 [4] = data_4; array_14 [4] = data_4; array_15 [4] = data_4;
-//
-    array_5 [5] = data_5; array_6 [5] = data_5; array_7 [5] = data_5; array_8 [5] = data_5;
-    array_9 [5] = data_5; array_10 [5] = data_5; array_11 [5] = data_5; array_12 [5] = data_5;
-    array_13 [5] = data_5; array_14 [5] = data_5; array_15 [5] = data_5;
-//
-    array_6 [6] = data_6; array_7 [6] = data_6; array_8 [6] = data_6; array_9 [6] = data_6;
-    array_10 [6] = data_6; array_11 [6] = data_6; array_12 [6] = data_6; array_13 [6] = data_6;
-    array_14 [6] = data_6; array_15 [6] = data_6;
-//
-    array_7 [7] = data_7; array_8 [7] = data_7; array_9 [7] = data_7; array_10 [7] = data_7;
-    array_11 [7] = data_7; array_12 [7] = data_7; array_13 [7] = data_7; array_14 [7] = data_7;
-    array_15 [7] = data_7;
-//
-    array_8 [8] = data_8; array_9 [8] = data_8; array_10 [8] = data_8; array_11 [8] = data_8;
-    array_12 [8] = data_8; array_13 [8] = data_8; array_14 [8] = data_8; array_15 [8] = data_8;
-//
-    array_9 [9] = data_9; array_10 [9] = data_9; array_11 [9] = data_9; array_12 [9] = data_9;
-    array_13 [9] = data_9; array_14 [9] = data_9; array_15 [9] = data_9; 
-//
-    array_10 [10] = data_10; array_11 [10] = data_10; array_12 [10] = data_10; array_13 [10] = data_10;
-    array_14 [10] = data_10; array_15 [10] = data_10;
-//
-    array_11 [11] = data_11; array_12 [11] = data_11; array_13 [11] = data_11; array_14 [11] = data_11;
-    array_15 [11] = data_11;    
-//  
-    array_12 [12] = data_12; array_13 [12] = data_12; array_14 [12] = data_12; array_15 [12] = data_12;
-//
-    array_13 [13] = data_13; array_14 [13] = data_13; array_15 [13] = data_13; 
-//
-    array_14 [14] = data_14; array_15 [14] = data_14; 
-//
-    array_15 [15] = data_15; 
-
+    
     for (i = 1; i < 16; i = i + 1)
     begin 
         array_0[i] = 16'b111110000000000;
