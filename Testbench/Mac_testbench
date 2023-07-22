@@ -1,4 +1,20 @@
-module mac_test;
+module mac_test(reg [15:0] acc_out_0;
+  reg [15:0] acc_out_1,
+  reg [15:0] acc_out_2,
+  reg [15:0] acc_out_3,
+  reg [15:0] acc_out_4,
+  reg [15:0] acc_out_5,
+  reg [15:0] acc_out_6,
+  reg [15:0] acc_out_7,
+  reg [15:0] acc_out_8,
+  reg [15:0] acc_out_9,
+  reg [15:0] acc_out_10,
+  reg [15:0] acc_out_11,
+  reg [15:0] acc_out_12,
+  reg [15:0] acc_out_13,
+  reg [15:0] acc_out_14,
+  reg [15:0] acc_out_15
+);
 
   reg clk;
   reg [1023:0] A_in_0;
@@ -36,22 +52,6 @@ module mac_test;
   reg [1023:0] B_in_15;
  
   reg [15:0] bias;
-  reg [15:0] acc_out_0;
-  reg [15:0] acc_out_1;
-  reg [15:0] acc_out_2;
-  reg [15:0] acc_out_3;
-  reg [15:0] acc_out_4;
-  reg [15:0] acc_out_5;
-  reg [15:0] acc_out_6;
-  reg [15:0] acc_out_7;
-  reg [15:0] acc_out_8;
-  reg [15:0] acc_out_9;
-  reg [15:0] acc_out_10;
-  reg [15:0] acc_out_11;
-  reg [15:0] acc_out_12;
-  reg [15:0] acc_out_13;
-  reg [15:0] acc_out_14;
-  reg [15:0] acc_out_15;
   reg [15:0] xor_result;
 	reg [15:0] test
 
