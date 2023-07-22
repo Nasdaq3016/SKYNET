@@ -1,19 +1,19 @@
 module mac_test(reg [15:0] acc_out_0;
-  reg [15:0] acc_out_1,
-  reg [15:0] acc_out_2,
-  reg [15:0] acc_out_3,
-  reg [15:0] acc_out_4,
-  reg [15:0] acc_out_5,
-  reg [15:0] acc_out_6,
-  reg [15:0] acc_out_7,
-  reg [15:0] acc_out_8,
-  reg [15:0] acc_out_9,
-  reg [15:0] acc_out_10,
-  reg [15:0] acc_out_11,
-  reg [15:0] acc_out_12,
-  reg [15:0] acc_out_13,
-  reg [15:0] acc_out_14,
-  reg [15:0] acc_out_15
+  output [15:0] acc_out_1,
+  output [15:0] acc_out_2,
+  output [15:0] acc_out_3,
+  output [15:0] acc_out_4,
+  output [15:0] acc_out_5,
+  output [15:0] acc_out_6,
+  output [15:0] acc_out_7,
+  output [15:0] acc_out_8,
+  output [15:0] acc_out_9,
+  output [15:0] acc_out_10,
+  output [15:0] acc_out_11,
+  output [15:0] acc_out_12,
+  output [15:0] acc_out_13,
+  output [15:0] acc_out_14,
+  output [15:0] acc_out_15
 );
 
   reg clk;
