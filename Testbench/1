@@ -1,1 +1,317 @@
+module mac_test(
+  output [15:0] acc_out_0;
+  output [15:0] acc_out_1,
+  output [15:0] acc_out_2,
+  output [15:0] acc_out_3,
+  output [15:0] acc_out_4,
+  output [15:0] acc_out_5,
+  output [15:0] acc_out_6,
+  output [15:0] acc_out_7,
+  output [15:0] acc_out_8,
+  output [15:0] acc_out_9,
+  output [15:0] acc_out_10,
+  output [15:0] acc_out_11,
+  output [15:0] acc_out_12,
+  output [15:0] acc_out_13,
+  output [15:0] acc_out_14,
+  output [15:0] acc_out_15
+);
+
+  reg clk;
+  reg [1023:0] A_in_0;
+  reg [1023:0] A_in_1;
+  reg [1023:0] A_in_2;
+  reg [1023:0] A_in_3;
+  reg [1023:0] A_in_4;
+  reg [1023:0] A_in_5;
+  reg [1023:0] A_in_6;
+  reg [1023:0] A_in_7;
+  reg [1023:0] A_in_8;
+  reg [1023:0] A_in_9;
+  reg [1023:0] A_in_10;
+  reg [1023:0] A_in_11;
+  reg [1023:0] A_in_11;
+  reg [1023:0] A_in_12;
+  reg [1023:0] A_in_13; 
+  reg [1023:0] A_in_14;
+  reg [1023:0] A_in_15; 
+
+  reg [1023:0] B_in_1;
+  reg [1023:0] B_in_2;
+  reg [1023:0] B_in_3;
+  reg [1023:0] B_in_4;
+  reg [1023:0] B_in_5;
+  reg [1023:0] B_in_6;
+  reg [1023:0] B_in_7;
+  reg [1023:0] B_in_8;
+  reg [1023:0] B_in_9;
+  reg [1023:0] B_in_10;
+  reg [1023:0] B_in_11;
+  reg [1023:0] B_in_12;
+  reg [1023:0] B_in_13;
+  reg [1023:0] B_in_14;
+  reg [1023:0] B_in_15;
+ 
+  reg [15:0] bias;
+  reg [15:0] xor_result;
+	reg [15:0] test
+
+initial 
+begin
+	clk = 0;
+	A_in_0 = ;   
+	A_in_1 = ;
+	A_in_2 = ;
+	A_in_3 = ;
+	A_in_4 = ;
+	A_in_5 = ;
+	A_in_6 = ;
+	A_in_7 = ;
+	A_in_8 = ;
+	A_in_9 = ;
+	A_in_10 = ;
+	A_in_11 = ;
+	A_in_12 = ;
+	A_in_13 = ;
+	A_in_14 = ;
+	A_in_15 = ;
+	
+	B_in_0 = ; 				   
+	B_in_1 = ;
+	B_in_2 = ;
+	B_in_3 = ;
+	B_in_4 = ;	
+	B_in_5 = ;
+	B_in_6 = ;
+	B_in_7 = ;
+	B_in_8 = ;
+	B_in_9 = ;
+	B_in_10 = ;
+	B_in_11 = ;
+	B_in_12 = ;
+	B_in_13 = ;
+	B_in_14 = ;
+	B_in_15 = ;
+bias = ;
+end
+
+always 
+begin
+		#10 clk = ~clk; // 20ns의 클럭 주기
+end
+
+always@(podsege clk)
+begin
+	xor_result = test ^ acc_out;
+	if (xor_result = 0)
+	begin
+	$display("Correct");
+	end
+
+  mac M1 (
+    .clk(clk),
+    .A_in(A_in_0),
+    .B_in(B_in_0),
+    .bias(bias_0),
+		.acc_out(acc_out_0)
+  );
+   mac M1 (
+    .clk(clk),
+    .A_in(A_in_1),
+    .B_in(B_in_1),
+    .bias(bias),
+		.acc_out(acc_out_1)
+  );
+   mac M1 (
+    .clk(clk),
+    .A_in(A_in_2),
+    .B_in(B_in_2),
+    .bias(bias),
+		.acc_out(acc_out_2)
+  );
+   mac M1 (
+    .clk(clk),
+    .A_in(A_in_3),
+    .B_in(B_in_3),
+    .bias(bias),
+		.acc_out(acc_out_3)
+  );
+   mac M1 (
+    .clk(clk),
+    .A_in(A_in_4),
+    .B_in(B_in_4),
+    .bias(bias),
+		.acc_out(acc_out_4)
+  );
+   mac M1 (
+    .clk(clk),
+    .A_in(A_in_5),
+    .B_in(B_in_5),
+    .bias(bias),
+		.acc_out(acc_out_5)
+  );
+   mac M1 (
+    .clk(clk),
+    .A_in(A_in_6),
+    .B_in(B_in_6),
+    .bias(bias),
+		.acc_out(acc_out_6)
+  );
+   mac M1 (
+    .clk(clk),
+    .A_in(A_in_7),
+    .B_in(B_in_7),
+    .bias(bias),
+		.acc_out(acc_out_7)
+  );
+   mac M1 (
+    .clk(clk),
+    .A_in(A_in_8),
+    .B_in(B_in_8),
+    .bias(bias),
+		.acc_out(acc_out_8)
+  );
+   mac M1 (
+    .clk(clk),
+    .A_in(A_in_9),
+    .B_in(B_in_9),
+    .bias(bias),
+		.acc_out(acc_out_9)
+  );
+   mac M1 (
+    .clk(clk),
+    .A_in(A_in_10),
+    .B_in(B_in_10),
+    .bias(bias),
+		.acc_out(acc_out_10)
+  );
+   mac M1 (
+    .clk(clk),
+    .A_in(A_in_11),
+    .B_in(B_in_11),
+    .bias(bias),
+		.acc_out(acc_out_11)
+  );
+   mac M1 (
+    .clk(clk),
+    .A_in(A_in_12),
+    .B_in(B_in_12),
+    .bias(bias),
+		.acc_out(acc_out_12)
+  );
+   mac M1 (
+    .clk(clk),
+    .A_in(A_in_13),
+    .B_in(B_in_13),
+    .bias(bias),
+		.acc_out(acc_out_13)
+  );
+   mac M1 (
+    .clk(clk),
+    .A_in(A_in_14),
+    .B_in(B_in_14),
+    .bias(bias),
+		.acc_out(acc_out_14)
+  );
+   mac M1 (
+    .clk(clk),
+    .A_in(A_in_15),
+    .B_in(B_in_15),
+    .bias(bias),
+		.acc_out(acc_out_15)
+  );
+end
+  
+endmodule
+
+module Mask_tb;
+
+  reg clk;
+  reg [15:0] data_0; reg [15:0] data_1; reg [15:0] data_2; reg [15:0] data_3;
+  reg [15:0] data_4; reg [15:0] data_5; reg [15:0] data_6; reg [15:0] data_7;
+  reg [15:0] data_8; reg [15:0] data_9; reg [15:0] data_10; reg [15:0] data_11;
+  reg [15:0] data_12; reg [15:0] data_13; reg [15:0] data_14; reg [15:0] data_15;
+  wire [15:0] data_out_0; wire [15:0] data_out_1; wire [15:0] data_out_2; wire [15:0] data_out_3;
+  wire [15:0] data_out_4; wire [15:0] data_out_5; wire [15:0] data_out_6; wire [15:0] data_out_7;
+  wire [15:0] data_out_8; wire [15:0] data_out_9; wire [15:0] data_out_10; wire [15:0] data_out_11;
+  wire [15:0] data_out_12; wire [15:0] data_out_13; wire [15:0] data_out_14; wire [15:0] data_out_15;
+	MAC mac_inst (
+		.clk(clk), 
+		.acc_out_0(data_0), .acc_out_1(data_1), .acc_out_2(data_2), .acc_out_3(data_3),
+		.acc_out_4(data_4), .acc_out_5(data_5), .acc_out_6(data_6), .acc_out_7(data_7),
+		.acc_out_8(data_8), .acc_out_9(data_9), .acc_out_10(data_10), .acc_out_11(data_11),
+		.acc_out_12(data_12), .acc_out_13(data_13), .acc_out_14(data_14), .acc_out_15(data_15),
+
+	
+);
+  Mask dut (
+    .clk(clk),
+    .data_0(data_0), .data_1(data_1), .data_2(data_2), .data_3(data_3),
+    .data_4(data_4), .data_5(data_5), .data_6(data_6), .data_7(data_7),
+    .data_8(data_8), .data_9(data_9), .data_10(data_10), .data_11(data_11),
+    .data_12(data_12), .data_13(data_13), .data_14(data_14), .data_15(data_15),
+    .Mask_0_0(data_out_0), .Mask_0_1(data_out_1), .Mask_0_2(data_out_2), .Mask_0_3(data_out_3),
+    .Mask_1_0(data_out_4), .Mask_1_1(data_out_5), .Mask_1_2(data_out_6), .Mask_1_3(data_out_7),
+    .Mask_2_0(data_out_8), .Mask_2_1(data_out_9), .Mask_2_2(data_out_10), .Mask_2_3(data_out_11),
+    .Mask_3_0(data_out_12), .Mask_3_1(data_out_13), .Mask_3_2(data_out_14), .Mask_3_3(data_out_15),
+  );
+    always #5 clk = ~clk; // 10ns의 클럭 주기    
+  initial begin    
+    clk = 0;
+    #20;
+		// 최대값 출력
+    $display("data_out_0: %b", data_out_0);
+    $display("data_out_1: %b", data_out_1);
+    $display("data_out_2: %b", data_out_2);
+    $display("data_out_3: %b", data_out_3);
+    $display("data_out_4: %b", data_out_4);
+    $display("data_out_5: %b", data_out_5);
+    $display("data_out_6: %b", data_out_6);
+    $display("data_out_7: %b", data_out_7);
+    $display("data_out_8: %b", data_out_8);
+    $display("data_out_9: %b", data_out_9);
+    $display("data_out_10: %b", data_out_10);
+    $display("data_out_11: %b", data_out_11);
+    $display("data_out_12: %b", data_out_12);
+    $display("data_out_13: %b", data_out_13);
+    $display("data_out_14: %b", data_out_14);
+    $display("data_out_15: %b", data_out_15);
+  end
+
+endmodule
+
+module redumax_tb;
+
+  reg clk;
+  reg [15:0] data_0; reg [15:0] data_1; reg [15:0] data_2; reg [15:0] data_3;
+  reg [15:0] data_4; reg [15:0] data_5; reg [15:0] data_6; reg [15:0] data_7;
+  reg [15:0] data_8; reg [15:0] data_9; reg [15:0] data_10; reg [15:0] data_11;
+  reg [15:0] data_12; reg [15:0] data_13; reg [15:0] data_14; reg [15:0] data_15;
+  wire [15:0] max_val;
+
+	MAC mac_inst (
+		.clk(clk), 
+		.acc_out_0(data_0), .acc_out_1(data_1), .acc_out_2(data_2), .acc_out_3(data_3),
+		.acc_out_4(data_4), .acc_out_5(data_5), .acc_out_6(data_6), .acc_out_7(data_7),
+		.acc_out_8(data_8), .acc_out_9(data_9), .acc_out_10(data_10), .acc_out_11(data_11),
+		.acc_out_12(data_12), .acc_out_13(data_13), .acc_out_14(data_14), .acc_out_15(data_15),
+
+  redumax dut (
+    .clk(clk),
+    .data_0(data_0), .data_1(data_1), .data_2(data_2), .data_3(data_3),
+    .data_4(data_4), .data_5(data_5), .data_6(data_6), .data_7(data_7),
+    .data_8(data_8), .data_9(data_9), .data_10(data_10), .data_11(data_11),
+    .data_12(data_12), .data_13(data_13), .data_14(data_14), .data_15(data_15),
+    .max_val(max_val)
+  );
+    always #5 clk = ~clk; // 10ns의 클럭 주기    
+  initial begin    
+    clk = 0;
+     #20;
+		// 최대값 출력
+    $display("Max Output: %b", max_val);
+  end
+
+endmodule
+
 
