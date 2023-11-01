@@ -43,6 +43,9 @@ SpecInfer의 병렬 Decoder 연산을 하드웨어 적으로 가속 가능할 �
 
 참고
 https://github.com/sunwoolee/lptorch/wiki #SNU Quantization
+
 https://github.com/facebookresearch/llama/blob/main/llama/model.py#L191 #Llama2 Model
+
 https://huggingface.co/TheBloke/Llama-2-7B-AWQ # Llama2 AWQ Model
+
 https://github.com/openai/gpt-2/blob/master/src/model.py#L102 # GPT-2 Model DFX Sudo code와 비교할 것
