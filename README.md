@@ -6,7 +6,11 @@
 INT8 기반 MPU, LayerNorm, Mask, Gelu, Softmax, ReduceMAx, Residual 유닛을 Custom HW로 만드는 것을 목표로 함
 그리고 해당 유닛을 다음과 같은 구조로 엮는 것을 목표로 하는 HW를 구현하는 것을 목표로 함, TB 검증 철저히 실행할 것
 Llama2 묘사와 같이 진행할 것
+
+
 ![image](https://github.com/Nasdaq3016/SKYNET/assets/108527148/b7b46374-02d5-401f-b1cd-72a5a74d6ec4)
+
+
 
 
 Llama2 묘사 (조영민)
