@@ -3,6 +3,7 @@
 각 파트별로 메인 팀원을 선정하고 나머지는 해당 부분에 서브로 들어가는 형식으로 진행할 것
 
 **컴퓨팅 코어 부분에서는 (이윤태)**
+SmoothQuant(W8A8)
 INT8 기반 MPU, LayerNorm, Mask, Gelu, Softmax, ReduceMAx, Residual 유닛을 Custom HW로 만드는 것을 목표로 함
 그리고 해당 유닛을 다음과 같은 구조로 엮는 것을 목표로 하는 HW를 구현하는 것을 목표로 함, TB 검증 철저히 실행할 것
 Llama2 묘사와 같이 진행할 것
@@ -32,5 +33,12 @@ AXI와 PCIE에 대한 프로토콜 이해를 선행하고, 설계도를 도식�
 **연구 파트.**
 AWQ 개선 연구는 좀 더 고민이 필요할 것으로 판단, 현재 보류 상태
 SpecInfer의 병렬 Decoder 연산을 하드웨어 적으로 가속 가능할 것으로 예상, 특히 CPU로 오가는 부분을 End-End로 만들 수 있을 것이라 판단.
++ Key-Value Bandwith 및 Capacity 문제가 크다.
++ GEMV 연산에서의 Bandwith 문제도 크다.
++ Batch도 고려해야 한다.
 
 2024년 3월까지 연구 주제를 선정 및 실험을 진행할 것.
+
+참고
+https://github.com/sunwoolee/lptorch/wiki #SNU Quantization
+https://github.com/facebookresearch/llama/blob/main/llama/model.py#L191 #Llama2 Model
