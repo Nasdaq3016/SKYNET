@@ -34,7 +34,9 @@ AXI와 PCIE에 대한 프로토콜 이해를 선행하고, 설계도를 도식�
 **연구 파트.**
 
 AWQ 개선 연구는 좀 더 고민이 필요할 것으로 판단, 현재 보류 상태
-SpecInfer의 병렬 Decoder 연산을 하드웨어 적으로 가속 가능할 것으로 예상, 특히 CPU로 오가는 부분을 End-End로 만들 수 있을 것이라 판단.
+
+**SpecInfer의 병렬 Decoder 연산을 하드웨어 적으로 가속 가능할 것으로 예상, 특히 CPU로 오가는 부분을 End-End로 만들 수 있을 것이라 판단.**
+
 + Key-Value Bandwith 및 Capacity 문제가 크다.
 + GEMV 연산에서의 Bandwith 문제도 크다.
 + Batch도 고려해야 한다.
