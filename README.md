@@ -41,7 +41,8 @@ SpecInfer의 병렬 Decoder 연산을 하드웨어 적으로 가속 가능할 �
 
 2024년 3월까지 연구 주제를 선정 및 실험을 진행할 것.
 
-참고
+**참고**
+
 https://github.com/sunwoolee/lptorch/wiki #SNU Quantization
 
 https://github.com/facebookresearch/llama/blob/main/llama/model.py#L191 #Llama2 Model
