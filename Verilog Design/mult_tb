@@ -1,0 +1,29 @@
+module mult_tb ();
+    reg clk;
+    reg rst;
+    reg [7:0] mplier;
+    reg [7:0] mcand;
+    wire[15:0] result;
+    
+    mult dut(.clk(clk), .rst(rst),  .mplier(mplier), .mcand(mcand), .result(result));
+    
+    always  #7 clk <= ~clk ;
+    always  #5 rst <= ~rst;
+    
+    initial
+    begin
+    clk = 1'b1;
+    rst = 1'b1;
+        mcand = 8'b11111111; //-1
+        mplier = 8'b00001100; //12
+    #10;
+        mcand = 8'b11111011; //-5
+        mplier = 8'b11111011; //-5
+    #10;
+        mcand = 8'b00000110; //6
+        mplier = 8'b11111100; //-4
+    #10;
+    end
+    
+    mult mult1 (clk, mplier, mcand, result);
+endmodule
