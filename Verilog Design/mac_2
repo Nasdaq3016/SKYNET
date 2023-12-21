@@ -1,0 +1,212 @@
+module mac(
+    input clk,
+    input rst,
+    input signed [511:0] A,
+    input signed [511:0] B,
+    input vld_i,
+    output reg signed [20:0] mac_out,
+    output vld_o
+);
+
+    wire signed [15:0] y00; wire signed [15:0] y01; wire signed [15:0] y02; wire signed [15:0] y03;
+    wire signed [15:0] y04; wire signed [15:0] y05; wire signed [15:0] y06; wire signed [15:0] y07;
+    wire signed [15:0] y08; wire signed [15:0] y09; wire signed [15:0] y10; wire signed [15:0] y11;
+    wire signed [15:0] y12; wire signed [15:0] y13; wire signed [15:0] y14; wire signed [15:0] y15;
+    wire signed [15:0] y16; wire signed [15:0] y17; wire signed [15:0] y18; wire signed [15:0] y19;
+    wire signed [15:0] y20; wire signed [15:0] y21; wire signed [15:0] y22; wire signed [15:0] y23;
+    wire signed [15:0] y24; wire signed [15:0] y25; wire signed [15:0] y26; wire signed [15:0] y27;
+    wire signed [15:0] y28; wire signed [15:0] y29; wire signed [15:0] y30; wire signed [15:0] y31;
+    wire signed [15:0] y32; wire signed [15:0] y33; wire signed [15:0] y34; wire signed [15:0] y35;
+    wire signed [15:0] y36; wire signed [15:0] y37; wire signed [15:0] y38; wire signed [15:0] y39;
+    wire signed [15:0] y40; wire signed [15:0] y41; wire signed [15:0] y42; wire signed [15:0] y43;
+    wire signed [15:0] y44; wire signed [15:0] y45; wire signed [15:0] y46; wire signed [15:0] y47;
+    wire signed [15:0] y48; wire signed [15:0] y49; wire signed [15:0] y50; wire signed [15:0] y51;
+    wire signed [15:0] y52; wire signed [15:0] y53; wire signed [15:0] y54; wire signed [15:0] y55;
+    wire signed [15:0] y56; wire signed [15:0] y57; wire signed [15:0] y58; wire signed [15:0] y59;
+    wire signed [15:0] y60; wire signed [15:0] y61; wire signed [15:0] y62; wire signed [15:0] y63;
+    
+    reg signed [16:0] y1_00; reg signed [16:0] y1_01; reg signed [16:0] y1_02; reg signed [16:0] y1_03;
+    reg signed [16:0] y1_04; reg signed [16:0] y1_05; reg signed [16:0] y1_06; reg signed [16:0] y1_07;
+    reg signed [16:0] y1_08; reg signed [16:0] y1_09; reg signed [16:0] y1_10; reg signed [16:0] y1_11;
+    reg signed [16:0] y1_12; reg signed [16:0] y1_13; reg signed [16:0] y1_14; reg signed [16:0] y1_15;
+    reg signed [16:0] y1_16; reg signed [16:0] y1_17; reg signed [16:0] y1_18; reg signed [16:0] y1_19;
+    reg signed [16:0] y1_20; reg signed [16:0] y1_21; reg signed [16:0] y1_22; reg signed [16:0] y1_23;
+    reg signed [16:0] y1_24; reg signed [16:0] y1_25; reg signed [16:0] y1_26; reg signed [16:0] y1_27; 
+    reg signed [16:0] y1_28; reg signed [16:0] y1_29; reg signed [16:0] y1_30; reg signed [16:0] y1_31;
+    
+    reg signed [17:0] y2_00; reg signed [17:0] y2_01; reg signed [17:0] y2_02; reg signed [17:0] y2_03;
+    reg signed [17:0] y2_04; reg signed [17:0] y2_05; reg signed [17:0] y2_06; reg signed [17:0] y2_07;
+    reg signed [17:0] y2_08; reg signed [17:0] y2_09; reg signed [17:0] y2_10; reg signed [17:0] y2_11;   
+    reg signed [17:0] y2_12; reg signed [17:0] y2_13; reg signed [17:0] y2_14; reg signed [17:0] y2_15;
+    
+    reg signed [18:0] y3_00; reg signed [18:0] y3_01; reg signed [18:0] y3_02; reg signed [18:0] y3_03;
+    reg signed [18:0] y3_04; reg signed [18:0] y3_05; reg signed [18:0] y3_06; reg signed [18:0] y3_07;
+    
+    reg signed [19:0] y4_00; reg signed [19:0] y4_01; reg signed [19:0] y4_02; reg signed [19:0] y4_03;
+
+    reg signed [20:0] y5_00; reg signed [20:0] y5_01;
+    
+    reg signed [21:0] y6_00;
+                   
+    mult m_00(.clk(clk), .rst(rst), .mcand(A [7:0]), .mplier(B[7:0]), .result(y00));
+    mult m_01(.clk(clk), .rst(rst), .mcand(A [15:8]), .mplier(B[15:8]), .result(y01));
+    mult m_02(.clk(clk), .rst(rst), .mcand(A [23:16]), .mplier(B[23:16]), .result(y02));
+    mult m_03(.clk(clk), .rst(rst), .mcand(A [31:24]), .mplier(B[31:24]), .result(y03));
+    mult m_04(.clk(clk), .rst(rst), .mcand(A [39:32]), .mplier(B[39:32]), .result(y04));
+    mult m_05(.clk(clk), .rst(rst), .mcand(A [47:40]), .mplier(B[47:40]), .result(y05));
+    mult m_06(.clk(clk), .rst(rst), .mcand(A [55:48]), .mplier(B[55:48]), .result(y06));
+    mult m_07(.clk(clk), .rst(rst), .mcand(A [63:56]), .mplier(B[63:56]), .result(y07));
+    mult m_08(.clk(clk), .rst(rst), .mcand(A [71:64]), .mplier(B[71:64]), .result(y08));
+    mult m_09(.clk(clk), .rst(rst), .mcand(A [79:72]), .mplier(B[79:72]), .result(y09));
+    mult m_10(.clk(clk), .rst(rst), .mcand(A [87:80]), .mplier(B[87:80]), .result(y10));
+    mult m_11(.clk(clk), .rst(rst), .mcand(A [95:88]), .mplier(B[95:88]), .result(y11));
+    mult m_12(.clk(clk), .rst(rst), .mcand(A [103:96]), .mplier(B[103:96]), .result(y12));
+    mult m_13(.clk(clk), .rst(rst), .mcand(A [111:104]), .mplier(B[111:104]), .result(y13));
+    mult m_14(.clk(clk), .rst(rst), .mcand(A [119:112]), .mplier(B[119:112]), .result(y14));
+    mult m_15(.clk(clk), .rst(rst), .mcand(A [127:120]), .mplier(B[127:120]), .result(y15));
+    mult m_16(.clk(clk), .rst(rst), .mcand(A [135:128]), .mplier(B[136:129]), .result(y16));
+    mult m_17(.clk(clk), .rst(rst), .mcand(A [144:136]), .mplier(B[144:136]), .result(y17));
+    mult m_18(.clk(clk), .rst(rst), .mcand(A [151:144]), .mplier(B[151:144]), .result(y18));
+    mult m_19(.clk(clk), .rst(rst), .mcand(A [159:152]), .mplier(B[159:152]), .result(y19));
+    mult m_20(.clk(clk), .rst(rst), .mcand(A [167:160]), .mplier(B[167:160]), .result(y20));
+    mult m_21(.clk(clk), .rst(rst), .mcand(A [175:168]), .mplier(B[175:168]), .result(y21));
+    mult m_22(.clk(clk), .rst(rst), .mcand(A [183:176]), .mplier(B[183:176]), .result(y22));
+    mult m_23(.clk(clk), .rst(rst), .mcand(A [191:184]), .mplier(B[191:184]), .result(y23));
+    mult m_24(.clk(clk), .rst(rst), .mcand(A [199:192]), .mplier(B[199:192]), .result(y24));
+    mult m_25(.clk(clk), .rst(rst), .mcand(A [207:200]), .mplier(B[207:200]), .result(y25));
+    mult m_26(.clk(clk), .rst(rst), .mcand(A [215:208]), .mplier(B[215:208]), .result(y26));
+    mult m_27(.clk(clk), .rst(rst), .mcand(A [223:216]), .mplier(B[223:216]), .result(y27));
+    mult m_28(.clk(clk), .rst(rst), .mcand(A [231:224]), .mplier(B[231:224]), .result(y28));
+    mult m_29(.clk(clk), .rst(rst), .mcand(A [239:232]), .mplier(B[239:232]), .result(y29));
+    mult m_30(.clk(clk), .rst(rst), .mcand(A [247:240]), .mplier(B[247:240]), .result(y30));
+    mult m_31(.clk(clk), .rst(rst), .mcand(A [255:248]), .mplier(B[255:248]), .result(y31));
+    mult m_32(.clk(clk), .rst(rst), .mcand(A [263:256]), .mplier(B[263:256]), .result(y32));
+    mult m_33(.clk(clk), .rst(rst), .mcand(A [271:264]), .mplier(B[271:264]), .result(y33));
+    mult m_34(.clk(clk), .rst(rst), .mcand(A [279:272]), .mplier(B[279:272]), .result(y34));
+    mult m_35(.clk(clk), .rst(rst), .mcand(A [287:280]), .mplier(B[287:280]), .result(y35));
+    mult m_36(.clk(clk), .rst(rst), .mcand(A [295:288]), .mplier(B[295:288]), .result(y36));
+    mult m_37(.clk(clk), .rst(rst), .mcand(A [303:296]), .mplier(B[303:296]), .result(y37));
+    mult m_38(.clk(clk), .rst(rst), .mcand(A [311:304]), .mplier(B[311:304]), .result(y38));
+    mult m_39(.clk(clk), .rst(rst), .mcand(A [319:312]), .mplier(B[319:312]), .result(y39));
+    mult m_40(.clk(clk), .rst(rst), .mcand(A [327:320]), .mplier(B[327:320]), .result(y40));
+    mult m_41(.clk(clk), .rst(rst), .mcand(A [335:328]), .mplier(B[335:328]), .result(y41));
+    mult m_42(.clk(clk), .rst(rst), .mcand(A [343:336]), .mplier(B[343:336]), .result(y42));
+    mult m_43(.clk(clk), .rst(rst), .mcand(A [351:344]), .mplier(B[351:344]), .result(y43));
+    mult m_44(.clk(clk), .rst(rst), .mcand(A [359:352]), .mplier(B[359:352]), .result(y44));
+    mult m_45(.clk(clk), .rst(rst), .mcand(A [367:360]), .mplier(B[367:360]), .result(y45));
+    mult m_46(.clk(clk), .rst(rst), .mcand(A [375:368]), .mplier(B[375:368]), .result(y46));
+    mult m_47(.clk(clk), .rst(rst), .mcand(A [383:376]), .mplier(B[383:376]), .result(y47));
+    mult m_48(.clk(clk), .rst(rst), .mcand(A [391:384]), .mplier(B[391:384]), .result(y48));
+    mult m_49(.clk(clk), .rst(rst), .mcand(A [399:392]), .mplier(B[399:392]), .result(y49));
+    mult m_50(.clk(clk), .rst(rst), .mcand(A [407:400]), .mplier(B[407:400]), .result(y50));
+    mult m_51(.clk(clk), .rst(rst), .mcand(A [415:408]), .mplier(B[415:408]), .result(y51));
+    mult m_52(.clk(clk), .rst(rst), .mcand(A [423:416]), .mplier(B[423:416]), .result(y52));
+    mult m_53(.clk(clk), .rst(rst), .mcand(A [431:424]), .mplier(B[431:424]), .result(y53));
+    mult m_54(.clk(clk), .rst(rst), .mcand(A [439:432]), .mplier(B[439:432]), .result(y54));
+    mult m_55(.clk(clk), .rst(rst), .mcand(A [447:440]), .mplier(B[447:440]), .result(y55));
+    mult m_56(.clk(clk), .rst(rst), .mcand(A [455:448]), .mplier(B[455:448]), .result(y56));
+    mult m_57(.clk(clk), .rst(rst), .mcand(A [463:456]), .mplier(B[463:456]), .result(y57));
+    mult m_58(.clk(clk), .rst(rst), .mcand(A [471:464]), .mplier(B[471:464]), .result(y58));
+    mult m_59(.clk(clk), .rst(rst), .mcand(A [479:472]), .mplier(B[479:472]), .result(y59));
+    mult m_60(.clk(clk), .rst(rst), .mcand(A [487:480]), .mplier(B[487:480]), .result(y60));
+    mult m_61(.clk(clk), .rst(rst), .mcand(A [495:488]), .mplier(B[495:488]), .result(y61));
+    mult m_62(.clk(clk), .rst(rst), .mcand(A [503:496]), .mplier(B[503:496]), .result(y62));
+    mult m_63(.clk(clk), .rst(rst), .mcand(A [511:504]), .mplier(B[511:504]), .result(y63));
+
+    //lst level of adder
+    always @(posedge clk, negedge rst) begin
+        if (!rst) begin
+        y1_00 <= 17'd0; y1_01 <= 17'd0; y1_02 <= 17'd0; y1_03 <= 17'd0;
+        y1_04 <= 17'd0; y1_05 <= 17'd0; y1_06 <= 17'd0; y1_07 <= 17'd0;
+        y1_08 <= 17'd0; y1_09 <= 17'd0; y1_10 <= 17'd0; y1_11 <= 17'd0;
+        y1_12 <= 17'd0; y1_13 <= 17'd0; y1_14 <= 17'd0; y1_15 <= 17'd0;
+        y1_16 <= 17'd0; y1_17 <= 17'd0; y1_18 <= 17'd0; y1_19 <= 17'd0;
+        y1_20 <= 17'd0; y1_21 <= 17'd0; y1_22 <= 17'd0; y1_23 <= 17'd0;
+        y1_24 <= 17'd0; y1_25 <= 17'd0; y1_26 <= 17'd0; y1_27 <= 17'd0;
+        y1_28 <= 17'd0; y1_29 <= 17'd0; y1_30 <= 17'd0; y1_31 <= 17'd0;
+        end
+        else begin
+        y1_00 <= $signed(y00) + $signed(y01); y1_02 <= $signed(y02) + $signed(y03);
+        y1_02 <= $signed(y04) + $signed(y05); y1_03 <= $signed(y06) + $signed(y07);
+        y1_04 <= $signed(y08) + $signed(y09); y1_05 <= $signed(y10) + $signed(y11);
+        y1_06 <= $signed(y12) + $signed(y13); y1_07 <= $signed(y14) + $signed(y15); 
+        y1_08 <= $signed(y16) + $signed(y17); y1_09 <= $signed(y18) + $signed(y19);
+        y1_10 <= $signed(y20) + $signed(y21); y1_11 <= $signed(y22) + $signed(y23);  
+        y1_12 <= $signed(y24) + $signed(y25); y1_13 <= $signed(y26) + $signed(y27);
+        y1_14 <= $signed(y28) + $signed(y29); y1_15 <= $signed(y30) + $signed(y31);
+        y1_16 <= $signed(y32) + $signed(y33); y1_17 <= $signed(y34) + $signed(y35);
+        y1_18 <= $signed(y36) + $signed(y37); y1_19 <= $signed(y38) + $signed(y39);
+        y1_20 <= $signed(y40) + $signed(y41); y1_21 <= $signed(y42) + $signed(y43);
+        y1_22 <= $signed(y44) + $signed(y45); y1_23 <= $signed(y46) + $signed(y47);  
+        y1_24 <= $signed(y48) + $signed(y49); y1_25 <= $signed(y50) + $signed(y51);
+        y1_26 <= $signed(y52) + $signed(y53); y1_27 <= $signed(y54) + $signed(y55);
+        y1_28 <= $signed(y56) + $signed(y57); y1_29 <= $signed(y58) + $signed(y59);
+        y1_30 <= $signed(y60) + $signed(y61); y1_31 <= $signed(y62) + $signed(y63);
+        end
+    end
+    
+    //2nd layer
+    always @(posedge clk, negedge rst) begin
+        if (!rst) begin 
+        y2_00 <= 18'd0; y2_01 <= 18'd0; y2_02 <= 18'd0; y2_03 <= 18'd0;
+        y2_04 <= 18'd0; y2_05 <= 18'd0; y2_06 <= 18'd0; y2_07 <= 18'd0;
+        y2_08 <= 18'd0; y2_09 <= 18'd0; y2_10 <= 18'd0; y2_11 <= 18'd0;
+        y2_12 <= 18'd0; y2_13 <= 18'd0; y2_14 <= 18'd0; y2_15 <= 18'd0;
+        end
+        else begin
+        y2_00 <= $signed(y1_00) + $signed(y1_01); y2_01 <= $signed(y1_02) + $signed(y1_03);
+        y2_02 <= $signed(y1_04) + $signed(y1_05); y2_03 <= $signed(y1_06) + $signed(y1_07);
+        y2_04 <= $signed(y1_08) + $signed(y1_09); y2_05 <= $signed(y1_10) + $signed(y1_11);
+        y2_06 <= $signed(y1_12) + $signed(y1_13); y2_07 <= $signed(y1_14) + $signed(y1_15);
+        y2_08 <= $signed(y1_16) + $signed(y1_17); y2_09 <= $signed(y1_18) + $signed(y1_19);
+        y2_10 <= $signed(y1_20) + $signed(y1_21); y2_11 <= $signed(y1_22) + $signed(y1_23);
+        y2_12 <= $signed(y1_24) + $signed(y1_25); y2_13 <= $signed(y1_26) + $signed(y1_27);
+        y2_14 <= $signed(y1_28) + $signed(y1_29); y2_15 <= $signed(y1_30) + $signed(y1_31);
+        end
+    end
+    
+    //3rd layer
+    always @(posedge clk, negedge rst) begin
+        if (!rst) begin 
+        y3_00 <= 19'd0; y3_01 <= 19'd0; y3_02 <= 19'd0; y3_03 <= 19'd0;
+        y3_04 <= 19'd0; y3_05 <= 19'd0; y3_06 <= 19'd0; y3_07 <= 19'd0;
+        end
+        else begin
+        y3_00 <= $signed(y2_00) + $signed(y2_01); y3_01 <= $signed(y2_02) + $signed(y2_03);
+        y3_02 <= $signed(y2_04) + $signed(y2_05); y3_03 <= $signed(y2_06) + $signed(y2_07);
+        y3_04 <= $signed(y2_08) + $signed(y2_09); y3_05 <= $signed(y2_10) + $signed(y2_11);
+        y3_06 <= $signed(y2_12) + $signed(y2_13); y3_07 <= $signed(y2_14) + $signed(y2_15);
+        end
+    end
+    
+    //4th layer
+    always @(posedge clk, negedge rst) begin
+        if (!rst) begin 
+        y4_00 <= 20'd0; y4_01 <= 20'd0; y4_02 <= 20'd0; y4_03 <= 20'd0;
+        end
+        else begin
+        y4_00 <= $signed(y3_00) + $signed(y3_01); y4_01 <= $signed(y3_02) + $signed(y3_03);
+        y4_02 <= $signed(y3_04) + $signed(y3_05); y4_03 <= $signed(y3_06) + $signed(y3_07);
+        end
+    end
+
+    //5th layer
+    always @(posedge clk, negedge rst) begin
+        if (!rst) begin 
+        y5_00 <= 21'd0; y5_01 <= 21'd0;
+        end
+        else begin
+        y5_00 <= $signed(y4_00) + $signed(y4_01); y5_01 <= $signed(y4_02) + $signed(y4_03);
+        end
+    end
+    
+    //6th layer
+        always @(posedge clk, negedge rst) begin
+        if (!rst) begin 
+        mac_out <= 22'd0;
+        end
+        else begin
+        mac_out <= $signed(y5_00) + $signed(y5_01);
+        end
+    end 
+endmodule
