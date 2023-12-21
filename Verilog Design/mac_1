@@ -1,0 +1,99 @@
+ module mac(
+    input wire clk,
+    input wire rst,
+    input wire [255:0] a,
+    input wire [255:0] b,
+    input wire vld_i,
+    output reg [20:0] mac_out,
+    output reg vld_o
+);
+    wire [15:0] lay_y1 [31:0]; //result from first layer (multiplier)
+    wire [16:0] lay_y2 [15:0]; //result from secon layer (first adder)
+    wire [17:0] lay_y3 [7:0]; //result from third layer (second adder)
+    wire [18:0] lay_y4 [3:0];  //result from fourth layer (third adder)
+    wire [19:0] lay_y5 [1:0];  //result from fifth layer (fourth adder)
+    wire [20:0] lay_final;
+
+    genvar i; //lst layer
+    generate
+        for (i = 0; i < 32; i = i + 1)
+        begin : first_mult
+        wire [7:0] a_mat [31:0];
+        wire [7:0] b_mat [31:0];
+        assign a_mat [i] = a [i+7:i];
+        assign b_mat [i] = b [i+7:i];
+        mult_8 m1(.clk(clk), .rst(rst), .a(a_mat[i]), .b(b_mat[i]), .result(lay_y1[i]));
+        end
+    endgenerate
+
+    genvar j; //2nd layer
+    generate
+        for (j = 0; j < 16; j = j + 1)
+        begin : second_add
+        wire Ci [31:0];
+        wire Co [31:0];
+        wire [16:0] Sum17 [31:0];
+        wire signed [15:0] S [31:0];
+        add_16 a1(.clk(clk), .a(lay_y1[j*2]), .b(lay_y1[j*2+1]), .Ci(Ci[j]), .S(S[j]), .Co(Co[j]), .result(lay_y2[j]));
+        end
+    endgenerate
+    
+    genvar k; //3rd layer
+    generate
+        for (k = 0; k < 8; k = k + 1)
+        begin : third_add
+        wire Ci [15:0];
+        wire Co [15:0];
+        wire[17:0] Sum18 [15:0];
+        wire signed [16:0] S [15:0];
+        add_17 a2(.clk(clk), .a(lay_y2[k*2]), .b(lay_y2[k*2+1]), .Ci(Ci[k]), .S(S[k]), .Co(Co[k]), .result(lay_y3[k]));
+        end
+    endgenerate
+    
+    genvar l; //4th layer
+    generate
+        for (l = 0; l < 4; l = l + 1)
+        begin : fourth_add
+        wire Ci [7:0];
+        wire Co [7:0];
+        wire[18:0] Sum19 [7:0];
+        wire signed [17:0] S [7:0];
+        add_18 a3(.clk(clk), .a(lay_y3[l*2]), .b(lay_y3[l*2+1]), .Ci(Ci[l]), .S(S[l]), .Co(Co[l]), .result(lay_y4[l]));
+        end
+    endgenerate
+    
+    genvar m; //5th layer
+    generate
+        for (m = 0; m < 2; m = m + 1)
+        begin : fifth_add
+        wire Ci [3:0];
+        wire Co [3:0];
+        wire[19:0] Sum20 [3:0];
+        wire signed [18:0] S [3:0];
+        add_19 a4(.clk(clk), .a(lay_y4[m*2]), .b(lay_y4[m*2+1]), .Ci(Ci[m]), .S(S[m]), .Co(Co[m]), .result(lay_y5[m]));
+        end
+    endgenerate
+    
+    genvar n; //6th layer
+    generate
+        for (n = 0; n < 1; n = n + 1)
+        begin : sixth_add
+        wire Ci [1:0];
+        wire Co [1:0];
+        wire[20:0] Sum21 [1:0];
+        wire signed [19:0] S [1:0];
+        add_20 a5(.clk(clk), .a(lay_y5[n*2]), .b(lay_y5[n*2+1]), .Ci(Ci[n]), .S(S[n]), .Co(Co[n]), .result(lay_final[n]));
+        end
+    endgenerate
+    
+    always @(posedge clk or negedge rst) begin
+    if (rst==1'b0) begin
+        vld_o <= 1'b0;
+        mac_out <= 'd0;
+    end
+    else if (vld_i) begin
+        vld_o = 1'b1;
+        mac_out <= lay_final;
+    end
+    end
+endmodule
