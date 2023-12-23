@@ -12,7 +12,7 @@ module mac(
     wire [17:0] lay_y3 [15:0]; //result from third layer (second adder)
     wire [18:0] lay_y4 [7:0];  //result from fourth layer (third adder)
     wire [19:0] lay_y5 [3:0];  //result from fifth layer (fourth adder)
-    wire [20:0] lay_y6 [1:0]
+    wire [20:0] lay_y6 [1:0];
     wire [21:0] lay_final;
 
     genvar i; //lst layer
@@ -89,7 +89,7 @@ module mac(
 
     genvar o; //7th layer
     generate
-        for (o = 0; n < 1; n = n + 1)
+        for (o = 0; o < 1; o = o + 1)
         begin : seventh_add
         wire Ci;
         wire Co;
@@ -110,3 +110,4 @@ module mac(
     end
     end
 endmodule
+
