@@ -1,0 +1,1125 @@
+// 멀티플라이어 1층 제외 밑에 파이프라인 에더트리만 구현, 아직 버그 있어서 고치는 중
+
+module adder12s ( clk, 
+            n0, n1, n2, n3, n4, n5, n6, n7,
+             n8, n9, n10, n11, n12, n13, n14, n15,
+             n16, n17, n18, n19, n20, n21, n22, n23,
+             n24, n25, n26, n27, n28, n29, n30, n31,
+             n32, n33, n34, n35, n36, n37, n38, n39,
+             n40, n41, n42, n43, n44, n45, n46, n47,
+             n48, n49, n50, n51, n52, n53, n54, n55,
+             n56, n57, n58, n59, n60, n61, n62, n63;
+ sum 
+ ) ; 
+input clk ; 
+
+input [14:0] n0;
+input [14:0] n1;
+input [14:0] n2;
+input [14:0] n3;
+input [14:0] n4;
+input [14:0] n5;
+input [14:0] n6;
+input [14:0] n7;
+input [14:0] n8;
+input [14:0] n9;
+input [14:0] n10;
+input [14:0] n11;
+input [14:0] n12;
+input [14:0] n13;
+input [14:0] n14;
+input [14:0] n15;
+input [14:0] n16;
+input [14:0] n17;
+input [14:0] n18;
+input [14:0] n19;
+input [14:0] n20;
+input [14:0] n21;
+input [14:0] n22;
+input [14:0] n23;
+input [14:0] n24;
+input [14:0] n25;
+input [14:0] n26;
+input [14:0] n27;
+input [14:0] n28;
+input [14:0] n29;
+input [14:0] n30;
+input [14:0] n31;
+input [14:0] n32;
+input [14:0] n33;
+input [14:0] n34;
+input [14:0] n35;
+input [14:0] n36;
+input [14:0] n37;
+input [14:0] n38;
+input [14:0] n39;
+input [14:0] n40;
+input [14:0] n41;
+input [14:0] n42;
+input [14:0] n43;
+input [14:0] n44;
+input [14:0] n45;
+input [14:0] n46;
+input [14:0] n47;
+input [14:0] n48;
+input [14:0] n49;
+input [14:0] n50;
+input [14:0] n51;
+input [14:0] n52;
+input [14:0] n53;
+input [14:0] n54;
+input [14:0] n55;
+input [14:0] n56;
+input [14:0] n57;
+input [14:0] n58;
+input [14:0] n59;
+input [14:0] n60;
+input [14:0] n61;
+input [14:0] n62;
+input [14:0] n63;
+
+output [20:0] sum ; 
+
+wire [8:0] s00_lsb ; 
+wire [8:0] s01_lsb ; 
+wire [8:0] s02_lsb ; 
+wire [8:0] s03_lsb ; 
+wire [8:0] s04_lsb ; 
+wire [8:0] s05_lsb ; 
+wire [8:0] s06_lsb ; 
+wire [8:0] s07_lsb ; 
+wire [8:0] s08_lsb ; 
+wire [8:0] s09_lsb ; 
+wire [8:0] s10_lsb ; 
+wire [8:0] s11_lsb ; 
+wire [8:0] s12_lsb ; 
+wire [8:0] s13_lsb ; 
+wire [8:0] s14_lsb ; 
+wire [8:0] s15_lsb ; 
+wire [8:0] s16_lsb ; 
+wire [8:0] s17_lsb ; 
+wire [8:0] s18_lsb ; 
+wire [8:0] s19_lsb ; 
+wire [8:0] s20_lsb ; 
+wire [8:0] s21_lsb ; 
+wire [8:0] s22_lsb ; 
+wire [8:0] s23_lsb ; 
+wire [8:0] s24_lsb ; 
+wire [8:0] s25_lsb ; 
+wire [8:0] s26_lsb ; 
+wire [8:0] s27_lsb ; 
+wire [8:0] s28_lsb ; 
+wire [8:0] s29_lsb ; 
+wire [8:0] s30_lsb ; 
+wire [8:0] s31_lsb ; 
+
+wire [7:0] s00_msb ; 
+wire [7:0] s01_msb ; 
+wire [7:0] s02_msb ; 
+wire [7:0] s03_msb ; 
+wire [7:0] s04_msb ; 
+wire [7:0] s05_msb ; 
+wire [7:0] s06_msb ; 
+wire [7:0] s07_msb ; 
+wire [7:0] s08_msb ; 
+wire [7:0] s09_msb ; 
+wire [7:0] s10_msb ; 
+wire [7:0] s11_msb ; 
+wire [7:0] s12_msb ; 
+wire [7:0] s13_msb ; 
+wire [7:0] s14_msb ; 
+wire [7:0] s15_msb ; 
+wire [7:0] s16_msb ; 
+wire [7:0] s17_msb ; 
+wire [7:0] s18_msb ; 
+wire [7:0] s19_msb ; 
+wire [7:0] s20_msb ; 
+wire [7:0] s21_msb ; 
+wire [7:0] s22_msb ; 
+wire [7:0] s23_msb ; 
+wire [7:0] s24_msb ; 
+wire [7:0] s25_msb ; 
+wire [7:0] s26_msb ; 
+wire [7:0] s27_msb ; 
+wire [7:0] s28_msb ; 
+wire [7:0] s29_msb ; 
+wire [7:0] s30_msb ; 
+wire [7:0] s31_msb ; 
+
+
+wire [9:0] s2_00_lsb ; 
+wire [9:0] s2_01_lsb ;
+wire [9:0] s2_02_lsb ; 
+wire [9:0] s2_03_lsb ;
+wire [9:0] s2_04_lsb ; 
+wire [9:0] s2_05_lsb ;
+wire [9:0] s2_06_lsb ; 
+wire [9:0] s2_07_lsb ;
+wire [9:0] s2_08_lsb ; 
+wire [9:0] s2_09_lsb ;
+wire [9:0] s2_10_lsb ; 
+wire [9:0] s2_11_lsb ;
+wire [9:0] s2_12_lsb ;
+wire [9:0] s2_13_lsb ; 
+wire [9:0] s2_14_lsb ;
+wire [9:0] s2_15_lsb ;
+
+
+wire [8:0] s2_00_msb ; 
+wire [8:0] s2_01_msb ; 
+wire [8:0] s2_02_msb ; 
+wire [8:0] s2_03_msb ;
+wire [8:0] s2_04_msb ; 
+wire [8:0] s2_05_msb ; 
+wire [8:0] s2_06_msb ; 
+wire [8:0] s2_07_msb ;
+wire [8:0] s2_08_msb ; 
+wire [8:0] s2_09_msb ; 
+wire [8:0] s2_10_msb ; 
+wire [8:0] s2_11_msb ;
+wire [8:0] s2_12_msb ; 
+wire [8:0] s2_13_msb ; 
+wire [8:0] s2_14_msb ;
+wire [8:0] s2_15_msb ;
+
+wire [10:0] s3_00_lsb ; 
+wire [10:0] s3_01_lsb ;
+wire [10:0] s3_02_lsb ; 
+wire [10:0] s3_03_lsb ;
+wire [10:0] s3_04_lsb ; 
+wire [10:0] s3_05_lsb ;
+wire [10:0] s3_06_lsb ; 
+wire [10:0] s3_07_lsb ;
+
+wire [9:0] s3_00_msb ; 
+wire [9:0] s3_01_msb ;
+wire [9:0] s3_02_msb ; 
+wire [9:0] s3_03_msb ;
+wire [9:0] s3_04_msb ; 
+wire [9:0] s3_05_msb ;
+wire [9:0] s3_06_msb ; 
+wire [9:0] s3_07_msb ;
+
+wire [11:0] s4_00_lsb ; 
+wire [11:0] s4_01_lsb ;
+wire [11:0] s4_02_lsb ; 
+wire [11:0] s4_03_lsb ;
+
+wire [10:0] s4_00_msb ; 
+wire [10:0] s4_01_msb ;
+wire [10:0] s4_02_msb ; 
+wire [10:0] s4_03_msb ;
+
+wire [12:0] s5_00_lsb ; 
+wire [12:0] s5_01_lsb ;
+
+wire [11:0] s5_00_msb ; 
+wire [11:0] s5_01_msb ;
+
+wire [13:0] s6_00_lsb ; 
+
+
+
+// msb 저장 1
+reg [14:8] n00_reg1 ; 
+reg [14:8] n01_reg1 ; 
+reg [14:8] n02_reg1 ; 
+reg [14:8] n03_reg1 ; 
+reg [14:8] n04_reg1 ; 
+reg [14:8] n05_reg1 ; 
+reg [14:8] n06_reg1 ; 
+reg [14:8] n07_reg1 ; 
+reg [14:8] n08_reg1 ; 
+reg [14:8] n09_reg1 ; 
+reg [14:8] n10_reg1 ; 
+reg [14:8] n11_reg1 ; 
+reg [14:8] n12_reg1 ; 
+reg [14:8] n13_reg1 ; 
+reg [14:8] n14_reg1 ; 
+reg [14:8] n15_reg1 ; 
+reg [14:8] n16_reg1 ; 
+reg [14:8] n17_reg1 ; 
+reg [14:8] n18_reg1 ; 
+reg [14:8] n19_reg1 ; 
+reg [14:8] n20_reg1 ; 
+reg [14:8] n21_reg1 ; 
+reg [14:8] n22_reg1 ; 
+reg [14:8] n23_reg1 ; 
+reg [14:8] n24_reg1 ; 
+reg [14:8] n25_reg1 ; 
+reg [14:8] n26_reg1 ; 
+reg [14:8] n27_reg1 ; 
+reg [14:8] n28_reg1 ; 
+reg [14:8] n29_reg1 ; 
+reg [14:8] n30_reg1 ; 
+reg [14:8] n31_reg1 ; 
+reg [14:8] n32_reg1 ; 
+reg [14:8] n33_reg1 ; 
+reg [14:8] n34_reg1 ; 
+reg [14:8] n35_reg1 ; 
+reg [14:8] n36_reg1 ; 
+reg [14:8] n37_reg1 ; 
+reg [14:8] n38_reg1 ; 
+reg [14:8] n39_reg1 ; 
+reg [14:8] n40_reg1 ; 
+reg [14:8] n41_reg1 ; 
+reg [14:8] n42_reg1 ; 
+reg [14:8] n43_reg1 ; 
+reg [14:8] n44_reg1 ; 
+reg [14:8] n45_reg1 ; 
+reg [14:8] n46_reg1 ; 
+reg [14:8] n47_reg1 ; 
+reg [14:8] n48_reg1 ; 
+reg [14:8] n49_reg1 ; 
+reg [14:8] n50_reg1 ; 
+reg [14:8] n51_reg1 ; 
+reg [14:8] n52_reg1 ; 
+reg [14:8] n53_reg1 ; 
+reg [14:8] n54_reg1 ; 
+reg [14:8] n55_reg1 ; 
+reg [14:8] n56_reg1 ; 
+reg [14:8] n57_reg1 ; 
+reg [14:8] n58_reg1 ; 
+reg [14:8] n59_reg1 ; 
+reg [14:8] n60_reg1 ; 
+reg [14:8] n61_reg1 ; 
+reg [14:8] n62_reg1 ; 
+reg [14:8] n63_reg1 ; 
+
+// 32개
+reg [8:0] s00_msbreg2 ;
+reg [8:0] s01_msbreg2 ;
+reg [8:0] s02_msbreg2 ;
+reg [8:0] s03_msbreg2 ;
+reg [8:0] s04_msbreg2 ;
+reg [8:0] s05_msbreg2 ;
+reg [8:0] s06_msbreg2 ;
+reg [8:0] s07_msbreg2 ;
+reg [8:0] s08_msbreg2 ;
+reg [8:0] s09_msbreg2 ;
+reg [8:0] s10_msbreg2 ;
+reg [8:0] s11_msbreg2 ;
+reg [8:0] s12_msbreg2 ;
+reg [8:0] s13_msbreg2 ;
+reg [8:0] s14_msbreg2 ;
+reg [8:0] s15_msbreg2 ;
+reg [8:0] s16_msbreg2 ;
+reg [8:0] s17_msbreg2 ;
+reg [8:0] s18_msbreg2 ;
+reg [8:0] s19_msbreg2 ;
+reg [8:0] s20_msbreg2 ;
+reg [8:0] s21_msbreg2 ;
+reg [8:0] s22_msbreg2 ;
+reg [8:0] s23_msbreg2 ;
+reg [8:0] s24_msbreg2 ;
+reg [8:0] s25_msbreg2 ;
+reg [8:0] s26_msbreg2 ;
+reg [8:0] s27_msbreg2 ;
+reg [8:0] s28_msbreg2 ;
+reg [8:0] s29_msbreg2 ;
+reg [8:0] s30_msbreg2 ;
+reg [8:0] s31_msbreg2 ;
+
+
+
+// msbreg2와 개수 같아야 함 32개
+reg [8:0] s00_msbreg3 ;
+reg [8:0] s01_msbreg3 ;
+reg [8:0] s02_msbreg3 ;
+reg [8:0] s03_msbreg3 ;
+reg [8:0] s04_msbreg3 ;
+reg [8:0] s05_msbreg3 ;
+reg [8:0] s06_msbreg3 ;
+reg [8:0] s07_msbreg3 ;
+reg [8:0] s08_msbreg3 ;
+reg [8:0] s09_msbreg3 ;
+reg [8:0] s10_msbreg3 ;
+reg [8:0] s11_msbreg3 ;
+reg [8:0] s12_msbreg3 ;
+reg [8:0] s13_msbreg3 ;
+reg [8:0] s14_msbreg3 ;
+reg [8:0] s15_msbreg3 ;
+reg [8:0] s16_msbreg3 ;
+reg [8:0] s17_msbreg3 ;
+reg [8:0] s18_msbreg3 ;
+reg [8:0] s19_msbreg3 ;
+reg [8:0] s20_msbreg3 ;
+reg [8:0] s21_msbreg3 ;
+reg [8:0] s22_msbreg3 ;
+reg [8:0] s23_msbreg3 ;
+reg [8:0] s24_msbreg3 ;
+reg [8:0] s25_msbreg3 ;
+reg [8:0] s26_msbreg3 ;
+reg [8:0] s27_msbreg3 ;
+reg [8:0] s28_msbreg3 ;
+reg [8:0] s29_msbreg3 ;
+reg [8:0] s30_msbreg3 ;
+reg [8:0] s31_msbreg3 ;
+
+//s2_lsb와 숫자 같아야 함 16개
+
+reg [9:0] s00_lsbreg4 ;
+reg [9:0] s01_lsbreg4 ;
+reg [9:0] s02_lsbreg4 ;
+reg [9:0] s03_lsbreg4 ;
+reg [9:0] s04_lsbreg4 ;
+reg [9:0] s05_lsbreg4 ;
+reg [9:0] s06_lsbreg4 ;
+reg [9:0] s07_lsbreg4 ;
+reg [9:0] s08_lsbreg4 ;
+reg [9:0] s09_lsbreg4 ;
+reg [9:0] s10_lsbreg4 ;
+reg [9:0] s11_lsbreg4 ;
+reg [9:0] s12_lsbreg4 ;
+reg [9:0] s13_lsbreg4 ;
+reg [9:0] s14_lsbreg4 ;
+reg [9:0] s15_lsbreg4 ;
+
+
+// msbreg4 랑 숫자 같아야 함 16개
+
+reg [9:0] s00_msbreg5 ;
+reg [9:0] s01_msbreg5 ;
+reg [9:0] s02_msbreg5 ;
+reg [9:0] s03_msbreg5 ;
+reg [9:0] s04_msbreg5 ;
+reg [9:0] s05_msbreg5 ;
+reg [9:0] s06_msbreg5 ;
+reg [9:0] s07_msbreg5 ;
+reg [9:0] s08_msbreg5 ;
+reg [9:0] s09_msbreg5 ;
+reg [9:0] s10_msbreg5 ;
+reg [9:0] s11_msbreg5 ;
+reg [9:0] s12_msbreg5 ;
+reg [9:0] s13_msbreg5 ;
+reg [9:0] s14_msbreg5 ;
+reg [9:0] s15_msbreg5 ;
+
+
+// 8개
+reg [9:0] s00_msbreg6 ;
+reg [9:0] s01_msbreg6 ;
+reg [9:0] s02_msbreg6 ;
+reg [9:0] s03_msbreg6 ;
+reg [9:0] s04_msbreg6 ;
+reg [9:0] s05_msbreg6 ;
+reg [9:0] s06_msbreg6 ;
+reg [9:0] s07_msbreg6 ;
+
+// 8개
+reg [9:0] s00_msbreg7 ;
+reg [9:0] s01_msbreg7 ;
+reg [9:0] s02_msbreg7 ;
+reg [9:0] s03_msbreg7 ;
+reg [9:0] s04_msbreg7 ;
+reg [9:0] s05_msbreg7 ;
+reg [9:0] s06_msbreg7 ;
+reg [9:0] s07_msbreg7 ;
+
+// 4개
+reg [9:0] s00_msbreg8 ;
+reg [9:0] s01_msbreg8 ;
+reg [9:0] s02_msbreg8 ;
+reg [9:0] s03_msbreg8 ;
+
+// 4개
+reg [9:0] s00_msbreg9 ;
+reg [9:0] s01_msbreg9 ;
+reg [9:0] s02_msbreg9 ;
+reg [9:0] s03_msbreg9 ;
+
+
+// 2개
+reg [9:0] s00_msbreg10 ;
+reg [9:0] s01_msbreg10 ;
+
+// 2개
+reg [9:0] s00_msbreg11 ;
+reg [9:0] s01_msbreg11 ;
+
+
+
+//lsb 1번째 결과값 저장 32개
+reg [9:0] s00_lsbreg1 ;
+reg [9:0] s01_lsbreg1 ;
+reg [9:0] s02_lsbreg1 ;
+reg [9:0] s03_lsbreg1 ;
+reg [9:0] s04_lsbreg1 ;
+reg [9:0] s05_lsbreg1 ;
+reg [9:0] s06_lsbreg1 ;
+reg [9:0] s07_lsbreg1 ;
+reg [9:0] s08_lsbreg1 ;
+reg [9:0] s09_lsbreg1 ;
+reg [9:0] s10_lsbreg1 ;
+reg [9:0] s11_lsbreg1 ;
+reg [9:0] s12_lsbreg1 ;
+reg [9:0] s13_lsbreg1 ;
+reg [9:0] s14_lsbreg1 ;
+reg [9:0] s15_lsbreg1 ;
+reg [9:0] s16_lsbreg1 ;
+reg [9:0] s17_lsbreg1 ;
+reg [9:0] s18_lsbreg1 ;
+reg [9:0] s19_lsbreg1 ;
+reg [9:0] s20_lsbreg1 ;
+reg [9:0] s21_lsbreg1 ;
+reg [9:0] s22_lsbreg1 ;
+reg [9:0] s23_lsbreg1 ;
+reg [9:0] s24_lsbreg1 ;
+reg [9:0] s25_lsbreg1 ;
+reg [9:0] s26_lsbreg1 ;
+reg [9:0] s27_lsbreg1 ;
+reg [9:0] s28_lsbreg1 ;
+reg [9:0] s29_lsbreg1 ;
+reg [9:0] s30_lsbreg1 ;
+reg [9:0] s31_lsbreg1 ;
+
+
+reg [8:0] s00_lsbreg2 ;
+reg [8:0] s01_lsbreg2 ;
+reg [8:0] s02_lsbreg2 ;
+reg [8:0] s03_lsbreg2 ;
+reg [8:0] s04_lsbreg2 ;
+reg [8:0] s05_lsbreg2 ;
+reg [8:0] s06_lsbreg2 ;
+reg [8:0] s07_lsbreg2 ;
+reg [8:0] s08_lsbreg2 ;
+reg [8:0] s09_lsbreg2 ;
+reg [8:0] s10_lsbreg2 ;
+reg [8:0] s11_lsbreg2 ;
+reg [8:0] s12_lsbreg2 ;
+reg [8:0] s13_lsbreg2 ;
+reg [8:0] s14_lsbreg2 ;
+reg [8:0] s15_lsbreg2 ;
+reg [8:0] s16_lsbreg2 ;
+reg [8:0] s17_lsbreg2 ;
+reg [8:0] s18_lsbreg2 ;
+reg [8:0] s19_lsbreg2 ;
+reg [8:0] s20_lsbreg2 ;
+reg [8:0] s21_lsbreg2 ;
+reg [8:0] s22_lsbreg2 ;
+reg [8:0] s23_lsbreg2 ;
+reg [8:0] s24_lsbreg2 ;
+reg [8:0] s25_lsbreg2 ;
+reg [8:0] s26_lsbreg2 ;
+reg [8:0] s27_lsbreg2 ;
+reg [8:0] s28_lsbreg2 ;
+reg [8:0] s29_lsbreg2 ;
+reg [8:0] s30_lsbreg2 ;
+reg [8:0] s31_lsbreg2 ;
+
+//s2_lsb와 숫자 같아야 함 16개
+reg [9:0] s00_lsbreg3 ;
+reg [9:0] s01_lsbreg3 ;
+reg [9:0] s02_lsbreg3 ;
+reg [9:0] s03_lsbreg3 ;
+reg [9:0] s04_lsbreg3 ;
+reg [9:0] s05_lsbreg3 ;
+reg [9:0] s06_lsbreg3 ;
+reg [9:0] s07_lsbreg3 ;
+reg [9:0] s08_lsbreg3 ;
+reg [9:0] s09_lsbreg3 ;
+reg [9:0] s10_lsbreg3 ;
+reg [9:0] s11_lsbreg3 ;
+reg [9:0] s12_lsbreg3 ;
+reg [9:0] s13_lsbreg3 ;
+reg [9:0] s14_lsbreg3 ;
+reg [9:0] s15_lsbreg3 ;
+
+reg [8:0] s00_lsbreg4 ;
+reg [8:0] s01_lsbreg4 ;
+reg [8:0] s02_lsbreg4 ;
+reg [8:0] s03_lsbreg4 ;
+reg [8:0] s04_lsbreg4 ;
+reg [8:0] s05_lsbreg4 ;
+reg [8:0] s06_lsbreg4 ;
+reg [8:0] s07_lsbreg4 ;
+reg [8:0] s08_lsbreg4 ;
+reg [8:0] s09_lsbreg4 ;
+reg [8:0] s10_lsbreg4 ;
+reg [8:0] s11_lsbreg4 ;
+reg [8:0] s12_lsbreg4 ;
+reg [8:0] s13_lsbreg4 ;
+reg [8:0] s14_lsbreg4 ;
+reg [8:0] s15_lsbreg4 ;
+
+
+
+
+reg [9:0] s00_lsbreg5 ;
+reg [9:0] s01_lsbreg5 ;
+reg [9:0] s02_lsbreg5 ;
+reg [9:0] s03_lsbreg5 ;
+reg [9:0] s04_lsbreg5 ;
+reg [9:0] s05_lsbreg5 ;
+reg [9:0] s06_lsbreg5 ;
+reg [9:0] s07_lsbreg5 ;
+
+reg [8:0] s00_lsbreg6 ;
+reg [8:0] s01_lsbreg6 ;
+reg [8:0] s02_lsbreg6 ;
+reg [8:0] s03_lsbreg6 ;
+reg [8:0] s04_lsbreg6 ;
+reg [8:0] s05_lsbreg6 ;
+reg [8:0] s06_lsbreg6 ;
+reg [8:0] s07_lsbreg6 ;
+
+
+reg [9:0] s00_lsbreg7 ;
+reg [9:0] s01_lsbreg7 ;
+reg [9:0] s02_lsbreg7 ;
+reg [9:0] s03_lsbreg7 ;
+
+reg [8:0] s00_lsbreg8 ;
+reg [8:0] s01_lsbreg8 ;
+reg [8:0] s02_lsbreg8 ;
+reg [8:0] s03_lsbreg8 ;
+
+reg [9:0] s00_lsbreg9 ;
+reg [9:0] s01_lsbreg9 ;
+
+reg [8:0] s00_lsbreg10 ;
+reg [8:0] s00_lsbreg10cy ;
+
+
+
+// First Stage LSB 연산
+
+assign s00_lsb[8:0] = n0[7:0] + n1[7:0];
+assign s01_lsb[8:0] = n2[7:0] + n3[7:0];
+assign s02_lsb[8:0] = n4[7:0] + n5[7:0];
+assign s03_lsb[8:0] = n6[7:0] + n7[7:0];
+assign s04_lsb[8:0] = n8[7:0] + n9[7:0];
+assign s05_lsb[8:0] = n10[7:0] + n11[7:0];
+assign s06_lsb[8:0] = n12[7:0] + n13[7:0];
+assign s07_lsb[8:0] = n14[7:0] + n15[7:0];
+assign s08_lsb[8:0] = n16[7:0] + n17[7:0];
+assign s09_lsb[8:0] = n18[7:0] + n19[7:0];
+assign s10_lsb[8:0] = n20[7:0] + n21[7:0];
+assign s11_lsb[8:0] = n22[7:0] + n23[7:0];
+assign s12_lsb[8:0] = n24[7:0] + n25[7:0];
+assign s13_lsb[8:0] = n26[7:0] + n27[7:0];
+assign s14_lsb[8:0] = n28[7:0] + n29[7:0];
+assign s15_lsb[8:0] = n30[7:0] + n31[7:0];
+assign s16_lsb[8:0] = n32[7:0] + n33[7:0];
+assign s17_lsb[8:0] = n34[7:0] + n35[7:0];
+assign s18_lsb[8:0] = n36[7:0] + n37[7:0];
+assign s19_lsb[8:0] = n38[7:0] + n39[7:0];
+assign s20_lsb[8:0] = n40[7:0] + n41[7:0];
+assign s21_lsb[8:0] = n42[7:0] + n43[7:0];
+assign s22_lsb[8:0] = n44[7:0] + n45[7:0];
+assign s23_lsb[8:0] = n46[7:0] + n47[7:0];
+assign s24_lsb[8:0] = n48[7:0] + n49[7:0];
+assign s25_lsb[8:0] = n50[7:0] + n51[7:0];
+assign s26_lsb[8:0] = n52[7:0] + n53[7:0];
+assign s27_lsb[8:0] = n54[7:0] + n55[7:0];
+assign s28_lsb[8:0] = n56[7:0] + n57[7:0];
+assign s29_lsb[8:0] = n58[7:0] + n59[7:0];
+assign s30_lsb[8:0] = n60[7:0] + n61[7:0];
+assign s31_lsb[8:0] = n62[7:0] + n63[7:0];
+
+always@(posedge clk) // pipline 1 : clk(1). Register msb, lsb 연산 값
+begin
+    n00_reg1[14:8] <= n0[14:8];
+    n01_reg1[14:8] <= n1[14:8];
+    n02_reg1[14:8] <= n2[14:8];
+    n03_reg1[14:8] <= n3[14:8];
+    n04_reg1[14:8] <= n4[14:8];
+    n05_reg1[14:8] <= n5[14:8];
+    n06_reg1[14:8] <= n6[14:8];
+    n07_reg1[14:8] <= n7[14:8];
+    n08_reg1[14:8] <= n8[14:8];
+    n09_reg1[14:8] <= n9[14:8];
+    n10_reg1[14:8] <= n10[14:8];
+    n11_reg1[14:8] <= n11[14:8];
+    n12_reg1[14:8] <= n12[14:8];
+    n13_reg1[14:8] <= n13[14:8];
+    n14_reg1[14:8] <= n14[14:8];
+    n15_reg1[14:8] <= n15[14:8];
+    n16_reg1[14:8] <= n16[14:8];
+    n17_reg1[14:8] <= n17[14:8];
+    n18_reg1[14:8] <= n18[14:8];
+    n19_reg1[14:8] <= n19[14:8];
+    n20_reg1[14:8] <= n20[14:8];
+    n21_reg1[14:8] <= n21[14:8];
+    n22_reg1[14:8] <= n22[14:8];
+    n23_reg1[14:8] <= n23[14:8];
+    n24_reg1[14:8] <= n24[14:8];
+    n25_reg1[14:8] <= n25[14:8];
+    n26_reg1[14:8] <= n26[14:8];
+    n27_reg1[14:8] <= n27[14:8];
+    n28_reg1[14:8] <= n28[14:8];
+    n29_reg1[14:8] <= n29[14:8];
+    n30_reg1[14:8] <= n30[14:8];
+    n31_reg1[14:8] <= n31[14:8];
+    n32_reg1[14:8] <= n32[14:8];
+    n33_reg1[14:8] <= n33[14:8];
+    n34_reg1[14:8] <= n34[14:8];
+    n35_reg1[14:8] <= n35[14:8];
+    n36_reg1[14:8] <= n36[14:8];
+    n37_reg1[14:8] <= n37[14:8];
+    n38_reg1[14:8] <= n38[14:8];
+    n39_reg1[14:8] <= n39[14:8];
+    n40_reg1[14:8] <= n40[14:8];
+    n41_reg1[14:8] <= n41[14:8];
+    n42_reg1[14:8] <= n42[14:8];
+    n43_reg1[14:8] <= n43[14:8];
+    n44_reg1[14:8] <= n44[14:8];
+    n45_reg1[14:8] <= n45[14:8];
+    n46_reg1[14:8] <= n46[14:8];
+    n47_reg1[14:8] <= n47[14:8];
+    n48_reg1[14:8] <= n48[14:8];
+    n49_reg1[14:8] <= n49[14:8];
+    n50_reg1[14:8] <= n50[14:8];
+    n51_reg1[14:8] <= n51[14:8];
+    n52_reg1[14:8] <= n52[14:8];
+    n53_reg1[14:8] <= n53[14:8];
+    n54_reg1[14:8] <= n54[14:8];
+    n55_reg1[14:8] <= n55[14:8];
+    n56_reg1[14:8] <= n56[14:8];
+    n57_reg1[14:8] <= n57[14:8];
+    n58_reg1[14:8] <= n58[14:8];
+    n59_reg1[14:8] <= n59[14:8];
+    n60_reg1[14:8] <= n60[14:8];
+    n61_reg1[14:8] <= n61[14:8];
+    n62_reg1[14:8] <= n62[14:8];
+    n63_reg1[14:8] <= n63[14:8];
+    s00_lsbreg1[8:0] <= s01_lsb[8:0];
+    s01_lsbreg1[8:0] <= s02_lsb[8:0];
+    s02_lsbreg1[8:0] <= s03_lsb[8:0];
+    s03_lsbreg1[8:0] <= s04_lsb[8:0];
+    s04_lsbreg1[8:0] <= s05_lsb[8:0];
+    s05_lsbreg1[8:0] <= s06_lsb[8:0];
+    s06_lsbreg1[8:0] <= s07_lsb[8:0];
+    s07_lsbreg1[8:0] <= s08_lsb[8:0];
+    s08_lsbreg1[8:0] <= s09_lsb[8:0];
+    s09_lsbreg1[8:0] <= s10_lsb[8:0];
+    s10_lsbreg1[8:0] <= s11_lsb[8:0];
+    s11_lsbreg1[8:0] <= s12_lsb[8:0];
+    s12_lsbreg1[8:0] <= s13_lsb[8:0];
+    s13_lsbreg1[8:0] <= s14_lsb[8:0];
+    s14_lsbreg1[8:0] <= s15_lsb[8:0];
+    s15_lsbreg1[8:0] <= s16_lsb[8:0];
+    s16_lsbreg1[8:0] <= s17_lsb[8:0];
+    s17_lsbreg1[8:0] <= s18_lsb[8:0];
+    s18_lsbreg1[8:0] <= s19_lsb[8:0];
+    s19_lsbreg1[8:0] <= s20_lsb[8:0];
+    s20_lsbreg1[8:0] <= s21_lsb[8:0];
+    s21_lsbreg1[8:0] <= s22_lsb[8:0];
+    s22_lsbreg1[8:0] <= s23_lsb[8:0];
+    s23_lsbreg1[8:0] <= s24_lsb[8:0];
+    s24_lsbreg1[8:0] <= s25_lsb[8:0];
+    s25_lsbreg1[8:0] <= s26_lsb[8:0];
+    s26_lsbreg1[8:0] <= s27_lsb[8:0];
+    s27_lsbreg1[8:0] <= s28_lsb[8:0];
+    s28_lsbreg1[8:0] <= s29_lsb[8:0];
+    s29_lsbreg1[8:0] <= s30_lsb[8:0];
+    s30_lsbreg1[8:0] <= s31_lsb[8:0];
+    s31_lsbreg1[8:0] <= s32_lsb[8:0];
+    
+end
+// 부호 확장 + lsb 케리 비트 더하기
+assign s00_msb[7:0] = {n00_reg1[14], n00_reg1[14:8]} + {n01_reg1[14], n01_reg1[14:8]} + s00_lsbreg1[8];
+assign s01_msb[7:0] = {n02_reg1[14], n02_reg1[14:8]} + {n03_reg1[14], n03_reg1[14:8]} + s01_lsbreg1[8];
+assign s02_msb[7:0] = {n04_reg1[14], n04_reg1[14:8]} + {n05_reg1[14], n05_reg1[14:8]} + s02_lsbreg1[8];
+assign s03_msb[7:0] = {n06_reg1[14], n06_reg1[14:8]} + {n07_reg1[14], n07_reg1[14:8]} + s03_lsbreg1[8];
+assign s04_msb[7:0] = {n08_reg1[14], n08_reg1[14:8]} + {n09_reg1[14], n09_reg1[14:8]} + s04_lsbreg1[8];
+assign s05_msb[7:0] = {n10_reg1[14], n10_reg1[14:8]} + {n11_reg1[14], n11_reg1[14:8]} + s05_lsbreg1[8];
+assign s06_msb[7:0] = {n12_reg1[14], n12_reg1[14:8]} + {n13_reg1[14], n13_reg1[14:8]} + s06_lsbreg1[8];
+assign s07_msb[7:0] = {n14_reg1[14], n14_reg1[14:8]} + {n15_reg1[14], n15_reg1[14:8]} + s07_lsbreg1[8];
+assign s08_msb[7:0] = {n16_reg1[14], n16_reg1[14:8]} + {n17_reg1[14], n17_reg1[14:8]} + s08_lsbreg1[8];
+assign s09_msb[7:0] = {n18_reg1[14], n18_reg1[14:8]} + {n19_reg1[14], n19_reg1[14:8]} + s09_lsbreg1[8];
+assign s10_msb[7:0] = {n20_reg1[14], n20_reg1[14:8]} + {n21_reg1[14], n21_reg1[14:8]} + s10_lsbreg1[8];
+assign s11_msb[7:0] = {n22_reg1[14], n22_reg1[14:8]} + {n23_reg1[14], n23_reg1[14:8]} + s11_lsbreg1[8];
+assign s12_msb[7:0] = {n24_reg1[14], n24_reg1[14:8]} + {n25_reg1[14], n25_reg1[14:8]} + s12_lsbreg1[8];
+assign s13_msb[7:0] = {n26_reg1[14], n26_reg1[14:8]} + {n27_reg1[14], n27_reg1[14:8]} + s13_lsbreg1[8];
+assign s14_msb[7:0] = {n28_reg1[14], n28_reg1[14:8]} + {n29_reg1[14], n29_reg1[14:8]} + s14_lsbreg1[8];
+assign s15_msb[7:0] = {n30_reg1[14], n30_reg1[14:8]} + {n31_reg1[14], n31_reg1[14:8]} + s15_lsbreg1[8];
+assign s16_msb[7:0] = {n32_reg1[14], n32_reg1[14:8]} + {n33_reg1[14], n33_reg1[14:8]} + s16_lsbreg1[8];
+assign s17_msb[7:0] = {n34_reg1[14], n34_reg1[14:8]} + {n35_reg1[14], n35_reg1[14:8]} + s17_lsbreg1[8];
+assign s18_msb[7:0] = {n36_reg1[14], n36_reg1[14:8]} + {n37_reg1[14], n37_reg1[14:8]} + s18_lsbreg1[8];
+assign s19_msb[7:0] = {n38_reg1[14], n38_reg1[14:8]} + {n39_reg1[14], n39_reg1[14:8]} + s19_lsbreg1[8];
+assign s20_msb[7:0] = {n40_reg1[14], n40_reg1[14:8]} + {n41_reg1[14], n41_reg1[14:8]} + s20_lsbreg1[8];
+assign s21_msb[7:0] = {n42_reg1[14], n42_reg1[14:8]} + {n43_reg1[14], n43_reg1[14:8]} + s21_lsbreg1[8];
+assign s22_msb[7:0] = {n44_reg1[14], n44_reg1[14:8]} + {n45_reg1[14], n45_reg1[14:8]} + s22_lsbreg1[8];
+assign s23_msb[7:0] = {n46_reg1[14], n46_reg1[14:8]} + {n47_reg1[14], n47_reg1[14:8]} + s23_lsbreg1[8];
+assign s24_msb[7:0] = {n48_reg1[14], n48_reg1[14:8]} + {n49_reg1[14], n49_reg1[14:8]} + s24_lsbreg1[8];
+assign s25_msb[7:0] = {n50_reg1[14], n50_reg1[14:8]} + {n51_reg1[14], n51_reg1[14:8]} + s25_lsbreg1[8];
+assign s26_msb[7:0] = {n52_reg1[14], n52_reg1[14:8]} + {n53_reg1[14], n53_reg1[14:8]} + s26_lsbreg1[8];
+assign s27_msb[7:0] = {n54_reg1[14], n54_reg1[14:8]} + {n55_reg1[14], n55_reg1[14:8]} + s27_lsbreg1[8];
+assign s28_msb[7:0] = {n56_reg1[14], n56_reg1[14:8]} + {n57_reg1[14], n57_reg1[14:8]} + s28_lsbreg1[8];
+assign s29_msb[7:0] = {n58_reg1[14], n58_reg1[14:8]} + {n59_reg1[14], n59_reg1[14:8]} + s29_lsbreg1[8];
+assign s30_msb[7:0] = {n60_reg1[14], n60_reg1[14:8]} + {n61_reg1[14], n61_reg1[14:8]} + s30_lsbreg1[8];
+assign s31_msb[7:0] = {n62_reg1[14], n62_reg1[14:8]} + {n63_reg1[14], n63_reg1[14:8]} + s31_lsbreg1[8];
+
+always@(posedge clk)
+// pipeline 2 clk 2
+begin
+    s00_msbreg2[7:0] <= s00_msb[7:0];
+    s01_msbreg2[7:0] <= s01_msb[7:0];
+    s02_msbreg2[7:0] <= s02_msb[7:0];
+    s03_msbreg2[7:0] <= s03_msb[7:0];
+    s04_msbreg2[7:0] <= s04_msb[7:0];
+    s05_msbreg2[7:0] <= s05_msb[7:0];
+    s06_msbreg2[7:0] <= s06_msb[7:0];
+    s07_msbreg2[7:0] <= s07_msb[7:0];
+    s08_msbreg2[7:0] <= s08_msb[7:0];
+    s09_msbreg2[7:0] <= s09_msb[7:0];
+    s10_msbreg2[7:0] <= s10_msb[7:0];
+    s11_msbreg2[7:0] <= s11_msb[7:0];
+    s12_msbreg2[7:0] <= s12_msb[7:0];
+    s13_msbreg2[7:0] <= s13_msb[7:0];
+    s14_msbreg2[7:0] <= s14_msb[7:0];
+    s15_msbreg2[7:0] <= s15_msb[7:0];
+    s16_msbreg2[7:0] <= s16_msb[7:0];
+    s17_msbreg2[7:0] <= s17_msb[7:0];
+    s18_msbreg2[7:0] <= s18_msb[7:0];
+    s19_msbreg2[7:0] <= s19_msb[7:0];
+    s20_msbreg2[7:0] <= s20_msb[7:0];
+    s21_msbreg2[7:0] <= s21_msb[7:0];
+    s22_msbreg2[7:0] <= s22_msb[7:0];
+    s23_msbreg2[7:0] <= s23_msb[7:0];
+    s24_msbreg2[7:0] <= s24_msb[7:0];
+    s25_msbreg2[7:0] <= s25_msb[7:0];
+    s26_msbreg2[7:0] <= s26_msb[7:0];
+    s27_msbreg2[7:0] <= s27_msb[7:0];
+    s28_msbreg2[7:0] <= s28_msb[7:0];
+    s29_msbreg2[7:0] <= s29_msb[7:0];
+    s30_msbreg2[7:0] <= s30_msb[7:0];
+    s31_msbreg2[7:0] <= s31_msb[7:0];
+
+    s00_lsbreg2[7:0] <= s00_lsb[7:0];
+    s01_lsbreg2[7:0] <= s01_lsb[7:0];
+    s02_lsbreg2[7:0] <= s02_lsb[7:0];
+    s03_lsbreg2[7:0] <= s03_lsb[7:0];
+    s04_lsbreg2[7:0] <= s04_lsb[7:0];
+    s05_lsbreg2[7:0] <= s05_lsb[7:0];
+    s06_lsbreg2[7:0] <= s06_lsb[7:0];
+    s07_lsbreg2[7:0] <= s07_lsb[7:0];
+    s08_lsbreg2[7:0] <= s08_lsb[7:0];
+    s09_lsbreg2[7:0] <= s09_lsb[7:0];
+    s10_lsbreg2[7:0] <= s10_lsb[7:0];
+    s11_lsbreg2[7:0] <= s11_lsb[7:0];
+    s12_lsbreg2[7:0] <= s12_lsb[7:0];
+    s13_lsbreg2[7:0] <= s13_lsb[7:0];
+    s14_lsbreg2[7:0] <= s14_lsb[7:0];
+    s15_lsbreg2[7:0] <= s15_lsb[7:0];
+    s16_lsbreg2[7:0] <= s16_lsb[7:0];
+    s17_lsbreg2[7:0] <= s17_lsb[7:0];
+    s18_lsbreg2[7:0] <= s18_lsb[7:0];
+    s19_lsbreg2[7:0] <= s19_lsb[7:0];
+    s20_lsbreg2[7:0] <= s20_lsb[7:0];
+    s21_lsbreg2[7:0] <= s21_lsb[7:0];
+    s22_lsbreg2[7:0] <= s22_lsb[7:0];
+    s23_lsbreg2[7:0] <= s23_lsb[7:0];
+    s24_lsbreg2[7:0] <= s24_lsb[7:0];
+    s25_lsbreg2[7:0] <= s25_lsb[7:0];
+    s26_lsbreg2[7:0] <= s26_lsb[7:0];
+    s27_lsbreg2[7:0] <= s27_lsb[7:0];
+    s28_lsbreg2[7:0] <= s28_lsb[7:0];
+    s29_lsbreg2[7:0] <= s29_lsb[7:0];
+    s30_lsbreg2[7:0] <= s30_lsb[7:0];
+    s31_lsbreg2[7:0] <= s31_lsb[7:0];
+
+end
+
+// second stage
+
+assign s2_00_lsb[9:0] = s00_lsbreg2[8:0] + s01_lsbreg2[8:0];
+assign s2_01_lsb[9:0] = s02_lsbreg2[8:0] + s03_lsbreg2[8:0];
+assign s2_02_lsb[9:0] = s04_lsbreg2[8:0] + s05_lsbreg2[8:0];
+assign s2_03_lsb[9:0] = s06_lsbreg2[8:0] + s07_lsbreg2[8:0];
+assign s2_04_lsb[9:0] = s08_lsbreg2[8:0] + s09_lsbreg2[8:0];
+assign s2_05_lsb[9:0] = s10_lsbreg2[8:0] + s11_lsbreg2[8:0];
+assign s2_06_lsb[9:0] = s12_lsbreg2[8:0] + s13_lsbreg2[8:0];
+assign s2_07_lsb[9:0] = s14_lsbreg2[8:0] + s15_lsbreg2[8:0];
+assign s2_08_lsb[9:0] = s16_lsbreg2[8:0] + s17_lsbreg2[8:0];
+assign s2_09_lsb[9:0] = s18_lsbreg2[8:0] + s19_lsbreg2[8:0];
+assign s2_10_lsb[9:0] = s20_lsbreg2[8:0] + s21_lsbreg2[8:0];
+assign s2_11_lsb[9:0] = s22_lsbreg2[8:0] + s23_lsbreg2[8:0];
+assign s2_12_lsb[9:0] = s24_lsbreg2[8:0] + s25_lsbreg2[8:0];
+assign s2_13_lsb[9:0] = s26_lsbreg2[8:0] + s27_lsbreg2[8:0];
+assign s2_14_lsb[9:0] = s28_lsbreg2[8:0] + s29_lsbreg2[8:0];
+assign s2_15_lsb[9:0] = s30_lsbreg2[8:0] + s31_lsbreg2[8:0];
+
+always @(posedge clk)
+// pipeline 3
+begin
+    s00_lsbreg3[9:0] <= s2_00_lsb[9:0];
+    s01_lsbreg3[9:0] <= s2_01_lsb[9:0];
+    s02_lsbreg3[9:0] <= s2_02_lsb[9:0];
+    s03_lsbreg3[9:0] <= s2_03_lsb[9:0];
+    s04_lsbreg3[9:0] <= s2_04_lsb[9:0];
+    s05_lsbreg3[9:0] <= s2_05_lsb[9:0];
+    s06_lsbreg3[9:0] <= s2_06_lsb[9:0];
+    s07_lsbreg3[9:0] <= s2_07_lsb[9:0];
+    s08_lsbreg3[9:0] <= s2_08_lsb[9:0];
+    s09_lsbreg3[9:0] <= s2_09_lsb[9:0];
+    s10_lsbreg3[9:0] <= s2_10_lsb[9:0];
+    s11_lsbreg3[9:0] <= s2_11_lsb[9:0];
+    s12_lsbreg3[9:0] <= s2_12_lsb[9:0];
+    s13_lsbreg3[9:0] <= s2_13_lsb[9:0];
+    s14_lsbreg3[9:0] <= s2_14_lsb[9:0];
+    s15_lsbreg3[9:0] <= s2_15_lsb[9:0];
+
+    s00_msbreg3[8:0] <= s00_msbreg2[8:0];
+    s01_msbreg3[8:0] <= s01_msbreg2[8:0];
+    s02_msbreg3[8:0] <= s02_msbreg2[8:0];
+    s03_msbreg3[8:0] <= s03_msbreg2[8:0];
+    s04_msbreg3[8:0] <= s04_msbreg2[8:0];
+    s05_msbreg3[8:0] <= s05_msbreg2[8:0];
+    s06_msbreg3[8:0] <= s06_msbreg2[8:0];
+    s07_msbreg3[8:0] <= s07_msbreg2[8:0];
+    s08_msbreg3[8:0] <= s08_msbreg2[8:0];
+    s09_msbreg3[8:0] <= s09_msbreg2[8:0];
+    s10_msbreg3[8:0] <= s10_msbreg2[8:0];
+    s11_msbreg3[8:0] <= s11_msbreg2[8:0];
+    s12_msbreg3[8:0] <= s12_msbreg2[8:0];
+    s13_msbreg3[8:0] <= s13_msbreg2[8:0];
+    s14_msbreg3[8:0] <= s14_msbreg2[8:0];
+    s15_msbreg3[8:0] <= s15_msbreg2[8:0];
+    s16_msbreg3[8:0] <= s16_msbreg2[8:0];
+    s17_msbreg3[8:0] <= s17_msbreg2[8:0];
+    s18_msbreg3[8:0] <= s18_msbreg2[8:0];
+    s19_msbreg3[8:0] <= s19_msbreg2[8:0];
+    s20_msbreg3[8:0] <= s20_msbreg2[8:0];
+    s21_msbreg3[8:0] <= s21_msbreg2[8:0];
+    s22_msbreg3[8:0] <= s22_msbreg2[8:0];
+    s23_msbreg3[8:0] <= s23_msbreg2[8:0];
+    s24_msbreg3[8:0] <= s24_msbreg2[8:0];
+    s25_msbreg3[8:0] <= s25_msbreg2[8:0];
+    s26_msbreg3[8:0] <= s26_msbreg2[8:0];
+    s27_msbreg3[8:0] <= s27_msbreg2[8:0];
+    s28_msbreg3[8:0] <= s28_msbreg2[8:0];
+    s29_msbreg3[8:0] <= s29_msbreg2[8:0];
+    s30_msbreg3[8:0] <= s30_msbreg2[8:0];
+    s31_msbreg3[8:0] <= s31_msbreg2[8:0];
+
+end
+
+assign s2_00_msb[9:0] = {s00_msbreg3[8], s00_msbreg3[8:0]} + {s01_msbreg3[8], s01_msbreg3[8:0]} + s00_lsbreg3[9];
+assign s2_01_msb[9:0] = {s02_msbreg3[8], s02_msbreg3[8:0]} + {s03_msbreg3[8], s03_msbreg3[8:0]} + s01_lsbreg3[9];
+assign s2_02_msb[9:0] = {s04_msbreg3[8], s04_msbreg3[8:0]} + {s05_msbreg3[8], s05_msbreg3[8:0]} + s02_lsbreg3[9];
+assign s2_03_msb[9:0] = {s06_msbreg3[8], s06_msbreg3[8:0]} + {s07_msbreg3[8], s07_msbreg3[8:0]} + s03_lsbreg3[9];
+assign s2_04_msb[9:0] = {s08_msbreg3[8], s08_msbreg3[8:0]} + {s09_msbreg3[8], s09_msbreg3[8:0]} + s04_lsbreg3[9];
+assign s2_05_msb[9:0] = {s10_msbreg3[8], s10_msbreg3[8:0]} + {s11_msbreg3[8], s11_msbreg3[8:0]} + s05_lsbreg3[9];
+assign s2_06_msb[9:0] = {s12_msbreg3[8], s12_msbreg3[8:0]} + {s13_msbreg3[8], s13_msbreg3[8:0]} + s06_lsbreg3[9];
+assign s2_07_msb[9:0] = {s14_msbreg3[8], s14_msbreg3[8:0]} + {s15_msbreg3[8], s15_msbreg3[8:0]} + s07_lsbreg3[9];
+assign s2_08_msb[9:0] = {s16_msbreg3[8], s16_msbreg3[8:0]} + {s17_msbreg3[8], s17_msbreg3[8:0]} + s08_lsbreg3[9];
+assign s2_09_msb[9:0] = {s18_msbreg3[8], s18_msbreg3[8:0]} + {s19_msbreg3[8], s19_msbreg3[8:0]} + s09_lsbreg3[9];
+assign s2_10_msb[9:0] = {s20_msbreg3[8], s20_msbreg3[8:0]} + {s21_msbreg3[8], s21_msbreg3[8:0]} + s10_lsbreg3[9];
+assign s2_11_msb[9:0] = {s22_msbreg3[8], s22_msbreg3[8:0]} + {s23_msbreg3[8], s23_msbreg3[8:0]} + s11_lsbreg3[9];
+assign s2_12_msb[9:0] = {s24_msbreg3[8], s24_msbreg3[8:0]} + {s25_msbreg3[8], s25_msbreg3[8:0]} + s12_lsbreg3[9];
+assign s2_13_msb[9:0] = {s26_msbreg3[8], s26_msbreg3[8:0]} + {s27_msbreg3[8], s27_msbreg3[8:0]} + s13_lsbreg3[9];
+assign s2_14_msb[9:0] = {s28_msbreg3[8], s28_msbreg3[8:0]} + {s29_msbreg3[8], s29_msbreg3[8:0]} + s14_lsbreg3[9];
+assign s2_15_msb[9:0] = {s30_msbreg3[8], s30_msbreg3[8:0]} + {s31_msbreg3[8], s31_msbreg3[8:0]} + s15_lsbreg3[9];
+
+always @(posedge clk)
+// pipeline 4
+begin
+    s00_lsbreg4[9:0] <= s00_lsbreg3[9:0];
+    s01_lsbreg4[9:0] <= s00_lsbreg3[9:0];
+    s02_lsbreg4[9:0] <= s00_lsbreg3[9:0];
+    s03_lsbreg4[9:0] <= s00_lsbreg3[9:0];
+    s04_lsbreg4[9:0] <= s00_lsbreg3[9:0];
+    s05_lsbreg4[9:0] <= s00_lsbreg3[9:0];
+    s06_lsbreg4[9:0] <= s00_lsbreg3[9:0];
+    s07_lsbreg4[9:0] <= s00_lsbreg3[9:0];
+    s08_lsbreg4[9:0] <= s00_lsbreg3[9:0];
+    s09_lsbreg4[9:0] <= s00_lsbreg3[9:0];
+    s10_lsbreg4[9:0] <= s00_lsbreg3[9:0];
+    s11_lsbreg4[9:0] <= s00_lsbreg3[9:0];
+    s12_lsbreg4[9:0] <= s00_lsbreg3[9:0];
+    s13_lsbreg4[9:0] <= s00_lsbreg3[9:0];
+    s14_lsbreg4[9:0] <= s00_lsbreg3[9:0];
+    s15_lsbreg4[9:0] <= s00_lsbreg3[9:0];
+
+
+    s00_msbreg4[9:0] <= s2_00_msb[9:0];
+    s01_msbreg4[9:0] <= s2_01_msb[9:0];
+    s02_msbreg4[9:0] <= s2_02_msb[9:0];
+    s03_msbreg4[9:0] <= s2_03_msb[9:0];
+    s04_msbreg4[9:0] <= s2_04_msb[9:0];
+    s05_msbreg4[9:0] <= s2_05_msb[9:0];
+    s06_msbreg4[9:0] <= s2_06_msb[9:0];
+    s07_msbreg4[9:0] <= s2_07_msb[9:0];
+    s08_msbreg4[9:0] <= s2_08_msb[9:0];
+    s09_msbreg4[9:0] <= s2_09_msb[9:0];
+    s10_msbreg4[9:0] <= s2_10_msb[9:0];
+    s11_msbreg4[9:0] <= s2_11_msb[9:0];
+    s12_msbreg4[9:0] <= s2_12_msb[9:0];
+    s13_msbreg4[9:0] <= s2_13_msb[9:0];
+    s14_msbreg4[9:0] <= s2_14_msb[9:0];
+    s15_msbreg4[9:0] <= s2_15_msb[9:0];
+end
+
+assign s3_00_lsb[10:0] = s00_lsbreg4[9:0] + s01_lsbreg4[9:0];
+assign s3_01_lsb[10:0] = s02_lsbreg4[9:0] + s03_lsbreg4[9:0];
+assign s3_02_lsb[10:0] = s04_lsbreg4[9:0] + s05_lsbreg4[9:0];
+assign s3_03_lsb[10:0] = s06_lsbreg4[9:0] + s07_lsbreg4[9:0];
+assign s3_04_lsb[10:0] = s08_lsbreg4[9:0] + s09_lsbreg4[9:0];
+assign s3_05_lsb[10:0] = s10_lsbreg4[9:0] + s11_lsbreg4[9:0];
+assign s3_06_lsb[10:0] = s12_lsbreg4[9:0] + s13_lsbreg4[9:0];
+assign s3_07_lsb[10:0] = s14_lsbreg4[9:0] + s15_lsbreg4[9:0];
+
+
+always @(posedge clk)
+// pipeline 5
+begin
+    s00_msbreg5[9:0] <= s00_msbreg4[9:0];
+    s01_msbreg5[9:0] <= s01_msbreg4[9:0];
+    s02_msbreg5[9:0] <= s02_msbreg4[9:0];
+    s03_msbreg5[9:0] <= s03_msbreg4[9:0];
+    s04_msbreg5[9:0] <= s04_msbreg4[9:0];
+    s05_msbreg5[9:0] <= s05_msbreg4[9:0];
+    s06_msbreg5[9:0] <= s06_msbreg4[9:0];
+    s07_msbreg5[9:0] <= s07_msbreg4[9:0];
+    s08_msbreg5[9:0] <= s08_msbreg4[9:0];
+    s09_msbreg5[9:0] <= s09_msbreg4[9:0];
+    s10_msbreg5[9:0] <= s10_msbreg4[9:0];
+    s11_msbreg5[9:0] <= s11_msbreg4[9:0];
+    s12_msbreg5[9:0] <= s12_msbreg4[9:0];
+    s13_msbreg5[9:0] <= s13_msbreg4[9:0];
+    s14_msbreg5[9:0] <= s14_msbreg4[9:0];
+    s15_msbreg5[9:0] <= s15_msbreg4[9:0];
+
+
+
+
+    s00_lsbreg5[10:0] <= s3_00_lsb[10:0];
+    s01_lsbreg5[10:0] <= s3_01_lsb[10:0];
+    s02_lsbreg5[10:0] <= s3_02_lsb[10:0];
+    s03_lsbreg5[10:0] <= s3_03_lsb[10:0];
+    s04_lsbreg5[10:0] <= s3_04_lsb[10:0];
+    s05_lsbreg5[10:0] <= s3_05_lsb[10:0];
+    s06_lsbreg5[10:0] <= s3_06_lsb[10:0];
+    s07_lsbreg5[10:0] <= s3_07_lsb[10:0];
+
+end
+
+assign s3_00_msb[10:0] = {s00_msbreg4[9], s00_msbreg4[9:0]} + {s01_msbreg4[9], s01_msbreg4[9:0]} + s00_lsbreg4[9];
+assign s3_01_msb[10:0] = {s02_msbreg4[9], s02_msbreg4[9:0]} + {s03_msbreg4[9], s03_msbreg4[9:0]} + s01_lsbreg4[9];
+assign s3_02_msb[10:0] = {s04_msbreg4[9], s04_msbreg4[9:0]} + {s05_msbreg4[9], s05_msbreg4[9:0]} + s02_lsbreg4[9];
+assign s3_03_msb[10:0] = {s06_msbreg4[9], s06_msbreg4[9:0]} + {s07_msbreg4[9], s07_msbreg4[9:0]} + s03_lsbreg4[9];
+assign s3_04_msb[10:0] = {s08_msbreg4[9], s08_msbreg4[9:0]} + {s09_msbreg4[9], s09_msbreg4[9:0]} + s04_lsbreg4[9];
+assign s3_05_msb[10:0] = {s10_msbreg4[9], s10_msbreg4[9:0]} + {s11_msbreg4[9], s11_msbreg4[9:0]} + s05_lsbreg4[9];
+assign s3_06_msb[10:0] = {s12_msbreg4[9], s12_msbreg4[9:0]} + {s13_msbreg4[9], s13_msbreg4[9:0]} + s06_lsbreg4[9];
+assign s3_07_msb[10:0] = {s14_msbreg4[9], s14_msbreg4[9:0]} + {s15_msbreg4[9], s15_msbreg4[9:0]} + s07_lsbreg4[9];
+
+always @(posedge clk)
+// pipeline 6
+begin
+    s00_lsbreg6[10:0] <= s00_lsbreg5[10:0];
+    s01_lsbreg6[10:0] <= s01_lsbreg5[10:0];
+    s02_lsbreg6[10:0] <= s02_lsbreg5[10:0];
+    s03_lsbreg6[10:0] <= s03_lsbreg5[10:0];
+    s04_lsbreg6[10:0] <= s04_lsbreg5[10:0];
+    s05_lsbreg6[10:0] <= s05_lsbreg5[10:0];
+    s06_lsbreg6[10:0] <= s06_lsbreg5[10:0];
+    s07_lsbreg6[10:0] <= s07_lsbreg5[10:0];
+
+
+
+    s00_msbreg6[10:0] <= s3_00_msb[10:0];
+    s01_msbreg6[10:0] <= s3_01_msb[10:0];
+    s02_msbreg6[10:0] <= s3_02_msb[10:0];
+    s03_msbreg6[10:0] <= s3_03_msb[10:0];
+    s04_msbreg6[10:0] <= s3_04_msb[10:0];
+    s05_msbreg6[10:0] <= s3_05_msb[10:0];
+    s06_msbreg6[10:0] <= s3_06_msb[10:0];
+    s07_msbreg6[10:0] <= s3_07_msb[10:0];
+
+end
+
+assign s4_00_lsb[11:0] = s00_lsbreg6[10:0] + s01_lsbreg6[10:0];
+assign s4_01_lsb[11:0] = s02_lsbreg6[10:0] + s03_lsbreg6[10:0];
+assign s4_02_lsb[11:0] = s04_lsbreg6[10:0] + s05_lsbreg6[10:0];
+assign s4_03_lsb[11:0] = s06_lsbreg6[10:0] + s07_lsbreg6[10:0];
+
+always @(posedge clk)
+// pipeline 7
+begin
+    s00_msbreg7[10:0] <= s00_msbreg6[10:0];
+    s01_msbreg7[10:0] <= s01_msbreg6[10:0];
+    s02_msbreg7[10:0] <= s02_msbreg6[10:0];
+    s03_msbreg7[10:0] <= s03_msbreg6[10:0];
+    s04_msbreg7[10:0] <= s04_msbreg6[10:0];
+    s05_msbreg7[10:0] <= s05_msbreg6[10:0];
+    s06_msbreg7[10:0] <= s06_msbreg6[10:0];
+    s07_msbreg7[10:0] <= s07_msbreg6[10:0];
+
+
+
+    s00_lsbreg6[11:0] <= s4_00_lsb[11:0];
+    s01_lsbreg6[11:0] <= s4_01_lsb[11:0];
+    s02_lsbreg6[11:0] <= s4_02_lsb[11:0];
+    s03_lsbreg6[11:0] <= s4_03_lsb[11:0];
+
+end
+
+assign s5_00_msb[11:0] = {s00_msbreg7[10], s00_msbreg7[10:0]} + {s01_msbreg7[10], s01_msbreg7[10:0]} + s00_lsbreg7[10];
+assign s5_01_msb[11:0] = {s02_msbreg7[10], s02_msbreg7[10:0]} + {s03_msbreg7[10], s03_msbreg7[10:0]} + s01_lsbreg7[10];
+assign s5_02_msb[11:0] = {s04_msbreg7[10], s04_msbreg7[10:0]} + {s05_msbreg7[10], s05_msbreg7[10:0]} + s02_lsbreg7[10];
+assign s5_03_msb[11:0] = {s06_msbreg7[10], s06_msbreg7[10:0]} + {s07_msbreg7[10], s07_msbreg7[10:0]} + s03_lsbreg7[10];
+
+always @(posedge clk)
+// pipeline 8
+begin
+    s00_lsbreg7[11:0] <= s00_lsbreg6[11:0];
+    s01_lsbreg7[11:0] <= s01_lsbreg6[11:0];
+    s02_lsbreg7[11:0] <= s02_lsbreg6[11:0];
+    s03_lsbreg7[11:0] <= s03_lsbreg6[11:0];
+
+    s00_msbreg8[11:0] <= s5_00_msb[11:0];
+    s01_msbreg8[11:0] <= s5_01_msb[11:0];
+    s02_msbreg8[11:0] <= s5_02_msb[11:0];
+    s03_msbreg8[11:0] <= s5_03_msb[11:0];
+
+end
+
+assign s5_00_lsb[12:0] = s00_lsbreg7[11:0] + s01_lsbreg7[11:0];
+assign s5_01_lsb[12:0] = s02_lsbreg7[11:0] + s03_lsbreg7[11:0];
+
+always @(posedge clk)
+// pipeline 9
+begin
+    s00_msbreg9[11:0] <= s00_msbreg8[11:0];
+    s01_msbreg9[11:0] <= s01_msbreg8[11:0];
+    s02_msbreg9[11:0] <= s02_msbreg8[11:0];
+    s03_msbreg9[11:0] <= s03_msbreg8[11:0];
+
+    s00_lsbreg8[12:0] <= s5_00_lsb[12:0];
+    s01_lsbreg8[12:0] <= s5_01_lsb[12:0];
+
+end
+
+assign s6_00_msb[13:0] = {s00_msbreg8[12], s00_msbreg8[12:0]} + {s01_msbreg8[12], s01_msbreg8[12:0]} + s00_lsbreg8[12];
+assign s6_01_msb[13:0] = {s02_msbreg8[12], s02_msbreg8[12:0]} + {s03_msbreg8[12], s03_msbreg8[12:0]} + s01_lsbreg8[12];
+
+always @(posedge clk)
+// pipeline 10
+begin
+    s00_lsbreg9[12:0] <= s00_lsbreg8[12:0];
+    s01_lsbreg9[12:0] <= s01_lsbreg8[12:0];
+
+    s00_msbreg10[13:0] <= s6_00_msb[13:0];
+    s01_msbreg10[13:0] <= s6_01_msb[13:0];
+
+end
+
+assign s6_00_lsb[13:0] = s00_lsbreg9[12:0] + s01_lsbreg9[12:0];
+
+always @(posedge clk)
+// pipeline 11
+begin
+    s00_msbre11[13:0] <= s00_msbreg10[13:0];
+    s01_msbreg11[13:0] <= s01_msbreg10[13:0];
+
+    s00_lsbreg10[13:0] <= s6_00_lsb[13:0];
+    s00_lsbreg10cy[13:0] <= s6_00_lsb[13];
+
+
+end
+
+assign sum[14:0] = {({s00_msbreg11[13], s00_msbreg11[13:0]} + {s01_msbreg11[13], s01_msbreg11[13:0]} + s00_lsbreg10cy), s00_lsbreg10[13:0]};
+
+endmodule
