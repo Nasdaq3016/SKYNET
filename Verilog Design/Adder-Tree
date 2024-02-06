@@ -215,6 +215,9 @@ wire [12:0] s5_01_lsb ;
 
 wire [11:0] s5_00_msb ; 
 wire [11:0] s5_01_msb ;
+wire [11:0] s5_02_msb ; 
+wire [11:0] s5_03_msb ;
+
 
 wire [13:0] s6_00_lsb ; 
 
