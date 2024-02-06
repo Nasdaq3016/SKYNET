@@ -78,7 +78,7 @@ input [14:0] n63;
 
 output [20:0] sum ; 
 
-wire [8:0] s00_lsb ; 
+wire [8:0] s00_lsb ;
 wire [8:0] s01_lsb ; 
 wire [8:0] s02_lsb ; 
 wire [8:0] s03_lsb ; 
@@ -204,10 +204,11 @@ wire [11:0] s4_01_lsb ;
 wire [11:0] s4_02_lsb ; 
 wire [11:0] s4_03_lsb ;
 
-wire [10:0] s4_00_msb ; 
+//코드수정 사용X 삭제함
+/*wire [10:0] s4_00_msb ; 
 wire [10:0] s4_01_msb ;
 wire [10:0] s4_02_msb ; 
-wire [10:0] s4_03_msb ;
+wire [10:0] s4_03_msb ;*/
 
 wire [12:0] s5_00_lsb ; 
 wire [12:0] s5_01_lsb ;
@@ -358,63 +359,43 @@ reg [8:0] s29_msbreg3 ;
 reg [8:0] s30_msbreg3 ;
 reg [8:0] s31_msbreg3 ;
 
-//코드수정 추가 0~15=16개 선언
-reg [9:0] s00_msbreg4;
-reg [9:0] s01_msbreg4;
-reg [9:0] s02_msbreg4;
-reg [9:0] s03_msbreg4;
-reg [9:0] s04_msbreg4;
-reg [9:0] s05_msbreg4;
-reg [9:0] s06_msbreg4;
-reg [9:0] s07_msbreg4;
-reg [9:0] s08_msbreg4;
-reg [9:0] s09_msbreg4;
-reg [9:0] s10_msbreg4;
-reg [9:0] s11_msbreg4;
-reg [9:0] s12_msbreg4;
-reg [9:0] s13_msbreg4;
-reg [9:0] s14_msbreg4;
-reg [9:0] s15_msbreg4;
+//코드수정 추가 0~15=16개 선언, [9->8:0]
+reg [8:0] s00_msbreg4;
+reg [8:0] s01_msbreg4;
+reg [8:0] s02_msbreg4;
+reg [8:0] s03_msbreg4;
+reg [8:0] s04_msbreg4;
+reg [8:0] s05_msbreg4;
+reg [8:0] s06_msbreg4;
+reg [8:0] s07_msbreg4;
+reg [8:0] s08_msbreg4;
+reg [8:0] s09_msbreg4;
+reg [8:0] s10_msbreg4;
+reg [8:0] s11_msbreg4;
+reg [8:0] s12_msbreg4;
+reg [8:0] s13_msbreg4;
+reg [8:0] s14_msbreg4;
+reg [8:0] s15_msbreg4;
 
 
-//s2_lsb와 숫자 같아야 함 16개
-/*코드수정 삭제 후 아래 재기입
-reg [9:0] s00_lsbreg4 ;
-reg [9:0] s01_lsbreg4 ;
-reg [9:0] s02_lsbreg4 ;
-reg [9:0] s03_lsbreg4 ;
-reg [9:0] s04_lsbreg4 ;
-reg [9:0] s05_lsbreg4 ;
-reg [9:0] s06_lsbreg4 ;
-reg [9:0] s07_lsbreg4 ;
-reg [9:0] s08_lsbreg4 ;
-reg [9:0] s09_lsbreg4 ;
-reg [9:0] s10_lsbreg4 ;
-reg [9:0] s11_lsbreg4 ;
-reg [9:0] s12_lsbreg4 ;
-reg [9:0] s13_lsbreg4 ;
-reg [9:0] s14_lsbreg4 ;
-reg [9:0] s15_lsbreg4 ;
-*/
 
-// msbreg4 랑 숫자 같아야 함 16개
-
-reg [9:0] s00_msbreg5 ;
-reg [9:0] s01_msbreg5 ;
-reg [9:0] s02_msbreg5 ;
-reg [9:0] s03_msbreg5 ;
-reg [9:0] s04_msbreg5 ;
-reg [9:0] s05_msbreg5 ;
-reg [9:0] s06_msbreg5 ;
-reg [9:0] s07_msbreg5 ;
-reg [9:0] s08_msbreg5 ;
-reg [9:0] s09_msbreg5 ;
-reg [9:0] s10_msbreg5 ;
-reg [9:0] s11_msbreg5 ;
-reg [9:0] s12_msbreg5 ;
-reg [9:0] s13_msbreg5 ;
-reg [9:0] s14_msbreg5 ;
-reg [9:0] s15_msbreg5 ;
+// msbreg4 랑 숫자 같아야 함 16개, 9->[8:0]
+reg [8:0] s00_msbreg5 ;
+reg [8:0] s01_msbreg5 ;
+reg [8:0] s02_msbreg5 ;
+reg [8:0] s03_msbreg5 ;
+reg [8:0] s04_msbreg5 ;
+reg [8:0] s05_msbreg5 ;
+reg [8:0] s06_msbreg5 ;
+reg [8:0] s07_msbreg5 ;
+reg [8:0] s08_msbreg5 ;
+reg [8:0] s09_msbreg5 ;
+reg [8:0] s10_msbreg5 ;
+reg [8:0] s11_msbreg5 ;
+reg [8:0] s12_msbreg5 ;
+reg [8:0] s13_msbreg5 ;
+reg [8:0] s14_msbreg5 ;
+reg [8:0] s15_msbreg5 ;
 
 //코드수정 [9:0]->[10:0]
 // 8개
@@ -551,6 +532,7 @@ reg [9:0] s14_lsbreg3 ;
 reg [9:0] s15_lsbreg3 ;
 
 //코드수정 [9:0]이 맞는거 같아 수정
+// msbreg4 랑 숫자 같아야 함 16개
 reg [9:0] s00_lsbreg4 ;
 reg [9:0] s01_lsbreg4 ;
 reg [9:0] s02_lsbreg4 ;
@@ -595,17 +577,20 @@ reg [11:0] s01_lsbreg7 ;
 reg [11:0] s02_lsbreg7 ;
 reg [11:0] s03_lsbreg7 ;
 
-//코드수정 [8:0] -> [12:0] 0~1 두개여서 2,3 지움
-reg [12:0] s00_lsbreg8 ;
-reg [12:0] s01_lsbreg8 ;
+//코드수정 [8:0] -> [11:0]
+reg [11:0] s00_lsbreg8 ;
+reg [11:0] s01_lsbreg8 ;
+reg [11:0] s02_lsbreg8 ;
+reg [11:0] s03_lsbreg8 ;
 
 //코드수정 [9:0]->[12:0]
 reg [12:0] s00_lsbreg9 ;
 reg [12:0] s01_lsbreg9 ;
 
+
 //코드수정 [8:0]->[13:0]
-reg [13:0] s00_lsbreg10 ;
-reg [13:0] s00_lsbreg10cy ;
+reg [13:0] s00_lsbreg11 ;
+reg s00_lsbreg11cy ;
 
 
 
@@ -962,7 +947,7 @@ begin
     s14_lsbreg4[9:0] <= s00_lsbreg3[9:0];
     s15_lsbreg4[9:0] <= s00_lsbreg3[9:0];
 
-//코드수정 s00_msbreg4 얘는 위에 선언 안 해줘도 되는겨? -> 해줌
+
     s00_msbreg4[8:0] <= s2_00_msb[8:0];
     s01_msbreg4[8:0] <= s2_01_msb[8:0];
     s02_msbreg4[8:0] <= s2_02_msb[8:0];
@@ -1077,7 +1062,6 @@ begin
     s07_msbreg7[10:0] <= s07_msbreg6[10:0];
 
 
-//코드수정 위에 [10:0]으로 선언했는데 이렇게 재할당 해주면 위에 새로 선언해줄 필요 없음?
     s00_lsbreg7[11:0] <= s4_00_lsb[11:0];
     s01_lsbreg7[11:0] <= s4_01_lsb[11:0];
     s02_lsbreg7[11:0] <= s4_02_lsb[11:0];
@@ -1116,19 +1100,19 @@ begin
     s02_msbreg9[11:0] <= s02_msbreg8[11:0];
     s03_msbreg9[11:0] <= s03_msbreg8[11:0];
 
-    s00_lsbreg8[12:0] <= s5_00_lsb[12:0];
-    s01_lsbreg8[12:0] <= s5_01_lsb[12:0];
+    s00_lsbreg9[12:0] <= s5_00_lsb[12:0];
+    s01_lsbreg9[12:0] <= s5_01_lsb[12:0];
 
 end
 
-assign s6_00_msb[12:0] = {s00_msbreg8[11], s00_msbreg8[11:0]} + {s01_msbreg8[11], s01_msbreg8[11:0]} + s00_lsbreg8[12];
-assign s6_01_msb[12:0] = {s02_msbreg8[11], s02_msbreg8[11:0]} + {s03_msbreg8[11], s03_msbreg8[11:0]} + s01_lsbreg8[12];
+assign s6_00_msb[12:0] = {s00_msbreg8[11], s00_msbreg8[11:0]} + {s01_msbreg8[11], s01_msbreg8[11:0]} + s00_lsbreg9[12];
+assign s6_01_msb[12:0] = {s02_msbreg8[11], s02_msbreg8[11:0]} + {s03_msbreg8[11], s03_msbreg8[11:0]} + s01_lsbreg9[12];
 
 always @(posedge clk)
 // pipeline 10
 begin
-    s00_lsbreg9[12:0] <= s00_lsbreg8[12:0];
-    s01_lsbreg9[12:0] <= s01_lsbreg8[12:0];
+    s00_lsbreg10[12:0] <= s00_lsbreg9[12:0];
+    s01_lsbreg10[12:0] <= s01_lsbreg9[12:0];
 
     s00_msbreg10[12:0] <= s6_00_msb[12:0];
     s01_msbreg10[12:0] <= s6_01_msb[12:0];
@@ -1143,12 +1127,12 @@ begin
     s00_msbreg11[12:0] <= s00_msbreg10[12:0];
     s01_msbreg11[12:0] <= s01_msbreg10[12:0];
 
-    s00_lsbreg10[13:0] <= s6_00_lsb[13:0];
-    s00_lsbreg10cy <= s6_00_lsb[13];
+    s00_lsbreg11[13:0] <= s6_00_lsb[13:0];
+    s00_lsbreg11cy <= s6_00_lsb[13];
 
 
 end
 
-assign sum[20:0] = {({s00_msbreg11[12], s00_msbreg11[12:0]} + {s01_msbreg11[12], s01_msbreg11[12:0]} + s00_lsbreg10cy), s00_lsbreg10[13:0]};
+assign sum[20:0] = {({s00_msbreg11[12], s00_msbreg11[12:0]} + {s01_msbreg11[12], s01_msbreg11[12:0]} + s00_lsbreg11cy), s00_lsbreg11[13:0]};
 
 endmodule
